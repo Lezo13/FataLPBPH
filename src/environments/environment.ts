@@ -8,12 +8,12 @@ export const environment: Environment = {
   production: false,
   apiEndpoint: 'https://localhost:44391',
   firebase: {
-    apiKey: "AIzaSyC7_cV6iYMXv-H7ve3opdurNRsBL06XIQM",
-    authDomain: "fatalpbph-caff7.firebaseapp.com",
-    projectId: "fatalpbph-caff7",
-    storageBucket: "fatalpbph-caff7.firebasestorage.app",
-    messagingSenderId: "75381627043",
-    appId: "1:75381627043:web:8d1063f84ca6f8859b0716"
+    apiKey: "AIzaSyCiWWKbc1lUuMYteMltg0yt-38ufNNZ24Y",
+    authDomain: "fatal-clan.firebaseapp.com",
+    projectId: "fatal-clan",
+    storageBucket: "fatal-clan.firebasestorage.app",
+    messagingSenderId: "272171779854",
+    appId: "1:272171779854:web:3f2c6a7d42a6b958fb795f"
   }
 };
 
