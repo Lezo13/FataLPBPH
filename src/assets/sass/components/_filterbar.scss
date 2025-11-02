@@ -1,0 +1,53 @@
+.filter-bar {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: $base-size;
+  white-space: nowrap;
+
+  &__btn {
+    height: 2.5 * $base-size !important;
+
+    .fa-sort {
+      font-size: 1.1 * $base-size;
+    }
+  }
+
+  .filter-container {
+    width: 100%;
+    display: flex;
+    vertical-align: middle;
+    gap: 10px;
+
+    &.structure__filter {
+      justify-content: flex-start;
+    }
+
+    &.model__filter {
+      justify-content: flex-end;
+    }
+
+    &__checkbox {
+      margin-top: 6px;
+    }
+
+    &__category {
+      width: 20%;
+    }
+  }
+
+  .filter-items {
+    margin-right: 0.5 * $base-size;
+    max-width: 40%;
+
+    &__input {
+      margin-right: 3px;
+    }
+
+    .clear-btn {
+      background-color: unset !important;
+      color: $brand-primary !important;
+      right: 4px;
+    }
+  }
+}

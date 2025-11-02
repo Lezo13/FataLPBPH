@@ -1,0 +1,17 @@
+.breadcrumb-custom {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  border-radius: 0.25rem;
+  align-items: center;
+
+  .breadcrumb-item {
+    &:active {
+      color: $brand-primary;
+    }
+
+    &:disabled {
+      color: $gray-4;
+    }
+  }
+}

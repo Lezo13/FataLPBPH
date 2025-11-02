@@ -1,0 +1,100 @@
+.form-radio-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  label {
+    font-weight: normal !important;
+  }
+}
+
+.form-radio {
+  display: flex !important;
+  align-items: start !important;
+  padding-left: 0.5rem !important;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  // margin: 0.5rem !important;
+
+  &__label {
+    margin-left: 0.5 * $base-size;
+    margin-top: 0.35rem;
+  }
+
+  &__field {
+    margin-left: 1rem;
+    width: 4rem !important;
+  }
+}
+
+/* Hide the browser's default checkbox */
+
+.form-radio input[type="checkbox"],
+.form-radio input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+
+.form-radio__mark {
+  display: inline-flex;
+  position: relative;
+  height: 18px;
+  min-width: 18px;
+  background-color: $white;
+  border: 1px solid $gray-5;
+  border-radius: 50%;
+  margin-top: 0.25rem;
+}
+
+/* On mouse-over, add a grey background color */
+
+.form-radio:hover input ~ .form-radio__mark {
+  background-color: $gray-3;
+}
+
+/* When the checkbox is checked, add a blue background */
+
+.form-radio input:checked ~ .form-radio__mark {
+  background-color: $brand-primary;
+  border: 3px solid $brand-primary;
+  border-radius: 50%;
+
+  &:hover {
+    background: $brand-primary;
+  }
+}
+
+/* Create the form-radio__mark/indicator (hidden when not checked) */
+
+.form-radio__mark::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the form-radio__mark when checked */
+
+.form-radio input:checked ~ .form-radio__mark::after {
+  display: block;
+}
+
+/* Style the form-radio__mark/indicator */
+
+.form-radio .form-radio__mark::after {
+  left: 1px;
+  top: 1px;
+  height: 10px;
+  width: 10px;
+  background: $white;
+  border-radius: 50%;
+}

@@ -1,0 +1,224 @@
+.data {
+  font-size: 0.75 * $base-size !important;
+
+  &-m {
+    font-size: 1 * $base-size !important;
+  }
+
+  &--header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &--icon {
+    i {
+      svg {
+        height: 22px;
+        width: 22px;
+      }
+    }
+
+    i-feather[name="check-circle"] {
+      color: $green;
+    }
+
+    i-feather[name="x-circle"],
+    i-feather[name="slash"] {
+      color: $red;
+    }
+
+    i-feather[name="clock"] {
+      color: $yellow;
+    }
+
+    i.bxs-circle-three-quarter {
+      color: $blue;
+      border: 1px solid $blue;
+      border-radius: 10px;
+    }
+
+    // Icon colors
+
+    &-primary {
+      color: $brand-primary;
+    }
+
+    &-green {
+      color: $green;
+    }
+
+    &-red {
+      color: $red;
+    }
+
+    &-gray {
+      color: $gray-3;
+    }
+
+    &-dark-gray {
+      color: $gray-5;
+    }
+
+    &-orange {
+      color: $orange;
+    }
+  }
+
+  &--item {
+    display: flex;
+    align-items: center;
+  }
+
+  &--w-float {
+    a {
+      float: right;
+      display: flex;
+      align-items: center;
+    }
+
+    .qual-data__details {
+      float: right;
+      display: flex;
+      text-align: right;
+      align-items: center;
+
+      .details__text {
+        color: $brand-primary;
+      }
+    }
+
+    .indicator {
+      margin-left: 0.5rem;
+      height: 12px;
+      width: 12px;
+    }
+
+    &-left {
+      a {
+        float: left;
+        display: flex;
+        align-items: center;
+      }
+
+      .indicator {
+        margin-left: 0.5rem;
+        height: 12px;
+        width: 12px;
+      }
+    }
+  }
+
+  &--boxed {
+    align-items: center;
+    display: inline;
+    border: solid 1px $gray-4;
+    background-color: $white;
+    border-radius: 10%;
+    padding: 4px 10px !important;
+  }
+
+  &--primary {
+    color: $brand-primary;
+  }
+
+  &--orange {
+    background-color: $orange;
+  }
+
+  &--red {
+    background-color: $red;
+  }
+
+  &--green {
+    background-color: $green;
+  }
+
+  &--boxed-input {
+    align-items: center;
+    display: inline;
+    border: solid 1px $gray-4;
+    background-color: $white;
+    border-radius: 10%;
+    padding: 4px 10px !important;
+    max-width: 64px;
+    height: 23px;
+    color: $black;
+    text-align: center;
+    font-weight: unset;
+
+    &.user-data {
+      &:focus {
+        border: solid 2px $black;
+      }
+    }
+  }
+
+  &--org-boxed {
+    align-items: center;
+    display: inline-block;
+    border: solid 1px $gray-4;
+    background-color: $white;
+    border-radius: 10%;
+    padding: 2.5px 10px !important;
+    width: 4rem;
+  }
+
+  &--colored {
+    border-right-width: 0 !important;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+
+  &__color {
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    border-left-width: 1px;
+    border-top-right-radius: 10%;
+    border-bottom-right-radius: 10%;
+    padding: 4px 10px !important;
+  }
+
+  &--checkbox {
+    align-items: center;
+    display: inline;
+    border: solid 1px $gray-4;
+    background-color: $white;
+    border-radius: 10%;
+    padding: 4px 15px !important;
+
+    &-gray,
+    &-grey {
+      background-color: $gray-11 !important;
+      color: $white;
+    }
+
+    &-silver {
+      background-color: $gray-4 !important;
+    }
+
+    &-yellow {
+      background-color: $yellow !important;
+    }
+
+    &-red {
+      background-color: $red !important;
+      color: $white;
+    }
+
+    &-green {
+      background-color: $green !important;
+    }
+
+    &-null {
+      background-color: $gray-4 !important;
+    }
+  }
+
+  &--blue {
+    color: $blue;
+  }
+
+  &--cyan {
+    color: $cyan;
+  }
+}

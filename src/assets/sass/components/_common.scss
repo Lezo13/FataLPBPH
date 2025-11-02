@@ -1,0 +1,185 @@
+@mixin outline-status-icon {
+  position: relative;
+
+  &::after {
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    border-radius: 50%;
+    inset: 0;
+    margin: auto;
+    background: $white;
+  }
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  height: 15px;
+
+  .status__text {
+    margin: 0 0 0 0.5em;
+  }
+}
+
+.data_table {
+  overflow: hidden;
+  white-space: nowrap;
+
+  .table__cell {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5rem 10rem;
+
+    .table__cell--text,
+    .table__cell--text-icon,
+    .table__cell--status-text,
+    .table__cell--comment-text {
+      display: block;
+
+      @include truncate;
+    }
+
+    .table__cell--text {
+      width: 100%;
+    }
+
+    .table__cell--text-icon,
+    .table__cell--status-text {
+      width: 90%;
+    }
+
+    .table__cell--status-text {
+      margin-left: 0.5em;
+    }
+  }
+
+  .table__header {
+    background: $gray-1 !important;
+    border-bottom: 0 !important;
+    border-left: 1px solid $gray-4 !important;
+    border-right: 1px solid $gray-4 !important;
+    border-top: 1px solid $gray-4 !important;
+    width: 320px !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+    color: $gray-5 !important;
+    padding: 0.5em 1em !important;
+
+    &.ui-state-highlight {
+      background: $indigo-dark !important;
+      color: $white !important;
+    }
+
+    .pi {
+      font-size: 12px !important;
+      text-transform: uppercase !important;
+      color: $gray-5 !important;
+    }
+  }
+
+  .table__header--checkbox {
+    padding: 0 !important;
+    text-align: center !important;
+
+    // border: 1px solid $gray-2;
+  }
+
+  .table__body,
+  .table__filter {
+    background: $white !important;
+    border-bottom: 1px solid $gray-4 !important;
+    border-left: 1px solid $gray-4 !important;
+    border-right: 1px solid $gray-4 !important;
+    border-top: 1px solid $gray-4 !important;
+    width: 320px !important;
+    font-size: 14px !important;
+    color: $gray-7 !important;
+
+    .table__filter-input {
+      @include text-field;
+
+      font-size: 0.8rem !important;
+    }
+  }
+
+  .table__filter--checkbox {
+    background: $white !important;
+  }
+
+  .ui-paginator-pages .ui-state-active {
+    background-color: $indigo-dark !important;
+    color: $white !important;
+  }
+}
+
+.table__header-sort-icon {
+  margin-left: auto;
+  float: right;
+}
+
+.table__cell-icon {
+  color: $gray-5;
+  margin-left: auto;
+  float: right;
+  cursor: pointer;
+  transition: background 0.15s ease-out;
+  border-radius: 50%;
+  padding: 0.25rem 0.35rem;
+
+  &:hover {
+    background: $gray-3;
+  }
+
+  &:active {
+    background: $gray-4;
+  }
+}
+
+.btn--modal {
+  font-size: 0.85rem !important;
+  padding: 0.5rem 1.5rem !important;
+}
+
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.ui-paginator-pages .ui-state-active {
+  background-color: $indigo-dark !important;
+  color: $white !important;
+}
+
+.ui-paginator {
+  background-color: $gray-1 !important;
+  border-left: 1px solid $gray-4 !important;
+  border-right: 1px solid $gray-4 !important;
+  border-bottom: 1px solid $gray-4 !important;
+}
+
+.icon-button {
+  cursor: pointer;
+}
+
+.invalid-msg {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: $red;
+}
+
+fieldset {
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+.row {
+  row-gap: 1.5rem;
+  
+  .form-group {
+    margin-bottom: unset;
+  }
+}

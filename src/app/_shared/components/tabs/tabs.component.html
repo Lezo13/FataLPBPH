@@ -1,0 +1,7 @@
+<ul class="tabs">
+    <li class="tabs__item btn-group" *ngFor="let tab of tabs" [class.active]="isTabActive(tab)">
+        <button class="btn btn-tab" (click)="selectTab(tab)">
+            <span>{{ tab.name }}</span>
+        </button>
+    </li>
+</ul>

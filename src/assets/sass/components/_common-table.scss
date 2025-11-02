@@ -1,0 +1,23 @@
+@import "../abstracts/mixins";
+@import "../base/variables";
+
+.common-table-data-list {
+  .data_table {
+    .table__header {
+      width: 145px !important;
+      min-width: 145px !important;
+    }
+
+    .table__body {
+      width: 145px !important;
+      min-width: 145px !important;
+
+      @include truncate;
+    }
+
+    .checkbox-column {
+      width: 60px !important;
+      min-width: 60px !important;
+    }
+  }
+}

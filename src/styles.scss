@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/mixins";
+// @import './assets/sass/base.scss';
+// @import './assets/sass/buttons.scss';
+// @import './assets/sass/components.scss';
+// @import './assets/sass/mixins.scss';
+// @import './assets/sass/typography.scss';
+// @import './assets/sass/utilities.scss';
+// @import './assets/sass/variables.scss';
+
+@import "./assets/sass/styles";
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+// regular style toast
+@import 'ngx-toastr/toastr';
+
+// Importing tailwind css
+@import "tailwindcss";

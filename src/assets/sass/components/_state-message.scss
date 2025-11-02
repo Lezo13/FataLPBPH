@@ -1,0 +1,16 @@
+// GENERAL ERROR BOX
+
+.general-error-box {
+  display: none;
+  margin-top: $base-size;
+  background-color: rgba($red, 0.05);
+  border: 1px solid $red;
+  padding: $base-size;
+  font-size: 0.875 * $base-size;
+  color: $red;
+  border-radius: 5px;
+
+  p {
+    margin: 0;
+  }
+}

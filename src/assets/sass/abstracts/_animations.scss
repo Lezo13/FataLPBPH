@@ -1,0 +1,9 @@
+@keyframes flipX {
+    0%, 10% {
+        transform: perspective(400px);
+    }
+    
+    90%, 100% {
+        transform: perspective(400px) rotateY(180deg);
+    }
+}

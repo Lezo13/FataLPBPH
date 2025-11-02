@@ -1,0 +1,43 @@
+@import '../../../../assets/sass/base/variables';
+
+.error-page {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin: 0 2rem;
+	gap: 0.5rem;
+
+	img {
+		margin-bottom: 3rem;
+	}
+
+	a {
+		color: $navy-blue !important;
+		text-decoration: unset !important;
+		margin-top: 1rem;	
+
+		font: {
+			weight: bold;
+			size: 1rem;
+		}
+	}
+
+	h5, h1 {
+		color: $gray-9 !important;
+		line-height: 1;
+	}
+	
+	h5 {
+		font: {
+			weight: 500 !important;
+			size: 1.2rem !important;
+		}
+	}
+
+	h1 {
+		font-size: 2.9375 * $base-size !important;
+	}
+}

@@ -1,0 +1,39 @@
+/* SCSS Variables */
+$navy: #1a2a4b;
+$red: #b91c1c;
+$gold: #facc15;
+$dark-red: #8b0000;
+$bg-dark: #0d1117;
+$tilt-angle: -5deg;
+
+.client-tabs {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.portal-logo {
+    max-width: 200px;
+    max-height: 50px;
+}
+
+/* Button Styles */
+.button-container {
+    display: flex;
+    /* flex */
+    flex-direction: column;
+    /* flex-col */
+    justify-content: space-between;
+    /* justify-between */
+    row-gap: 1rem;
+    /* space-y-4 */
+
+    /* Responsive styling for small screens and up */
+    @media (min-width: 640px) {
+        flex-direction: row;
+        /* sm:flex-row */
+        row-gap: 0;
+        column-gap: 1rem;
+        /* sm:space-x-4 */
+    }
+}

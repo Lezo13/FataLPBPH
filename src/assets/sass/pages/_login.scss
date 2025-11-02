@@ -1,0 +1,85 @@
+.login-container {
+  background-image: url('src/assets/images/backgrounds/login-banner-v3.png');
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+
+  button {
+    width: 100%;
+  }
+
+  .portal-name {
+      margin: .5em 0 .5em .5em;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 180%;
+      width: 100%;
+      text-align: center;
+      color: $brand-primary;
+  }
+
+  .sub-label {
+      margin: 0 0 20px 0;
+      text-align: left;
+  }
+
+  .login-card {
+      border-radius: 0.5rem;
+      margin: 2% auto 0;
+      width: 450px;
+      background: #fff;
+      padding: 40px;
+      border: 0 solid #ededea;
+      box-shadow: 0 1px 3px rgba(0,0,0,.1);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+      filter: alpha(opacity=90);
+  }
+
+  img.login-logo {
+      max-width: 100%;
+      margin: 0;
+      display: inline-block;
+      vertical-align: middle;
+  }
+
+  .login-action-group {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  a.action-link {
+    color: $brand-primary;
+    text-decoration: unset;
+  }
+
+  .login-content {
+    margin-bottom: 2rem;
+  }
+
+  .login-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 75%;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    margin: 20px 0 0 0;
+    opacity: .7;
+
+    ul {
+      float: right;
+      text-align: right;
+      margin: 0 0 5px 0;
+    }
+  }
+
+  .mobile-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+}

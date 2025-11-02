@@ -1,0 +1,7 @@
+<ul class="nav-tabs">
+    <li class="nav-tabs__item btn-group" *ngFor="let tab of filteredTabs" [class.active]="isTabActive(tab)">
+        <button class="btn btn-tab" (click)="selectTab(tab)" [disabled]="tab?.disabled">
+            <span>{{ tab.name }}</span>
+        </button>
+    </li>
+</ul>

@@ -1,0 +1,55 @@
+<img src="assets/images/logos/pointblank_logo.png" alt="FataL Logo" class="pb-logo rotate-12">
+
+<!-- Main Content Container (Centered) -->
+<div class="login-card rounded-xl">
+    <div class="login-card-content">
+        <!-- Title/Logo Area - Reminder: Replace the placeholder URL -->
+        <header class="login-header">
+            <div class="center-group">
+                <a (click)="navigateToHome()">
+                    <img src="assets/images/logos/fatal_logo.png" alt="Point Blank Logo" class="fatal-logo"
+                        [width]="50">
+                </a>
+
+            </div>
+            <div class="center-group">
+                <a (click)="navigateToHome()">
+                    <img src="assets/images/fatal-text.png" [width]="200">
+                </a>
+            </div>
+        </header>
+
+        <form (ngSubmit)="onLogin()">
+            <!-- Email Input -->
+            <div class="input-group email-group">
+                <label for="txtUsername" class="input-label">Username</label>
+                <input name="txtUsername" type="text" id="txtUsername" class="input-field"
+                    placeholder="Enter your username" required [(ngModel)]="username">
+            </div>
+
+            <!-- Password Input -->
+            <div class="input-group password-group">
+                <label for="txtPassword" class="input-label">PASSWORD</label>
+                <input name="txtPassword" type="password" id="txtPassword" class="input-field" placeholder="********"
+                    required [(ngModel)]="password">
+            </div>
+
+            <p-message styleClass="my-3" severity="error" *ngIf="loginFailed">Invalid email or password. Please try
+                again.</p-message>
+
+            <!-- Buttons -->
+            <div class="button-container">
+                <button type="submit" class="btn-base btn-login">
+                    <i class="spinner-border spinner-border-sm me-2" *ngIf="isLoggingIn"> </i> L O G I N
+                </button>
+                <button type="button" (click)="onRegister()" class="btn-base btn-register">
+                    R E G I S T E R
+                </button>
+            </div>
+        </form>
+
+        <p class="footer-text">
+            2025 FataL. All rights reserved.
+        </p>
+    </div>
+</div>

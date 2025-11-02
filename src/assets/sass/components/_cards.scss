@@ -1,0 +1,92 @@
+.card {
+  box-shadow: 0 10 15 rgba($black-1, 0.03);
+  border: 1px solid $gray-2 !important;
+  padding: 1rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__left {
+      display: flex;
+    }
+
+    &__center {
+      display: flex;
+    }
+
+    &__right {
+      display: flex;
+    }
+
+    &--report {
+      white-space: nowrap;
+      position: sticky !important;
+      text-align: center;
+      top: 0;
+      z-index: 2 !important;
+      background-color: $white;
+    }
+  }
+
+  &__custom {
+    border: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0;
+  }
+
+  &__title {
+    margin-bottom: 0;
+
+    &--blue {
+      color: $brand-primary;
+      margin-bottom: 0.5rem !important;
+      margin-top: 0.25rem;
+    }
+  }
+
+  &__act {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.25rem;
+
+    &__label {
+      margin-bottom: 0;
+
+      // Modifier
+
+      &--cyan {
+        color: $cyan;
+      }
+
+      &--green {
+        color: $green;
+      }
+
+      &--purple {
+        color: $purple;
+      }
+    }
+  }
+}
+
+// LAYOUT
+
+.jumbotron {
+  border: 1px solid $gray-2;
+
+  &--light {
+    background-color: $white !important;
+  }
+}
+
+.summary-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  
+  > * {
+    flex: 1;
+  }
+}

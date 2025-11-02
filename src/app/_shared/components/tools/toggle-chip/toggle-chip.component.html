@@ -1,0 +1,5 @@
+<div class="toggle-chip">
+    <button type="button" class="toggle-chip__option" [ngClass]="getSizeClass()" [class.active]="isSelected(option)" *ngFor="let option of options" (click)="selectOption(option)">
+        {{option.displayName}}
+    </button>
+</div>

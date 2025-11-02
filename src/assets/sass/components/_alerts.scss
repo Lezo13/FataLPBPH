@@ -1,0 +1,17 @@
+.alert {
+  &--danger {
+    background-color: $red !important;
+
+    .alert__text {
+      color: $red;
+    }
+  }
+
+  &--success {
+    background-color: $green !important;
+
+    .alert__text {
+      color: $white;
+    }
+  }
+}

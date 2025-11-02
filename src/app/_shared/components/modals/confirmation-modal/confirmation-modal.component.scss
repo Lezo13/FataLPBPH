@@ -1,0 +1,17 @@
+.confirmation-modal {
+    .modal-body {
+      padding: 2rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+  
+      p {
+        font-size: .75rem !important;
+      }
+    }
+
+    .modal-footer {
+      justify-content: center;
+    }
+  }

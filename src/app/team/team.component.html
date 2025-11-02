@@ -1,0 +1,74 @@
+<div class="team-page">
+    @if (!isLoading) {
+    <section class="section-bg_primary section-border">
+        <div class="section-padding">
+            <div class="text-center">
+                <h2 class="heading-primary"><span class="text-gold gold-glow">Lineup</span></h2>
+                <!-- <h3 class="heading-secondary">Our competitive roster</h3> -->
+            </div>
+
+            <div class="roster-grid">
+                <div class="player-card player-card-gold" *ngFor="let player of lineups">
+                    <div class="inactive-ribbon" *ngIf="!player.isActive">Inactive</div>
+
+                    <div class="player-card-background"
+                        [ngStyle]="{'background-image': 'url(' + getPlayerImage(player) + ')', 'filter': !player.isActive ? 'grayscale(100%)' : ''}">
+                    </div>
+                    <div class="image-placeholder-initial" id="ph-ghost" style="display: none;">G</div>
+
+                    <div class="player-content-overlay">
+                        <h4 class="overlay-name text-gold" placement="left"
+                            [style.font-size]="getPlayerNameFontSize(player)">{{ player.playerName }}</h4>
+                        <p class="overlay-role">{{ player.description }}</p>
+
+                        <!-- <span class="overlay-tag">
+                            <i data-lucide="crosshair" class="fa fa-person-rifle"></i>
+                            Dual SMG
+                        </span> -->
+                    </div>
+                </div>
+            </div>
+
+            <app-loader [isVisible]="true" *ngIf="isLoading" [height]="200"></app-loader>
+        </div>
+    </section>
+
+    <section class="section-bg_secondary section-border">
+        <div class="section-padding">
+            <div class="text-center">
+                <h2 class="heading-primary"><span class="text-red red-glow">Members</span></h2>
+                <!-- <h3 class="heading-secondary">Our competitive roster</h3> -->
+            </div>
+
+            <div class="roster-grid">
+                <div class="player-card player-card-red" *ngFor="let player of members">
+                    <div class="inactive-ribbon" *ngIf="!player.isActive">Inactive</div>
+
+                    <div class="player-card-background"
+                        [ngStyle]="{'background-image': 'url(' + getPlayerImage(player) + ')', 'filter': !player.isActive ? 'grayscale(100%)' : ''}">
+                    </div>
+                    <div class="image-placeholder-initial" id="ph-ghost" style="display: none;">G</div>
+
+                    <div class="player-content-overlay">
+                        <h4 class="overlay-name text-red" placement="left"
+                            [style.font-size]="getPlayerNameFontSize(player)">{{ player.playerName }}</h4>
+                        <p class="overlay-role">{{ player.description }}</p>
+
+                        <!-- <span class="overlay-tag">
+                            <i data-lucide="crosshair" class="fa fa-person-rifle"></i>
+                            Dual SMG
+                        </span> -->
+                    </div>
+                </div>
+            </div>
+
+            <app-loader [isVisible]="true" *ngIf="isLoading" [height]="200"></app-loader>
+        </div>
+    </section>
+
+    } @else {
+    <app-loader class="center-xy" [isVisible]="true" *ngIf="isLoading" [height]="200"></app-loader>
+    }
+
+
+</div>

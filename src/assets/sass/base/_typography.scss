@@ -1,0 +1,163 @@
+@import "variables";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+* {
+  font-family: $font-family;
+  font-size: $base-size;
+}
+
+h1 {
+  font: $h1-font;
+}
+
+h2 {
+  font: $h2-font;
+}
+
+h3 {
+  font: $h3-font;
+}
+
+h4 {
+  font: $h4-font ;
+}
+
+h5 {
+  font: $h5-font;
+}
+
+h6 {
+  font: $h6-font ;
+}
+
+ol,
+ul,
+dl {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+textarea::placeholder {
+  padding-top: .45rem;
+  color: $gray-5;
+}
+
+.label-group {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  // Modifier
+
+  &--column {
+    flex-direction: column;
+    gap: 0;
+
+    .value {
+      margin-left: 0 !important;
+    }
+  }
+
+  .label {
+    font-weight: normal !important;
+    color: $gray-6;
+    margin-bottom: 0 !important;
+  }
+
+  .value {
+    margin-left: 0.25rem;
+    font-weight: 600;
+    color: $brand-primary;
+    margin-bottom: 0;
+    line-height: 1 !important;
+  }
+}
+
+label {
+  margin-bottom: 0.25rem !important;
+}
+
+.label-update {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+  i-feather {
+    &[name="check-circle"] {
+      color: $green;
+    }
+
+    &[name="x-circle"] {
+      color: $red;
+    }
+  }
+
+  .label {
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+    color: $gray-6;
+    margin-left: 0.25rem;
+    font-weight: normal !important;
+  }
+}
+
+.label-box {
+  width: 8rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin-right: 1rem;
+  padding: 3px;
+  font-weight: normal !important;
+
+  i-feather {
+    &[name="check-circle"] {
+      color: $green;
+    }
+
+    &[name="x-circle"] {
+      color: $red;
+    }
+  }
+
+  .label {
+    margin: 0.25rem 0 0 0.25rem;
+  }
+
+  &--gray {
+    background-color: $gray-7;
+    color: $white;
+    border-radius: 5px;
+  }
+
+  &--orange {
+    background-color: $orange;
+    color: $white;
+    border-radius: 5px;
+  }
+}
+
+.label-indicator {
+  display: flex;
+  align-items: center;
+
+  .label {
+    margin-bottom: 0;
+    color: $gray-6;
+  }
+
+  .indicator {
+    margin-left: 0.5rem;
+  }
+}
+
+.truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap !important;
+  padding-right: 1rem;
+  max-width: 600px;
+}

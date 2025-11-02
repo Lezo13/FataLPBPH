@@ -1,0 +1,86 @@
+.box-item {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  gap: 2em;
+  margin-top: 1rem;
+
+  &--combined {
+    gap: 0 !important;
+    justify-content: center;
+  }
+
+  .box {
+    border: 1px solid $gray-0;
+    font-size: 0.75 * $base-size !important;
+    width: 145px;
+    height: 115px;
+    vertical-align: middle;
+    justify-content: space-evenly;
+    display: grid;
+
+    &--gray {
+      background-color: $gray-11;
+    }
+
+    &--gray-4 {
+      background-color: $gray-4;
+    }
+
+    &--red {
+      background-color: $red-opacity-10;
+    }
+
+    &--green {
+      background-color: $green;
+    }
+
+    &--orange {
+      background-color: $orange;
+    }
+
+    &--teal {
+      background-color: $teal;
+    }
+
+    &--blue {
+      background-color: $brand-primary;
+    }
+
+    &__label {
+      margin: 2px;
+    }
+
+    &__title {
+      margin-top: 3px;
+
+      &--white {
+        color: $white;
+      }
+
+      &--gray-4 {
+        color: $white;
+      }
+    }
+
+    &__text-boxed {
+      &--gray {
+        display: grid;
+        background-color: $gray-11;
+        margin: 0.5rem;
+        text-align: center;
+        align-items: center;
+        color: $white;
+        width: 8rem;
+      }
+
+      &--red {
+        display: grid;
+        text-align: center;
+        align-items: center;
+        color: $black;
+      }
+    }
+  }
+}

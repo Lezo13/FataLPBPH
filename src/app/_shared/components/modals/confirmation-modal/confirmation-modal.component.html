@@ -1,0 +1,18 @@
+<div class="confirmation-modal">
+    <div class="modal-header">
+      <h4 class="modal-title">{{data.title || 'Confirmation'}}</h4>
+    </div>
+    <div class="modal-body">
+      <h4 class="text-center" *ngIf="data.message" [innerHtml]="data.message"></h4>
+      <p class="text-danger" *ngIf="data.warningMessage" [innerHtml]="data.warningMessage"></p>
+    </div>
+    <div class="modal-footer">
+      <button (click)="modalInstance.close(true)" type="button" class="btn btn-secondary">
+        {{data.confirmText || 'Confirm'}}
+      </button>
+
+      <button (click)="modalInstance.close(false)" type="button" class="btn btn-light">
+        {{data.declineText || 'Decline'}}
+      </button>
+    </div>
+  </div>

@@ -1,0 +1,19 @@
+<main class="main" *ngIf="!isLoading">
+  <div @fadeNoLeaveAnimation class="main-page">
+    <div class="main-page__content">
+      <app-top-nav [isAuthenticated]="isAuthenticated" *ngIf="!isRouteFullPage">
+      </app-top-nav>
+      <div class="main-content__container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-footer" *ngIf="!isRouteFullPage">
+    <div class="footer-msg">© 2025 FataL. All Rights Reserved. Associated logos are property of their
+      respective owners.
+    </div>
+  </div>
+</main>
+
+<app-loader class="center-xy" [isVisible]="true" *ngIf="isLoading" [height]="200"></app-loader>

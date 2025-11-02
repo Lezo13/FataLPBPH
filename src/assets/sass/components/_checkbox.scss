@@ -1,0 +1,107 @@
+.form-check-container {
+  display: flex;
+}
+
+.form-check {
+  display: flex !important;
+  align-items: start !important;
+  padding-left: unset !important;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &__label {
+    margin-left: 0.5 * $base-size;
+  }
+
+  &--center {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
+
+/* Hide the browser's default checkbox */
+
+.form-check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+/* Create a custom checkbox */
+
+.form-check__mark {
+  display: inline-flex;
+  position: relative;
+  height: 18px;
+  min-width: 18px;
+  background-color: $white;
+  border: 1px solid $gray-5;
+  border-radius: 3px;
+}
+
+:disabled  {
+  .form-check__mark, .form-check {
+    pointer-events: none !important; /* Prevent pointer events */
+  }
+}
+/* On mouse-over, add a grey background color */
+
+.form-check:hover input ~ .form-check__mark {
+  background-color: $gray-3;
+}
+
+/* When the checkbox is checked, add a blue background */
+
+.form-check input:checked ~ .form-check__mark {
+  background-color: $brand-primary;
+  border: 1px solid $brand-primary;
+  border-radius: 3px;
+
+  &:hover {
+    background: $brand-primary;
+  }
+}
+
+/* Create the form-check__mark/indicator (hidden when not checked) */
+
+.form-check__mark::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the form-check__mark when checked */
+
+.form-check input:checked ~ .form-check__mark::after {
+  display: block;
+}
+
+/* Style the form-check__mark/indicator */
+
+.form-check .form-check__mark::after {
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid $white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.check-group {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

@@ -1,0 +1,395 @@
+// Default styling
+
+.modal {
+  // Modals default elements
+
+  .modal-header {
+    padding: 0 0 1rem !important;
+    border-bottom: 1px solid $gray-4 !important;
+    align-items: center;
+    justify-content: space-between;
+
+    .modal-title {
+      color: $brand-secondary;
+      font-weight: 600;
+    }
+
+    &__right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+
+  .modal-body {
+    .section {
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: 640px;
+      height: 100%;
+
+      &:nth-last-of-type(3) {
+        border-right: 0;
+      }
+    }
+  }
+
+  .modal-footer {
+    border-top: 1px solid $gray-4 !important;
+
+    &--sm {
+      border-top: 0 none !important;
+    }
+
+    &--center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .action-group {
+        float: unset;
+
+        .btn {
+          width: 10rem;
+        }
+      }
+    }
+
+    &--right {
+      .action-group {
+        float: right;
+        display: flex;
+
+        .btn {
+          width: 9rem;
+        }
+      }
+    }
+  }
+
+  // Elements like radio button, checkbox, input/textboxes
+
+  .form-radio {
+    &__label {
+      font-weight: normal !important;
+    }
+  }
+
+  .form-check {
+    &__label {
+      font-weight: normal !important;
+    }
+  }
+
+  .form-group {
+    .form-control {
+      height: 2.25rem !important;
+    }
+
+    .form-textarea {
+      height: 5.5rem !important;
+    }
+  }
+
+
+  .ngb-dropdown.dropdown {
+    display: inline-block;
+    width: 100% !important;
+
+    button.btn-outline,
+    button.dropdown-toggle {
+      height: 2.25rem !important;
+
+      &.selected {
+        color: $black;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .ngb-dropdown {
+    &__menu {
+      height: 26.25rem;
+      overflow-y: auto;
+    }
+  }
+
+  // Modals on programmes page
+
+  &--filter-old,
+  &--filter-new,
+  &--data-filter,
+  &--org-struct-old,
+  &--org-struct-new,
+  &--import {
+    .modal-content {
+      box-shadow: 0 4px 15px $brand-primary;
+    }
+
+    .modal-header {
+      padding: 0 0 0.5rem !important;
+    }
+
+    .modal-body {
+      padding: 1rem 0 0 !important;
+      overflow: hidden;
+    }
+
+    .modal-footer {
+      padding: 0.5rem 0 0;
+    }
+  }
+
+  // Org Structure page filter
+
+  &--org-struct-new {
+    .modal-dialog {
+      position: absolute;
+      top: 120px;
+      right: 210px;
+      min-height: unset;
+      margin: 0;
+    }
+  }
+
+  &--org-struct-old {
+    .modal-dialog {
+      position: absolute;
+      top: 120px;
+      right: 250px;
+      min-height: unset;
+      margin: 0;
+    }
+  }
+
+  // Modals on resource page
+
+  &--filter-old {
+    .modal-dialog {
+      position: absolute;
+      top: 120px;
+      right: 210px;
+      min-height: unset;
+      margin: 0;
+    }
+  }
+
+  &--import {
+    .modal-dialog {
+      position: absolute;
+      top: 120px;
+      right: 90px;
+      min-height: unset;
+      margin: 0;
+    }
+
+    .modal-body {
+      padding: 0 !important;
+
+      .section {
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 350px;
+
+        &:first-of-type {
+          padding-top: 1rem;
+        }
+      }
+    }
+  }
+
+  &--add-edit,
+  &--form-modal {
+    .modal-dialog {
+      max-width: 31.25rem;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .action-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding-right: 1rem;
+      }
+
+      .btn-group {
+        label {
+          margin-bottom: 0;
+          margin-right: 0.5rem;
+        }
+
+        input {
+          height: 2.2rem;
+        }
+      }
+    }
+
+    .modal-body {
+      overflow: unset;
+      padding: 0;
+    }
+
+    .form {
+      // Form section will have a scroll use for body content
+
+      &__section {
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 1rem;
+        margin-bottom: 0;
+      }
+
+      // form__footer will stick below the form__section
+
+      &__footer {
+        display: flex;
+        padding: 0.5rem 0 0;
+
+        // position
+
+        justify-content: flex-end;
+        position: sticky;
+        bottom: 0;
+        left: 0;
+
+        .btn {
+          min-width: 7rem;
+        }
+      }
+    }
+  }
+
+  &--program-form,
+  &--organisation-structure {
+    .modal-dialog {
+      max-width: 1400px !important;
+    }
+
+    .modal-body {
+      overflow: unset;
+    }
+
+    .section {
+      max-height: 450px !important;
+    }
+
+    .table-container__content {
+      height: 450px !important;
+    }
+  }
+
+  &--navigation {
+    .card {
+      padding: 0;
+    }
+
+    .card-header {
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      border-bottom-left-radius: 0;
+      background: $brand-primary;
+      color: $white;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .card-body {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+
+    .nav-card {
+      width: 100%;
+
+      &__item {
+        font-weight: bold;
+        padding: 0.5rem;
+        text-align: center;
+
+        a {
+          &:hover {
+            color: $brand-primary-opacity-10;
+          }
+        }
+      }
+    }
+  }
+
+  .success-modal {
+    box-shadow: 0 4px 15px rgba(45, 62, 80, 0.15);
+    max-width: 100% !important;
+    max-height: 100% !important;
+
+    .modal-body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .modal-icon {
+        i-feather {
+          color: $green;
+          height: 100px !important;
+          width: 100px !important;
+          padding: 0.5rem;
+          margin-top: 1rem;
+        }
+      }
+
+      .modal-title {
+        margin-top: 1rem;
+        font: normal normal bold 18px/1.3 $font-family !important;
+        color: $brand-primary;
+      }
+
+      .modal-sub-title {
+        color: $black;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+.modal__content {
+
+  &-right {
+    .modal-dialog {
+      position: fixed;
+      right: 0;
+      top: 0;
+      margin: 1rem 0;
+      height: 100vh;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      height: 100%;
+      border-radius: 0;
+    }
+  }
+
+  &-recipients {
+    max-width: 100%;
+    width: 850px;
+  }
+
+  &-report-config {
+    max-width: 100%;
+
+    .modal-dialog {
+      width: 900px;
+    }
+  }
+}
+
+.modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

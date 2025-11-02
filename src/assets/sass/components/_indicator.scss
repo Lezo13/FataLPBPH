@@ -1,0 +1,40 @@
+.indicator {
+  height: 16px;
+  width: 16px;
+  background-color: $green;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  margin-left: 5px !important;
+
+  // Color
+
+  &--green {
+    background-color: $green;
+  }
+
+  &--red {
+    background-color: $red;
+  }
+
+  &--orange {
+    background-color: $orange;
+  }
+
+  // Sizes
+
+  &--xs {
+    height: 10px;
+    width: 10px;
+  }
+
+  &--sm {
+    height: 12px;
+    width: 12px;
+  }
+
+  &--md {
+    height: 14px;
+    width: 14px;
+  }
+}

@@ -1,0 +1,78 @@
+.popover-user-menu {
+    max-width: 100% !important;
+    background-color: transparent !important;
+
+    .popover-body {
+        padding: unset;
+    }
+
+    .user-menu {
+        &__content {
+            display: flex;
+            flex-direction: row;
+            gap: 1.5rem;
+            background-color: #791d2c;
+            padding: 1rem;
+        }
+
+        .image-menu {
+            object-fit: cover;
+            border-radius: 50%;
+            padding: 0.25rem;
+            width: 80px;
+            height: 80px;
+        }
+
+
+        &__footer {
+            display: flex;
+            border-top: 1px solid rgba(0, 40, 100, .12);
+            background-color: #691f2a;
+            border-bottom-left-radius: 0.5em;
+            border-bottom-right-radius: 0.5rem;
+
+            .footer-container {
+                display: flex;
+                justify-content: space-between;
+                margin: 0.5rem 1rem;
+                width: 100%;
+                gap: 1rem;
+            }
+
+            .btn-menu {
+                display: flex;
+                align-items: center;
+                border: 1px solid #d9d9d9;
+                box-shadow: 0px 0px 3px 0px #c5c5c5;
+                border-radius: 0.5rem;
+                color: #fff;
+            }
+        }
+
+        .content-menu {
+            &__right {
+                max-width: 150px;
+                align-content: center;
+
+                .player-name {
+                    display: block;
+                    color: $gold;
+                    font-size: 20px;
+                    font-weight: 700;
+                }
+
+                .full-name {
+                    display: block;
+                    color: #e2e2e2;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        a.action-link {
+            color: $brand-primary;
+            text-decoration: unset;
+            text-wrap: nowrap;
+        }
+    }
+}

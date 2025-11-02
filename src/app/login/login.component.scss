@@ -1,0 +1,243 @@
+/* SCSS Variables */
+$navy: #1a2a4b;
+$red: #b91c1c;
+$gold: #facc15;
+$dark-red: #8b0000;
+$bg-dark: #0d1117;
+$tilt-angle: -5deg;
+
+:host {
+    /* Setup for the entire view */
+    font-family: 'Inter', sans-serif;
+    background-color: $bg-dark;
+    background-image: radial-gradient(at 0% 100%, #1e3a8a 0%, transparent 50%),
+        radial-gradient(at 100% 0%, $red 0%, transparent 60%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Styling for the login card for a dramatic, angular look */
+.login-card {
+    background: linear-gradient(135deg, #2b2b2b, #3c3c3c);
+    /* gradient border */
+    border-radius: 1rem;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    max-width: 450px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.login-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* top/right/bottom/left = 0 */
+    padding: 4px;
+    /* border thickness */
+    border-radius: 1rem;
+    background: linear-gradient(45deg, #FFD700, #FFA500, #FFFACD);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Inner container to reverse the tilt on contents */
+.login-card-content {
+    padding: 2.5rem 2rem;
+}
+
+/* Header and Logo Styles */
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    /* mb-8 */
+}
+
+
+.center-group {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.fatal-logo {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+}
+
+.pb-logo {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 150px;
+    height: auto;
+    z-index: 1;
+}
+
+.subtitle-text {
+    font-size: 1.25rem;
+    /* text-xl */
+    color: $gold;
+    /* text-yellow-500 */
+    font-weight: 700;
+    /* font-bold */
+    text-transform: uppercase;
+}
+
+.header-divider {
+    height: 0.25rem;
+    /* h-1 */
+    width: 6rem;
+    /* w-24 */
+    background-color: $gold;
+    /* bg-yellow-500 */
+    margin-left: auto;
+    margin-right: auto;
+    /* mx-auto */
+    margin-top: 0.5rem;
+    /* mt-2 */
+    border-radius: 9999px;
+    /* rounded-full */
+}
+
+/* Input Group Styles */
+.input-group {
+    /* Base margin-bottom for inputs */
+    margin-bottom: 1.5rem;
+
+    /* Specific margin-bottom for the last input (password) */
+    &.password-group {
+        margin-bottom: 2rem;
+    }
+}
+
+.input-label {
+    display: block;
+    /* block */
+    font-size: 0.875rem;
+    /* text-sm */
+    font-weight: 500;
+    /* font-medium */
+    color: #d1d5db;
+    /* text-gray-300 */
+    margin-bottom: 0.5rem;
+    /* mb-2 */
+}
+
+.input-field {
+    width: 100%;
+    /* w-full */
+    border-radius: 0.375rem;
+    /* rounded-md */
+    border-bottom: 3px solid $gold;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.3s;
+
+    &::placeholder {
+        color: #6b7280;
+        /* placeholder-gray-500 */
+    }
+
+    &:focus {
+        border-color: $red;
+        outline: none;
+        box-shadow: 0 0 10px rgba(250, 202, 21, 0.5);
+    }
+}
+
+/* Button Styles */
+.button-container {
+    display: flex;
+    /* flex */
+    flex-direction: column;
+    /* flex-col */
+    justify-content: space-between;
+    /* justify-between */
+    row-gap: 1rem;
+    /* space-y-4 */
+
+    /* Responsive styling for small screens and up */
+    @media (min-width: 640px) {
+        flex-direction: row;
+        /* sm:flex-row */
+        row-gap: 0;
+        column-gap: 1rem;
+        /* sm:space-x-4 */
+    }
+}
+
+.btn-base {
+    width: 100%;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-login {
+    @extend .btn-base;
+    background-color: $red;
+    color: white;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s, transform 0.1s;
+
+    &:hover {
+        background-color: $dark-red;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.btn-register {
+    @extend .btn-base;
+    background-color: $gold;
+    color: $navy;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* shadow-lg */
+    transition: opacity 0.2s, transform 0.1s;
+
+    &:hover {
+        opacity: 0.9;
+        transform: scale(1.03);
+    }
+}
+
+/* Message and Footer Styles */
+.message-box {
+    margin-top: 1.5rem;
+    /* mt-6 */
+    padding: 0.75rem;
+    /* p-3 */
+    font-size: 0.875rem;
+    /* text-sm */
+    text-align: center;
+    font-weight: 600;
+    /* font-semibold */
+    border-radius: 0.5rem;
+    /* rounded-lg */
+}
+
+.footer-text {
+    margin-top: 2rem;
+    /* mt-8 */
+    text-align: center;
+    font-size: 0.75rem;
+    /* text-xs */
+    color: #9ca3af;
+    /* text-gray-400 */
+}

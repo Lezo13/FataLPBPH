@@ -1,0 +1,129 @@
+// Changed default feather icon size to 20px
+
+i-feather {
+  width: 1.429 * $base-size;
+  height: 1.429 * $base-size;
+
+  // all span beside a feather icon will have a margin-left of .5rem or 7px
+}
+
+i-feather.edit {
+  height: 14px !important;
+  width: 14px !important;
+}
+
+i-feather~span {
+  margin-left: 0.5rem;
+}
+
+
+i.bx {
+  font-size: 20px;
+  margin-bottom: 0.25rem;
+  margin-right: 0.25rem;
+  vertical-align: middle;
+}
+
+.svg-icon {
+  width: 1.2 * $base-size !important;
+  height: 1.2 * $base-size !important;
+  margin-right: 0.35rem;
+
+  &-primary {
+    fill: $brand-primary;
+  }
+
+  &-green {
+    fill: $green;
+  }
+
+  &-red {
+    fill: $red;
+  }
+
+  &-gray {
+    fill: $gray-11;
+  }
+
+  &-orange {
+    fill: $orange;
+  }
+}
+
+.icon {
+  margin-right: 0.35rem;
+
+  &-md {
+    font-size: 1.2 * $base-size !important;
+  }
+
+  // Icon colors
+
+  &-primary {
+    color: $brand-primary;
+  }
+
+  &-green {
+    color: $green;
+  }
+
+  &-red {
+    color: $red;
+  }
+
+  &-gray {
+    color: $gray-11;
+  }
+
+  &-orange {
+    color: $orange;
+  }
+}
+
+.icon-tab {
+  display: flex;
+  align-content: center;
+
+  .btn-icon {
+    background-color: #ffffff;
+    border: 1px solid #c3c3c3;
+    align-content: center;
+    color: #6e6e6e;
+
+    &:first-child {
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+    }
+
+    &:last-child {
+      border-top-right-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+    }
+
+    i.bx {
+      font-size: 20px;
+    }
+
+    &.active {
+      color: #0076BF;
+      border-color: #0076BF;
+    }
+  }
+}
+
+.icon-sm {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-4xl {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.inline-icon {
+  display: inline;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+}

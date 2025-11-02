@@ -1,0 +1,8 @@
+<div class="loader" *ngIf="isVisible" [ngStyle]="{'height': height + 'px'}">
+  <div class="loader__content">
+    <div class="loader-icons">
+      <img class="loading-logo" src="assets/images/logos/fatal_logo.png">
+    </div>
+    <span class="loader__text text-primary">{{ message?.length > 0  ? message + '...' : ''}}</span>
+  </div>
+</div>

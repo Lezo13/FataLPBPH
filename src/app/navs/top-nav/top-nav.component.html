@@ -1,0 +1,55 @@
+<header class="top-nav">
+  <nav class="top-nav__nav">
+    <div class="top-nav__left">
+      <div class="top-nav__header">
+        <img class="portal-logo" src="assets/images/fatal-text.png" [width]="100">
+      </div>
+    </div>
+
+
+    <div class="top-nav--middle">
+      @if (isOnAdminSide()) {
+      <app-nav-tabs [isAuthenticated]="isAuthenticated" [tabs]="adminTabs"
+        (tabSelected)="selectTab($event)"></app-nav-tabs>
+      } @else {
+      <app-nav-tabs [isAuthenticated]="isAuthenticated" [tabs]="clientTabs"
+        (tabSelected)="selectTab($event)"></app-nav-tabs>
+      }
+
+    </div>
+
+
+    <div class="top-nav__right d-flex">
+      @if(isAuthenticated) {
+      <div class="action-group">
+
+        @if (isOnAdminSide()) {
+        <button type="button" class="btn btn-light" (click)="navigateToHome()"><i class="fa fa-house me-1"></i>
+          Home</button>
+        } @else {
+        <button type="button" class="btn btn-light" (click)="navigateToAdminPanel()"><i class="fa fa-wrench me-1"
+            *ngIf="hasAdminAccess"></i>
+          Admin Panel</button>
+        }
+
+        <a ngbTooltip="Notifications">
+          <i class='bx bxs-bell disabled'></i>
+        </a>
+
+        <a ngbTooltip="Messages">
+          <i class='bx bxs-envelope disabled'></i>
+        </a>
+
+        <ng-template #popContent><app-user-menu></app-user-menu></ng-template>
+        <button type="button" class="btn image-btn" placement="bottom-right" #popover="ngbPopover"
+          [ngbPopover]="popContent" popoverClass="popover-user-menu" [autoClose]="'outside'"
+          [ngStyle]="{'background-image': 'url(' + profileImgUrl + ')'}"></button>
+      </div>
+      } @else {
+      <button type="button" class="btn btn-outline-gold btn-login" (click)="navigateToLogin()">
+        <i class='fa fa-right-to-bracket me-1'></i> Login
+      </button>
+      }
+    </div>
+  </nav>
+</header>

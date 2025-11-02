@@ -1,0 +1,53 @@
+// @media only screen and (min-width: 991px) {
+//   .card-body {
+//     // max-height: 4.875 * $base-size;
+
+//   }
+// }
+
+@media only screen and (max-width: 990px) {
+  .card-body {
+    flex-direction: column;
+    align-items: flex-start !important;
+
+    .column-grp,
+    .first-column {
+      width: 100%;
+    }
+  }
+
+  .card-body > * {
+    margin-bottom: 1rem;
+  }
+
+  .heading-banner {
+    &__container img {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .workflow-filter .action-panel-grp {
+    text-align: left !important;
+    margin-top: 1.25rem;
+  }
+
+  .workflow-filter > * :first-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .heading-banner {
+    &__container:last-of-type {
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+@media only screen and (min-width: 350px) and (max-width: 991px) {
+  .login-page {
+    &__information {
+      padding-right: 0 !important;
+    }
+  }
+}

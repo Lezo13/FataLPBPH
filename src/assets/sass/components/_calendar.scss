@@ -1,0 +1,28 @@
+.form-group.hidden {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 0;
+}
+
+.custom-day {
+  display: inline-block;
+  height: 2 * $base-size;
+  padding: 0.185rem 0.25 * $base-size;
+  text-align: center;
+  width: 2 * $base-size;
+
+  &.focused {
+    background-color: $gray-4;
+  }
+
+  &.range,
+  &:hover {
+    background-color: rgb(2, 117, 216);
+    color: $white;
+  }
+
+  &.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+  }
+}

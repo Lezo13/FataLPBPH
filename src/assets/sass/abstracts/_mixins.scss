@@ -1,0 +1,56 @@
+/* stylelint-disable */
+// position absolute mixin
+
+@mixin position-absolute($top: null, $left: null, $right: null, $bottom: null) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+}
+
+@mixin transition-mix($property: all, $duration: 0.2s, $timing: linear, $delay: 0s) {
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+}
+
+@mixin flex($align-items, $justify-content) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+@mixin text-field() {
+  width: 100%;
+  padding: 0.275rem 0.5rem !important;
+  border-radius: 0.3em !important;
+  border: 2px solid $gray-4 !important;
+  outline: none !important;
+  transition: border 0.15s ease-out;
+
+  &:focus {
+    border: 2px solid $gray-8 !important;
+    box-shadow: none !important;
+  }
+
+  &::placeholder {
+    color: $gray-5 !important;
+  }
+
+  &::-webkit-input-placeholder {
+    color: $gray-5 !important;
+  }
+}
+
+@mixin truncate() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin flex-centered() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

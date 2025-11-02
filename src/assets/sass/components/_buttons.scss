@@ -1,0 +1,438 @@
+@import "../base/variables";
+
+button,
+a {
+  cursor: pointer;
+  outline: none !important;
+  user-select: none !important;
+}
+
+button {
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+  }
+}
+
+.btn-group {
+  height: 2.5 * $base-size;
+}
+
+.btn-toolbar {
+  display: block !important;
+  white-space: nowrap;
+
+  button {
+    height: 2.5 * $base-size !important;
+    margin-right: 0.25 * $base-size;
+  }
+
+  &:last-child {
+    margin-right: 0 !important;
+  }
+}
+
+// LINK
+
+a {
+  color: $brand-primary;
+  text-decoration: underline;
+}
+
+.btn {
+  border-radius: 5px;
+  font-size: 1 * $base-size !important;
+  font-weight: normal !important;
+
+  &--icon-text {
+    display: flex;
+    justify-content: flex-start;
+    min-width: none;
+
+    &__icon {
+      font-size: 0.85 * $base-size;
+      margin-right: 0.5 * $base-size;
+    }
+
+    &__label {
+      font-size: 0.875 * $base-size;
+    }
+  }
+
+  // COLORS
+
+  &.btn-primary {
+    align-items: center;
+    background-color: $brand-primary;
+    border: 1px solid $brand-primary !important;
+    color: $white !important;
+
+    // Size
+
+    &--w-10 {
+      width: 10%;
+    }
+
+    &--w-25 {
+      width: 25%;
+    }
+
+    &--w-50 {
+      width: 50%;
+    }
+
+    &--w-75 {
+      width: 75%;
+    }
+
+    // Icon
+
+    &--w-100 {
+      width: 100%;
+    }
+
+    // Icon
+
+    i {
+      color: $white;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $brand-primary !important;
+      border: 1px solid $brand-primary !important;
+      color: $white !important;
+      opacity: 0.9;
+    }
+
+    &.disabled,
+    &:disabled {
+      background-color: $brand-primary;
+      border: 1px solid $brand-primary !important;
+      color: $white !important;
+      opacity: 0.5;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: $brand-secondary !important;
+    color: $white !important;
+  }
+
+  &.btn-light {
+    align-items: center;
+    background-color: $white !important;
+    border: 1px solid $gray-2 !important;
+    color: $black-2 !important;
+    display: flex;
+
+    * {
+      color: $black;
+    }
+  }
+
+  &.btn-danger {
+    background-color: $red;
+  }
+
+  &.btn-outline {
+    background-color: transparent;
+    border: 1px solid $brand-primary !important;
+    color: $brand-primary !important;
+
+    i {
+      color: $brand-primary;
+    }
+
+    &-gold {
+      color: $gold;
+      border: 1px solid $gold !important;
+
+      i {
+        color: $gold;
+      }
+
+      &:hover {
+        background-color: $gold-opacity-1 !important;
+      }
+    }
+
+    &-secondary {
+      background-color: unset;
+      color: $brand-secondary;
+      border: 1px solid $brand-secondary !important;
+
+      i {
+        color: $brand-secondary;
+      }
+
+      &:hover {
+        background-color: $brand-light-secondary !important;
+      }
+    }
+  }
+
+  &.btn-white {
+    background-color: transparent;
+    color: $brand-primary !important;
+    display: flex;
+    align-items: center;
+
+    i {
+      color: $brand-primary;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $white !important;
+    }
+  }
+
+
+  &.btn-tab__content {
+
+    &:active,
+    &:hover:active,
+    &.active {
+      background-color: $brand-primary !important;
+      border: 1px solid $brand-primary !important;
+      color: $white !important;
+      cursor: pointer;
+    }
+  }
+
+  // datepicker
+
+  &.calendar {
+    &:active {
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=") !important;
+      background-position: 50%;
+      width: 2.75 * $base-size;
+      background-repeat: no-repeat;
+      background-size: 23px;
+    }
+
+    &.ngb-dp-arrow-btn {
+      min-width: auto !important;
+    }
+  }
+
+  &.ngb-dp-arrow-btn {
+    min-width: auto !important;
+  }
+}
+
+.set-group {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0 1rem 0.5rem;
+  float: right;
+  border-left: 1px solid $gray-4;
+  margin-top: 0.15rem;
+
+  .btn {
+    padding: 0.25rem;
+
+    .indicator {
+      height: 12.5px;
+      width: 6px;
+      background-color: $white;
+      border-radius: 1rem;
+      border: 1px solid $gray-5;
+      display: block;
+      position: relative;
+      margin-left: 0 !important;
+    }
+
+    &--active {
+      .indicator {
+        background-color: $brand-primary;
+        border: 0;
+      }
+    }
+  }
+}
+
+.btn-icon {
+  background-color: $brand-primary;
+  border-radius: 3px;
+  border-style: none;
+  color: $white;
+  cursor: pointer;
+  font-size: 0.75 * $base-size;
+  padding: 0.3rem 0.45rem 0.3rem 0.5rem;
+
+  &--square {
+    align-items: center;
+    display: flex;
+    height: 1.25 * $base-size;
+    justify-content: center;
+    width: 1.25 * $base-size;
+  }
+
+  &--blue {
+    color: $gray-4 !important;
+    background-color: transparent !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $brand-primary !important;
+    }
+  }
+}
+
+.action-btn {
+  display: flex;
+  gap: 1.2em;
+  text-align: center;
+  justify-content: center;
+}
+
+.action-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &--status {
+    .btn-icon {
+      padding: 0;
+
+      i-feather {
+        height: 18px;
+        width: 18px;
+
+        &[name="x-circle"] {
+          color: $red;
+        }
+
+        &[name="check-circle"] {
+          color: $green;
+        }
+      }
+
+      &:hover {
+        i-feather {
+          height: 19px;
+          width: 19px;
+          transition: 0.5s ease-in-out;
+        }
+      }
+    }
+  }
+
+  .btn {
+    white-space: nowrap;
+
+    &-icon {
+      padding: 0.25rem;
+      color: $gray-6;
+
+      &:hover {
+        color: $brand-primary;
+      }
+
+      &:active {
+        color: $brand-primary;
+      }
+
+      &:disabled {
+        color: $gray-4;
+      }
+
+      &:focus {
+        box-shadow: unset;
+      }
+    }
+  }
+}
+
+.btn-icon-group {
+  display: flex;
+  align-items: center;
+  height: 1.5 * $base-size;
+  gap: 2px !important;
+  justify-content: flex-end;
+  margin: 12px;
+
+  span {
+    cursor: pointer;
+    margin-right: 0.5 * $base-size;
+    color: $gray-6;
+  }
+}
+
+.btn-tab {
+  border: 0;
+  color: $gray-6;
+  font-size: 0.875 * $base-size;
+  padding: 0.643 * $base-size $base-size;
+  --bs-btn-disabled-color: #aaa;
+  ;
+  --bs-btn-disabled-border-color: transparent;
+}
+
+// Bootstrap's Button Outline Override
+
+.btn-search {
+  background-color: transparent !important;
+
+  &__icon {
+    color: $gray-6;
+    font-size: $base-size !important;
+  }
+}
+
+.icon-button {
+  cursor: pointer;
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.close-btn--modal {
+  background: unset;
+  border: 0;
+
+  span {
+    font-size: 24px;
+    color: $brand-secondary;
+  }
+}
+
+.btn-base {
+  width: 100%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn-login {
+  border-radius: 2rem;
+  padding: 0.7rem 1.5rem;
+
+  @extend .btn-base;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: $white;
+
+    i {
+      color: $white;
+    }
+  }
+}

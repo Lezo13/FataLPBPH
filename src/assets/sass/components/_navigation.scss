@@ -1,0 +1,470 @@
+// NAVBAR
+
+.navbar {
+  &__mobile {
+    justify-content: flex-start !important;
+
+    img.logo-mobile {
+      height: 2 * $base-size;
+      margin-left: $base-size;
+    }
+
+    @media (min-width: 991px) {
+      display: none !important;
+    }
+
+    ul.navbar-nav {
+      margin-top: $base-size;
+
+      li.nav-item {
+        a {
+          text-decoration: none;
+          padding: 0 1.5 * $base-size 1.5 * $base-size;
+          display: flex;
+          align-items: center;
+          height: 2.5 * $base-size;
+          padding-top: 0.5 * $base-size;
+          padding-bottom: 0.5 * $base-size;
+          letter-spacing: 1px;
+          transition: all 0.2s ease-in-out;
+          color: $brand-primary !important;
+
+          i,
+          img {
+            margin-right: $base-size;
+          }
+
+          &:active,
+          &.active {
+            border-radius: 5px;
+            background-color: rgba($brand-primary, 0.05);
+            font-weight: bold;
+            color: $brand-primary !important;
+            transition: all 0.2s ease-in-out;
+          }
+        }
+      }
+    }
+  }
+}
+
+// TOP NAV
+
+.top-nav {
+  background-color: #89232e;
+  padding: .75rem 0;
+  left: 0;
+  position: sticky;
+  right: 0;
+  top: 0;
+  z-index: 999;
+
+  &__tabs {
+    background-color: $gray-2;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    // 2nd nav underline btn-tab
+
+    .tab-pills {
+      align-items: center;
+      display: flex;
+      flex-flow: row wrap;
+      margin: 0;
+
+      &__item {
+        align-items: center;
+        display: flex;
+        height: 2.857 * $base-size;
+
+        &:hover,
+        &:active,
+        &.active {
+          border-bottom: 3px solid $brand-primary;
+          color: $brand-primary;
+          cursor: pointer;
+          font-weight: bold;
+        }
+
+        &.active {
+          // ACTIVE STATE BTN-TAB
+
+          .btn-tab {
+            color: $brand-primary;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .new-btn {
+      align-items: center;
+      display: flex;
+      float: right;
+      justify-content: center;
+      margin: 4px 1.25 * $base-size;
+      max-height: 2 * $base-size;
+
+      .fa-plus {
+        font-size: 0.8 * $base-size;
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__nav.client-view {
+    padding: 1rem 20rem;
+    border-bottom: 1px solid rgba(0, 40, 100, .12);
+  }
+
+  &__header {
+    padding-left: 1rem;
+    display: inline-flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+
+
+    &__logo {
+      border-right: 1px solid $white-opacity-20;
+      padding: 0.625 * $base-size 1.25 * $base-size;
+      cursor: pointer;
+    }
+
+    &__title {
+      align-self: center;
+      margin-left: 1.25 * $base-size;
+      cursor: pointer;
+
+      @media (max-width: 450px) {
+        display: none;
+      }
+    }
+  }
+
+  &--middle {
+    display: flex;
+  }
+
+  &__right {
+    align-items: center;
+    padding: 0 1.25 * $base-size;
+    gap: 1.5rem;
+
+    .notification-icon {
+      font-size: 1.5 * $base-size;
+      border: 0;
+      background-color: transparent;
+      color: $black-1;
+      cursor: pointer;
+
+      &.read {
+        margin-right: 18px;
+      }
+
+      &::after {
+        display: none;
+      }
+
+      .badge {
+        position: relative;
+        text-align: center;
+        font-size: 10px;
+        bottom: 15px;
+        right: 5px;
+      }
+    }
+
+    .notification-dropdown {
+      min-width: 20rem !important;
+      max-height: 70vh;
+      overflow-y: auto;
+      cursor: pointer;
+
+      @media (max-width: 429px) {
+        min-width: 12rem !important;
+      }
+
+      &__item {
+        &.unread {
+          background-color: $gray-2;
+
+          &:hover {
+            background-color: rgba($gray-2, 0.6);
+          }
+        }
+
+        &:active {
+          background-color: rgba($gray-2, 0.6);
+        }
+      }
+    }
+
+
+
+
+    .user-thumbnail-dropdown {
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      color: $white;
+      cursor: pointer;
+
+      .dropdown-menu {
+        top: 140% !important;
+        min-width: 8.5rem !important;
+        cursor: pointer;
+      }
+
+      &__user-information {
+        display: flex;
+        flex-direction: row;
+
+        &__profile-name {
+          margin: auto 10px;
+          font-size: 0.875 * $base-size;
+        }
+
+        &__profile-photo {
+          height: 2.25 * $base-size;
+          width: 2.25 * $base-size;
+          min-width: 2.25 * $base-size;
+          position: relative;
+          overflow: hidden;
+          padding: 0;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 0;
+          background: none;
+
+          &::after {
+            display: none;
+          }
+
+          img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .navbar__role {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+    height: 24px;
+    padding: 0 0.5em;
+    margin-right: 0.5em;
+    cursor: pointer;
+
+    p {
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      font-size: 12px;
+      margin: 0;
+    }
+  }
+
+  .action-group {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .image-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0.25rem;
+    border: 2px solid $white;
+
+    &:hover {
+      border: 2px solid $gold;
+    }
+  }
+
+  .bx,
+  .bxs {
+    font-size: 26px;
+  }
+
+  .round-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: #24a4b6;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: unset;
+    padding-right: 0.1rem;
+
+    i {
+      font-size: 20px;
+    }
+  }
+
+  .coins-panel {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    .coin-logo {
+      transform-style: preserve-3d;
+      background: $brand-primary;
+
+      &:hover {
+        animation: flipX 3s cubic-bezier(.3, 2, .4, .8) infinite both;
+        transform: translateZ(-.2em) rotateY(-180deg);
+        padding-right: unset;
+      }
+    }
+
+    .coin-details {
+
+      .coins-current,
+      .coins-available {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+    }
+  }
+}
+
+// TABS
+
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 0;
+  border-bottom: unset !important;
+  flex-wrap: wrap;
+
+  span {
+    text-wrap: nowrap;
+  }
+
+  &__item {
+    color: $white !important;
+
+    // Active state
+
+    &.active {
+      color: $gold;
+      border-radius: 3px;
+
+      .btn-tab {
+        color: $gold;
+        font-weight: 600 !important;
+
+        &:focus {
+          box-shadow: unset;
+        }
+
+        span {
+          color: $gold;
+        }
+      }
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    .btn-tab {
+      color: $white;
+      border-radius: unset;
+      border-bottom: 3px solid transparent;
+
+      & span {
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      &:hover {
+        border-bottom: 1px solid transparent;
+        color: $gold;
+
+        span {
+          color: $gold;
+        }
+      }
+
+      &:focus {
+        box-shadow: unset;
+      }
+
+      &:active {
+        border: unset;
+      }
+    }
+  }
+}
+
+.back-header {
+  display: flex;
+  align-items: baseline;
+  flex-direction: row;
+  margin: 0 0 1rem;
+}
+
+.back__section {
+  padding: 2rem 2rem 1rem 0;
+}
+
+.back-icon {
+  color: $gray-6;
+  font-size: 1.25 * $base-size;
+  margin-right: 0.5 * $base-size;
+}
+
+.breadcrumb-triangle {
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.nav-triangle {
+  border-left: solid 6px #aaa;
+  border-bottom: solid 6px transparent;
+  border-top: solid 6px transparent;
+}
+
+.p-breadcrumb {
+  .p-breadcrumb-item-link {
+    color: $brand-primary;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+}

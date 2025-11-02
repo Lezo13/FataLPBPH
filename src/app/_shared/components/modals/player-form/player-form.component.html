@@ -1,0 +1,60 @@
+<div class="modal-header">
+    <h4 class="modal-title"> {{ data?.title || 'Add Player'}}</h4>
+</div>
+
+<div class="modal-body" *ngIf="!isLoading">
+    <form class="form" #feedForm="ngForm">
+
+        <fieldset [disabled]="isSaving">
+            <div class="row">
+                <div class="col-12 form-group">
+                    <label for="txtPlayerName">Player Name <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtPlayerName" name="txtPlayerName"
+                        type="text" #txtPlayerName="ngModel" [(ngModel)]="player.playerName" [maxLength]="255"
+                        [ngClass]="{'ng-invalid': txtPlayerName.invalid && isSubmitted}" required />
+                </div>
+
+                   <div class="col-12 form-group">
+                    <label for="txtDesc">Description</label>
+                    <input class="form-control" pInputText id="txtDesc" name="txtDesc"
+                        type="text" #txtDesc="ngModel" [(ngModel)]="player.description" [maxLength]="1000" />
+                </div>
+
+                   <div class="col-6 form-group--inline">
+                    <label for="tglActive">Active</label>
+                    <p-toggleswitch id="tglActive" name="programIsActive" [(ngModel)]="player.isActive"
+                        inputId="tglActive" />
+                </div>
+
+                   <div class="col-6 form-group--inline">
+                    <label for="tglLineup">Lineup</label>
+                    <p-toggleswitch id="tglLineup" name="tglLineup" [(ngModel)]="player.isLineup"
+                        inputId="tglLineup" />
+                </div>
+
+                <div class="col-12 form-group">
+                    <label>Image</label>
+                    <app-image-selector [src]="player.imageUrl" [(file)]="imageFile" (fileCleared)="clearImageFile()"
+                        [autoDispose]="true"></app-image-selector>
+                </div>
+
+                <!--
+                    <div class="col-12 form-group--inline" *ngIf="!isEditing">
+                        <label for="ntfyUsers">Notify users upon post</label>
+                        <p-toggleswitch id="ntfyUsers" name="ntfyUsers" [(ngModel)]="notifyUsers"
+                            inputId="ntfyUsers" />
+                    </div>
+                -->
+            </div>
+        </fieldset>
+
+        <div class="action-btn justify-content-end mt-3">
+            <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving"
+                (onClick)="save()" />
+            <button type="button" class="btn btn-light" (click)="modalInstance.dismiss()"
+                [disabled]="isSaving">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<app-loader [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>

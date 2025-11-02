@@ -1,0 +1,25 @@
+<div class="file-container" *ngIf="uploadedFile">
+    <button (click)="openFile(uploadedFile)">
+        <div class="file-item custom-click-hover">
+            <img [src]="getFileThumbnailUrl(uploadedFile)" width="20" height="80">
+
+            <div class="file-item__details">
+                <p class="font-semibold text-ellipsis max-w-60 whitespace-nowrap overflow-hidden mb-0">{{
+                    uploadedFile.name }}</p>
+                <div>{{ formatSize(uploadedFile.size) }}</div>
+            </div>
+            <a class="text-danger" (click)="removeAttachedFile(uploadedFile); $event.stopPropagation()"><i class="pi pi-times"></i></a>
+        </div>
+    </button>
+</div>
+
+<div class="flex justify-start gap-4" *ngIf="!uploadedFile">
+     <input pInputText [readOnly]="true" />
+
+    <p-fileupload mode="basic" [auto]="true" [chooseIcon]="iconClass" (onSelect)="onFileSelection($event)"
+        [multiple]="false" [showCancelButton]="false" [showUploadButton]="false" [accept]="allowedFormats"
+        [chooseLabel]="buttonLabel" />
+
+    <p-message severity="error" styleClass="h-100" size="small" *ngIf="isError">Total upload size exceeds
+        {{formatSize(maxFileSizeBytes)}}</p-message>
+</div>

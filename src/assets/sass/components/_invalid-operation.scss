@@ -1,0 +1,18 @@
+.invalid-operation {
+  border: 1px solid $red;
+  padding: 14px;
+  width: fit-content;
+  margin: 0 auto;
+
+  i {
+    color: $red;
+  }
+
+  &.warning {
+    border-color: $orange !important;
+
+    i {
+      color: $orange !important;
+    }
+  }
+}

@@ -1,0 +1,137 @@
+.side-nav {
+  height: calc(100vh - 3.5rem);
+  width: 100%;
+  border-right: 1px solid $gray-4;
+
+  i-feather {
+    height: 18px !important;
+    width: 18px !important;
+  }
+
+  &__header {
+    padding: 0.5rem 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__left {
+      display: flex;
+      gap: 0.5rem;
+      flex-direction: column;
+      padding: 0 0.5rem;
+    }
+
+    &__right {
+      display: flex;
+      padding: 0 0.5rem;
+    }
+
+    &__middle {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 0.5rem;
+    }
+  }
+
+  &__body {
+    overflow-y: auto;
+    overflow-x: unset;
+    padding: 1.5rem 0;
+  }
+
+  &__list {
+    height: calc(100vh - 12.5rem);
+    overflow-y: auto;
+  }
+
+  .center-xy {
+    position: relative;
+    margin-top: 25px;
+  }
+}
+
+.side-nav-group {
+  padding-bottom: 0.7rem;
+
+  &__title {
+    font-size: 16px;
+    color: #3d3d3d;
+    font-weight: 500;
+    padding-left: 1.2rem;
+  }
+
+  &__seperator {
+    border-bottom: 2px solid #ababab;
+    display: block;
+    margin: 0.5rem 1.2rem;
+  }
+}
+
+.side-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 2rem;
+
+  &:hover:not(.new-item),
+  &.active {
+    background-color: rgb(37 143 218 / 19%);
+  }
+
+  &.active {
+    label,
+    span {
+      font-weight: normal !important;
+    }
+  }
+
+  &__title {
+    flex-grow: 2;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    h4 {
+      font-weight: normal !important;
+      margin-bottom: 0;
+
+      &.active {
+        h4 {
+          font-weight: normal !important;
+        }
+      }
+    }
+
+    .label {
+      font-size: 0.65rem !important;
+    }
+  }
+
+  &.new-item {
+    background-color: $white;
+    position: sticky;
+    top: 0;
+
+    .item--add {
+      text-align: center;
+      margin: 0.25rem 0.75rem 0.25rem 0;
+      background: $brand-secondary;
+      border-radius: 0.5rem;
+      border: unset;
+      padding: 0.5rem;
+      width: 100%;
+
+      &:hover:not(:disabled) {
+        background: $brand-primary;
+        color: $white;
+
+        i {
+          color: $white !important;
+        }
+      }
+    }
+  }
+}

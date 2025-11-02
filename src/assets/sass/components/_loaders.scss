@@ -1,0 +1,36 @@
+.spinner-border {
+  &-small {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  &-large {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+}
+
+.spinner-label {
+  margin-right: 0.5 * $base-size;
+}
+
+.loader {
+  .loader__content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    color: $gray-5;
+  }
+
+  .spinner-border {
+    width: 24px;
+    height: 24px;
+  }
+
+  .loader__text {
+    font-size: 12px;
+    margin: 0.5em 0 0;
+  }
+}

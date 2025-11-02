@@ -1,0 +1,59 @@
+.badge {
+  text-align: center;
+  border: 50%;
+  padding: 0.5em 0.6em !important;
+
+  &--border {
+    height: 22px;
+    width: 22px;
+    border: 1px solid $gray-4;
+    border-radius: 3px;
+    background: $white;
+  }
+}
+
+.badge-group {
+  display: flex;
+  gap: 0.25rem;
+
+  &--end {
+    justify-content: flex-end;
+  }
+}
+
+
+.role-badge {
+  position: relative;
+  display: inline-block;
+  background-color: $brand-primary;
+  padding: 0.4rem;
+  color: white;
+  max-width: 200px;
+  min-width: 150px;
+  padding-left: 1.5rem;
+  text-wrap: nowrap;
+  ;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 1.10rem solid transparent;
+    border-bottom: 1.10rem solid transparent;
+    border-left: 1.5rem solid $brand-primary;
+  }
+}
+
+.initial-badge-circle {
+  display: block;
+  background: $brand-primary;
+  color: #FFF;
+  padding: 0.6rem 0.4rem;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 500;
+}

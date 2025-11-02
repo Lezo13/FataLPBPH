@@ -1,0 +1,19 @@
+<div class="user-menu client-view">
+    <div class="user-menu__content">
+        <div class="content-menu__left">
+            <img class="image-menu" src="{{ profileImgUrl }}">
+        </div>
+        <div class="content-menu__right">
+            <span class="player-name">{{ user?.ingameName || 'In-Game Name' }}</span>
+            <span class="full-name">{{ getUserFullName() || 'Name' }}</span>
+        </div>
+    </div>
+
+    <div class="user-menu__footer">
+        <div class="footer-container">
+            <button type="button" class="btn btn-menu"><i class='bx bxs-user'></i> Profile</button>
+            <button type="submit" class="btn btn-menu" (click)="logout()"><i class='bx bx-power-off'></i> Log
+                out</button>
+        </div>
+    </div>
+</div>

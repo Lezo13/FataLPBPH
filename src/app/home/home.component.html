@@ -1,0 +1,179 @@
+<div class="home-page">
+    <section id="history" class="section-bg_primary section-border">
+        <div class="container section-padding">
+            <div class="text-center mb-5">
+                <h2 class="heading-primary">The <span class="text-gold gold-glow">Origin</span> Story</h2>
+                <h3 class="heading-secondary">Chapters Across Borders: A Mixed Legacy</h3>
+            </div>
+
+            <div class="origin-cards-wrapper">
+                <div class="origin-card border-red-top">
+                    <i class="bx bx-globe text-l text-red mb-4"></i>
+                    <h4 class="card-title text-red">PHASE I: Foundation</h4>
+                    <p class="card-text">
+                        FataL began in the highly engaged Philippines gaming community, focused mainly on competitive
+                        Point Blank. The original members established the team's core identity—built on strong
+                        teamwork, tactical preparation, and disciplined execution. This foundational period was
+                        essential for creating the skills and values that guide our strategy today.
+                    </p>
+                </div>
+
+                <div class="origin-card border-red-top">
+                    <i class="bx bx-shield text-l text-red mb-4"></i>
+                    <h4 class="card-title text-red">PHASE II: EXPANSION</h4>
+                    <p class="card-text">
+                        The team reformed and expanded in the UAE, marking the start of a new chapter focused on
+                        international growth. The team's current roster is anchored by veteran players from the UAE,
+                        successfully combining the team's historical strategic depth with the excitement and high
+                        standards of the Middle Eastern esports ecosystem. This move positions FataL to compete on a
+                        wider, global platform.
+                    </p>
+                </div>
+
+                <div class="origin-card border-gold-top">
+                    <i class="fa fa-hammer text-l text-gold mb-4"></i>
+                    <h4 class="card-title text-gold">PHASE III: REBUILD</h4>
+                    <p class="card-text">
+                        Following the sudden shutdown of the UAE server, only a small core of devoted players remained.
+                        The team started by migrating to the Philippine server, beginning a full rebuild of the FataL
+                        legacy from scratch, bringing in new local talent and drawing on international experience to
+                        grow stronger and make an impact in the original home region.
+                    </p>
+                </div>
+            </div>
+
+            <div class="history-quote">
+                <p class="quote-text">
+                    “Dream big, train hard, rise together.” - FataL
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="section-bg_secondary section-border">
+        <div class="container section-padding">
+            <div class="text-center">
+                <h2 class="heading-primary">Forged in <span class="text-red">Chaos</span></h2>
+                <h3 class="heading-secondary" style="margin-bottom: 4rem;">The expanded roster and its objectives.</h3>
+            </div>
+
+            <div class="team-layout">
+                <!-- Team Image Placeholder -->
+                <div class="team-image-wrapper">
+                    <img src="assets/images/fatal_featured_photo.jpg" alt="FataL Team" class="team-image"
+                        style="width: 450px;">
+                </div>
+
+                <!-- Team Text -->
+                <div class="team-text-content">
+                    <p class="team-slogan">One Team. One Goal.</p>
+                    <p class="team-description">
+                        FataL is built on a foundation of depth and versatility. Our roster combines experienced players
+                        with aggressive new talent, all united by a competitive spirit.
+                        We emphasize cross-disciplinary training and a deep bench, ensuring that no matter the meta or
+                        the challenge, we are always ready to compete.
+                    </p>
+                    <p class="team-description">
+                        Explore the complete team and get to know everyone on our roster.
+                    </p>
+                    <a class="btn-cta" (click)="navigateToTeam()">
+                        <i class="fa fa-users icon-sm align-content-center"></i>
+                        Meet The Full Squad
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="matches" class="section-bg_primary section-border">
+        <div class="container section-padding">
+            <div class="text-center">
+                <h2 class="heading-primary">
+                    <span class="text-red">{{ checkLiveMatch() ? 'ONGOING' : 'UPCOMING'}} </span> MATCH
+                </h2>
+                <h3 class="heading-secondary" style="margin-bottom: 4rem;">Don't miss the upcoming action.</h3>
+            </div>
+
+            <!-- Match Card (Gold Border) -->
+            <div class="match-card">
+                @if (nextMatch != null) {
+                <a [href]="nextMatch.vodUrl" class="live-banner" *ngIf="checkLiveMatch()">LIVE</a>
+
+                <div class="match-tags-top">
+                    <span class="match-tag tag-red">{{ nextMatch.matchPhase }}</span>
+                    <span class="match-tag tag-gold">{{ nextMatch.matchFormat }}</span>
+                </div>
+
+                <div class="match-content">
+
+                    <!-- Match Details -->
+                    <div class="match-details">
+                        <p class="match-series">{{ nextMatch.tournamentName }}</p>
+                        <p class="match-date">
+                            <i class="bx bx-calendar inline-icon text-red"></i> {{ nextMatch.matchStartDate | date:'MMMM d, y' | uppercase }}
+                        </p>
+                        <p class="match-time">
+                            <i class="bx bx-time inline-icon text-red"></i> {{ nextMatch.matchStartDate | date:'h:mm a' | uppercase }}
+                        </p>
+                    </div>
+
+                    <!-- VS Display -->
+                    <div class="match-vs-display">
+                        <div class="team-side">
+                            <img [src]="nextMatchTeamOneLogoUrl" class="team-logo"
+                                [alt]="nextMatch.teamOneName">
+                            <div class="team-name">{{ nextMatch.teamOneName }}</div>
+                        </div>
+
+                        <span class="vs-text gold-glow">VS</span>
+
+                          <div class="team-side">
+                            <img [src]="nextMatchTeamTwoLogoUrl" class="team-logo"
+                                [alt]="nextMatch.teamTwoName">
+                            <div class="team-name">{{ nextMatch.teamTwoName }}</div>
+                        </div>
+                    </div>
+                </div>
+                } @else {
+                    <div class="text-center">NO UPCOMING MATCHES</div>
+                }
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="section-bg_secondary">
+        <div class="container contact-section-inner text-center">
+            <h2 class="heading-secondary text-white" style="margin-bottom: 0.5rem;">Join the <span
+                    class="text-gold gold-glow">FataL</span> Community</h2>
+            <p class="contact-subtext">Follow our journey, watch the matches live, and connect with the players on all
+                our social platforms.</p>
+
+            <div class="social-links-wrapper">
+                <a [href]="discordLink" class="social-link" target="_blank">
+                    <i class="bx bxl-discord-alt icon-sm" style="color: #5662F6"></i>
+                    <span>Discord</span>
+                </a>
+
+                <a [href]="youtubeLink" class="social-link" target="_blank">
+                    <i class="bx bxl-youtube icon-sm" style="color: #F90039"></i>
+                    <span>YouTube</span>
+                </a>
+
+                <a [href]="facebookLink" class="social-link" target="_blank">
+                    <i class="bx bxl-facebook-circle icon-sm" style="color: #1C68FA"></i>
+                    <span>Facebook</span>
+                </a>
+            </div>
+
+
+
+            <div class="contact-info">
+                <p class="contact-title text-gold">Inquiries</p>
+                <p class="contact-email">fatalpbph&#64;gmail.com</p>
+            </div>
+
+        </div>
+    </section>
+</div>

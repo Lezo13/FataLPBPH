@@ -1,0 +1,33 @@
+:root {
+    --default-text-color: #ffffff;
+    --color-void-dark: #0a0a0a;
+    --color-void-gray: #212F4D;
+    --color-void-accent: #D02B37;
+    --color-fatal-gold: #FFC72C;
+    --color-white: #e5e5e5;
+    --color-gray-800: #1f2937;
+    --color-gray-900: #111827;
+    --color-gray-950: #030712;
+    --color-text-light: #9ca3af;
+    --color-text-muted: #6b7280;
+    --color-border: #374151;
+    --max-content-width: 1280px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f7f7f7;
+    /* Change this */
+    border-radius: 10px;
+}
+
+/* Scroll thumb (draggable part) */
+::-webkit-scrollbar-thumb {
+    background: #9c9c9c;
+    /* Change this */
+    border-radius: 10px;
+}
+
+/* On hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5a;
+}

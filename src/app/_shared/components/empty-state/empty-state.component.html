@@ -1,0 +1,11 @@
+<div class="empty-state" [ngStyle]="{'height': height}">
+  <div class="empty-state__icon">  
+    <i [class]="icon"></i>
+  </div>
+  <div class="empty-state__text">  
+    <span>{{ message }}</span>
+  </div>
+  <div class="empty-state__text" [ngClass]="subMessageClass" *ngIf="subMessage">  
+    <span>{{ subMessage }}</span>
+  </div>
+</div>

@@ -1,0 +1,1 @@
+export const LOGIN_DEFAULT_LOGO: string = 'assets/images/logos/fatal_logo.png';
