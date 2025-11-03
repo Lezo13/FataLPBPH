@@ -19,7 +19,6 @@ export class PlayerFormComponent implements OnInit {
   playerId: string = null;
   player: Player;
   imageFile: FileExtended = null;
-  notifyUsers: boolean = false;
 
   isEditing: boolean = false;
   isLoading: boolean = true;

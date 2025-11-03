@@ -9,6 +9,14 @@ export const ADMIN_TOPNAV_ITEMS: NavItem[] = [
         url: 'admin/players',
         logo: '',
         allowedRoles: [RoleEnum.Admin]
+    },
+     {
+        order: 1,
+        name: 'MATCHES',
+        value: 'matches',
+        url: 'admin/matches',
+        logo: '',
+        allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator]
     }
 ];
 

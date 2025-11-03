@@ -1,5 +1,5 @@
 export interface Match {
-  matchId: string;
+  matchId?: string;
   matchStartDate: Date;
   matchEndDate: Date;
   matchFormat: string;
@@ -13,4 +13,7 @@ export interface Match {
   teamTwoScore: number;
   teamNameWinner?: string;
   vodUrl?: string;
+
+  //Fe use only
+  isLoading?: boolean;
 }
