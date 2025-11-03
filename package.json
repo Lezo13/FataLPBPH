@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-free": "^7.1.0",
     "@fullcalendar/angular": "^6.1.19",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
+    "@ngneat/until-destroy": "^10.0.0",
     "@primeng/themes": "^20.2.0",
     "@tailwindcss/vite": "^4.1.16",
     "angular-feather": "^6.5.1",
