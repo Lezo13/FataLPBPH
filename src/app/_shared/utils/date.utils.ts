@@ -400,4 +400,23 @@ export class DateUtils {
 
         return converted;
     }
+
+    static convertDatesToFirestoreTimestamps(obj: any): any {
+        const result: any = Array.isArray(obj) ? [] : {};
+
+        for (const key in obj) {
+            const value = obj[key];
+
+            if (value instanceof Date) {
+                result[key] = Timestamp.fromDate(value);
+            } else if (value !== null && typeof value === 'object') {
+                // Recursively convert nested objects/arrays
+                result[key] = DateUtils.autoConvertFirestoreTimestamps(value);
+            } else {
+                result[key] = value;
+            }
+        }
+
+        return result;
+    }
 }

@@ -1,0 +1,71 @@
+<div class="admin-content">
+    <div class="admin-content__header">Players</div>
+
+    <div class="admin-content__body">
+        <ng-container *ngIf="!isLoading">
+            <fieldset [disabled]="isDataLoading">
+                <div class="d-flex justify-content-end mx-3">
+                    <div class="filter-group">
+                        <button class="btn btn-outline-secondary" raised name="btnAdd" (click)="addMatch()">Add
+                            Match</button>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="row" *ngIf="!isDataLoading">
+                <p-table [value]="matches" stripedRows [tableStyle]="{'min-width': '50rem'}"
+                    [paginator]="matches?.length > 10" [rows]="10" [rowsPerPageOptions]="[10, 20, 30]"
+                    [showCurrentPageReport]="true" [scrollable]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    paginatorStyleClass="mt-3">
+                    <ng-template pTemplate="header" #header>
+                        <tr>
+                            <th pSortableColumn="tournamentName">Tournament Name <p-sortIcon field="tournamentName" />
+                            </th>
+                            <th pSortableColumn="matchFormat">Format <p-sortIcon field="matchFormat" /></th>
+                            <th pSortableColumn="matchPhase">Phase <p-sortIcon field="matchPhase" /></th>
+                            <th pSortableColumn="teamOneName">Team 1 <p-sortIcon field="teamOneName" /></th>
+                            <th pSortableColumn="teamOneScore">Team 1 Score <p-sortIcon field="teamOneScore" /></th>
+                            <th pSortableColumn="teamTwoName">Team 2 <p-sortIcon field="teamTwoName" /></th>
+                            <th pSortableColumn="teamTwoScore">Team 2 Score <p-sortIcon field="teamTwoScore" /></th>
+                            <th pSortableColumn="teamNameWinner">Winner <p-sortIcon field="teamNameWinner" /></th>
+                            <th pSortableColumn="matchStartDate">Match Date <p-sortIcon field="matchStartDate" /></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template #body let-match>
+                        <tr>
+                            <td class="cell-wrap">{{match?.tournamentName}}</td>
+                            <td class="cell-wrap">{{match?.matchFormat}}</td>
+                            <td class="cell-wrap">{{match?.matchPhase}}</td>
+                            <td class="cell-wrap">{{match?.teamOneName}}</td>
+                            <td>{{match?.teamOneScore}}</td>
+                            <td class="cell-wrap">{{match?.teamTwoName}}</td>
+                            <td>{{match?.teamTwoScore}}</td>
+                            <td class="cell-wrap">{{match?.teamNameWinner}}</td>
+                            <td>{{ convertToLocalDate(match.matchStartDate) | date:'yyyy-MM-dd h:mm a' }}</td>
+                            <td class="text-center" exportable="false" alignFrozen="right">
+                                <div class="action-btn" *ngIf="!match?.isLoading">
+                                    <a class="text-dark" ngbTooltip="Edit" (click)="editMatch(match)"><i
+                                            class='bx bx-edit'></i></a>
+
+                                    <a class="text-dark" ngbTooltip="Delete" (click)="promptDeleteMatch(match)"><i
+                                            class='bx bx-trash-alt'></i></a>
+                                </div>
+
+                                <i class="spinner-border spinner-border-sm text-primary" *ngIf="match?.isLoading"></i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template #emptymessage>
+                        <tr>
+                            <td colspan="4" class="text-center">No available players</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </ng-container>
+
+        <app-loader [isVisible]="true" *ngIf="isLoading || isDataLoading" [height]="350"></app-loader>
+    </div>
+</div>

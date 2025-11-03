@@ -1,0 +1,134 @@
+<div class="modal-header">
+    <h4 class="modal-title"> {{ data?.title || 'Add Match'}}</h4>
+</div>
+
+<div class="modal-body" *ngIf="!isLoading">
+    <form class="form" #feedForm="ngForm">
+
+        <fieldset [disabled]="isSaving">
+            <div class="row">
+                <div class="col-12 form-group">
+                    <label for="txtTournamentName">Tournament Name <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtTournamentName"
+                        name="txtTournamentName" type="text" #txtTournamentName="ngModel"
+                        [(ngModel)]="match.tournamentName" [maxLength]="1000"
+                        [ngClass]="{'ng-invalid': txtTournamentName.invalid && isSubmitted}" required />
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="txtFormat">Format <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtFormat" name="txtFormat"
+                        type="text" #txtFormat="ngModel" [(ngModel)]="match.matchFormat" [maxLength]="255"
+                        [ngClass]="{'ng-invalid': txtFormat.invalid && isSubmitted}" required />
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="txtPhase">Phase <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtPhase" name="txtPhase" type="text"
+                        #txtPhase="ngModel" [(ngModel)]="match.matchPhase" [maxLength]="255"
+                        [ngClass]="{'ng-invalid': txtPhase.invalid && isSubmitted}" required />
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="dpStartDate">Start Date</label>
+                    <p-datepicker [(ngModel)]="match.matchStartDate" id="dpStartDate" name="dpStartDate" [fluid]="true"
+                        [readonlyInput]="true" placeholder="Select Date " dateFormat="yy-mm-dd" [showTime]="true"
+                        hourFormat="12" [showIcon]="true">
+                    </p-datepicker>
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="dpEndDate">End Date</label>
+                    <p-datepicker [(ngModel)]="match.matchEndDate" id="dpEndDate" name="dpEndDate" [fluid]="true"
+                        [readonlyInput]="true" placeholder="Select Date " dateFormat="yy-mm-dd" [showTime]="true"
+                        hourFormat="12" [showIcon]="true">
+                    </p-datepicker>
+                </div>
+
+                <div class="col-6">
+                    <fieldset class="field-group">
+                        <legend>Team 1</legend>
+                        <div class="row p-3">
+                            <div class="col-12 form-group">
+                                <label for="txtTeam1Name">Team Name <span class="text-danger">*</span></label>
+                                <input class="form-control ng-invalid ng-dirty" pInputText id="txtTeam1Name"
+                                    name="txtTeam1Name" type="text" #txtTeam1Name="ngModel"
+                                    [(ngModel)]="match.teamOneName" [maxLength]="1000"
+                                    [ngClass]="{'ng-invalid': txtTeam1Name.invalid && isSubmitted}" required />
+                            </div>
+
+                            <div class="col-12 form-group">
+                                <label>Logo</label>
+                                <app-image-selector [src]="match.teamOneLogoUrl" [(file)]="teamOneLogoFile"
+                                    (fileCleared)="clearTeamOneLogoFile()" [autoDispose]="true"></app-image-selector>
+                            </div>
+
+                            <div class="col-6 form-group">
+                                <label for="txtT2Score">Score <span class="text-danger">*</span></label>
+                                <input class="form-control ng-invalid ng-dirty" pInputText id="txtT2Score"
+                                    name="txtT2Score" type="number" #txtT2Score="ngModel"
+                                    [(ngModel)]="match.teamOneScore"
+                                    [ngClass]="{'ng-invalid': txtT2Score.invalid && isSubmitted}" required />
+                            </div>
+
+                            <div class="col-6 form-group">
+                                <label for="tglT1Win">Is Winner</label>
+                                <p-toggleswitch id="tglT1Win" name="tglT1Win" [(ngModel)]="isTeamOneWinner"
+                                    (onChange)="isTeamTwoWinner = !isTeamOneWinner;" inputId="tglT1Win" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-6">
+                    <fieldset class="field-group">
+                        <legend>Team 2</legend>
+                        <div class="row p-3">
+                            <div class="col-12 form-group">
+                                <label for="txtTeam2Name">Team Name <span class="text-danger">*</span></label>
+                                <input class="form-control ng-invalid ng-dirty" pInputText id="txtTeam2Name"
+                                    name="txtTeam2Name" type="text" #txtTeam2Name="ngModel"
+                                    [(ngModel)]="match.teamTwoName" [maxLength]="1000"
+                                    [ngClass]="{'ng-invalid': txtTeam2Name.invalid && isSubmitted}" required />
+                            </div>
+
+                            <div class="col-12 form-group">
+                                <label>Logo</label>
+                                <app-image-selector [src]="match.teamTwoLogoUrl" [(file)]="teamTwoLogoFile"
+                                    (fileCleared)="clearTeamTwoLogoFile()" [autoDispose]="true"></app-image-selector>
+                            </div>
+
+                            <div class="col-6 form-group">
+                                <label for="txtT2Score">Score <span class="text-danger">*</span></label>
+                                <input class="form-control ng-invalid ng-dirty" pInputText id="txtT2Score"
+                                    name="txtT2Score" type="number" #txtT2Score="ngModel"
+                                    [(ngModel)]="match.teamTwoScore"
+                                    [ngClass]="{'ng-invalid': txtT2Score.invalid && isSubmitted}" required />
+                            </div>
+
+                            <div class="col-6 form-group">
+                                <label for="tglT2Win">Is Winner</label>
+                                <p-toggleswitch id="tglT2Win" name="tglT2Win" [(ngModel)]="isTeamTwoWinner"
+                                    (onChange)="isTeamOneWinner = !isTeamTwoWinner;" inputId="tglT2Win" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-12 form-group">
+                    <label for="txtVodUrl">Vod URL</label>
+                    <input class="form-control" pInputText id="txtVodUrl" name="txtVodUrl" type="text"
+                        [(ngModel)]="match.vodUrl" [maxLength]="2000" />
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving"
+        (onClick)="save()" />
+    <button type="button" class="btn btn-light" (click)="modalInstance.dismiss()" [disabled]="isSaving">Cancel</button>
+</div>
+
+<app-loader [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>

@@ -14,22 +14,21 @@
                         [ngClass]="{'ng-invalid': txtPlayerName.invalid && isSubmitted}" required />
                 </div>
 
-                   <div class="col-12 form-group">
+                <div class="col-12 form-group">
                     <label for="txtDesc">Description</label>
-                    <input class="form-control" pInputText id="txtDesc" name="txtDesc"
-                        type="text" #txtDesc="ngModel" [(ngModel)]="player.description" [maxLength]="1000" />
+                    <input class="form-control" pInputText id="txtDesc" name="txtDesc" type="text" #txtDesc="ngModel"
+                        [(ngModel)]="player.description" [maxLength]="1000" />
                 </div>
 
-                   <div class="col-6 form-group--inline">
+                <div class="col-6 form-group--inline">
                     <label for="tglActive">Active</label>
                     <p-toggleswitch id="tglActive" name="programIsActive" [(ngModel)]="player.isActive"
                         inputId="tglActive" />
                 </div>
 
-                   <div class="col-6 form-group--inline">
+                <div class="col-6 form-group--inline">
                     <label for="tglLineup">Lineup</label>
-                    <p-toggleswitch id="tglLineup" name="tglLineup" [(ngModel)]="player.isLineup"
-                        inputId="tglLineup" />
+                    <p-toggleswitch id="tglLineup" name="tglLineup" [(ngModel)]="player.isLineup" inputId="tglLineup" />
                 </div>
 
                 <div class="col-12 form-group">
@@ -37,14 +36,6 @@
                     <app-image-selector [src]="player.imageUrl" [(file)]="imageFile" (fileCleared)="clearImageFile()"
                         [autoDispose]="true"></app-image-selector>
                 </div>
-
-                <!--
-                    <div class="col-12 form-group--inline" *ngIf="!isEditing">
-                        <label for="ntfyUsers">Notify users upon post</label>
-                        <p-toggleswitch id="ntfyUsers" name="ntfyUsers" [(ngModel)]="notifyUsers"
-                            inputId="ntfyUsers" />
-                    </div>
-                -->
             </div>
         </fieldset>
 

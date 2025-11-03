@@ -6,9 +6,10 @@ import { SharedModule } from '../_shared';
 import { NavsModule } from '../navs/navs.module';
 import { PlayersComponent } from './players/players.component';
 import { AdminRoutingModule } from './admin-routing.module';
+import { MatchesComponent } from './matches/matches.component';
 
 @NgModule({
-  declarations: [PlayersComponent],
+  declarations: [PlayersComponent, MatchesComponent],
   imports: [
     CommonModule,
     NavsModule,
