@@ -12,7 +12,7 @@
                     <div class="inactive-ribbon" *ngIf="!player.isActive">Inactive</div>
 
                     <div class="player-card-background"
-                        [ngStyle]="{'background-image': 'url(' + getPlayerImage(player) + ')', 'filter': !player.isActive ? 'grayscale(100%)' : ''}">
+                        [ngStyle]="{'background-image': 'url(' + getPlayerImage(player) + ')'}">
                     </div>
                     <div class="image-placeholder-initial" id="ph-ghost" style="display: none;">G</div>
 
@@ -45,7 +45,7 @@
                     <div class="inactive-ribbon" *ngIf="!player.isActive">Inactive</div>
 
                     <div class="player-card-background"
-                        [ngStyle]="{'background-image': 'url(' + getPlayerImage(player) + ')', 'filter': !player.isActive ? 'grayscale(100%)' : ''}">
+                        [ngStyle]="{'background-image': 'url(' + getPlayerImage(player) + ')'}">
                     </div>
                     <div class="image-placeholder-initial" id="ph-ghost" style="display: none;">G</div>
 

@@ -39,26 +39,12 @@ export class TopNavComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.activeService.activeUser;
     this.profileImgUrl = ObjectUtils.hasData(this.user?.profilePictureUrl) ? this.user?.profilePictureUrl : 'assets/images/no_user_img.png';
-    this.hasAdminAccess = this.authService.isInRoles([RoleEnum.Admin, RoleEnum.Moderator]);
+
+    if (this.isAuthenticated)
+      this.hasAdminAccess = this.authService.isInRoles([RoleEnum.Admin, RoleEnum.Moderator]);
   }
 
   isOnAdminSide(): boolean {
     return this.router.url.startsWith("/admin");
-  }
-
-  selectTab(value: string): void {
-    this.tabEventsService.topTabNavigated.emit(value);
-  }
-
-  navigateToLogin(): void {
-    this.router.navigate(['/login']);
-  }
-
-  navigateToAdminPanel(): void {
-    this.router.navigate(['/admin']);
-  }
-
-  navigateToHome(): void {
-    this.router.navigate(['/home']);
   }
 }

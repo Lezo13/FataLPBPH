@@ -35,5 +35,12 @@ export const CLIENT_TOPNAV_ITEMS: NavItem[] = [
         value: 'team',
         url: 'team',
         logo: ''
+    },
+      {
+        order: 2,
+        name: 'MATCHES',
+        value: 'matches',
+        url: 'matches',
+        logo: ''
     }
 ];

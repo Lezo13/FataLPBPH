@@ -1,0 +1,150 @@
+<div class="match-history">
+    @if(!isLoading) {
+    <section class="section-bg_primary section-border" *ngIf="upcomingMatches?.length > 0">
+        <div class="section-padding">
+            <h2 class="heading-primary text-center">
+                <span class="text-gold gold-glow">UPCOMING</span> MATCHES
+            </h2>
+            <p class="heading-secondary text-center">
+                Get ready for the action and see who we're up against.
+            </p>
+
+            <div id="match-list" class="match-list-container">
+                <div class="match-list-item upcoming-item" *ngFor="let match of upcomingMatches"
+                    [ngClass]="{'win-border': match.matchStatus === 'WIN', 'loss-border': match.matchStatus === 'LOSE', 'tie-border': match.matchStatus === 'DRAW' }">
+
+
+                    <div class="d-flex">
+                        <a [href]="match.vodUrl" class="live-banner"  *ngIf="checkLiveMatch(match)">LIVE</a>
+                        <div class="match-info-block flex-1">
+                            <div class="info-details">
+                                <span class="tournament-name text-gold">{{ match.tournamentName }}</span>
+                                <span class="match-type">{{ match.matchPhase }} - {{ match.matchFormat }}</span>
+                                <span class="match-date">{{ match.matchStartDate | date:'MMMM d, y' | uppercase
+                                    }}</span>
+                            </div>
+                        </div>
+
+                        <div class="team-score-block flex-1">
+                            <div class="team-info left-team">
+                                <span class="team-name"
+                                    [ngbTooltip]="match.teamOneName?.length > 20 ? match?.teamOneName : ''">{{
+                                    match.teamOneName
+                                    }}</span>
+                                <div class="team-logo fatal-logo">
+                                    <img [src]="getTeamLogoUrl(match.teamOneName, match.teamOneLogoUrl)"
+                                        class="w-full h-full object-cover">
+                                </div>
+                            </div>
+
+                            <div class="mid-display">
+                                <span class="score-separator text-light gold-glow">VS</span>
+                            </div>
+
+                            <div class="team-info right-team">
+                                <div class="team-logo opponent-logo">
+                                    <img [src]="getTeamLogoUrl(match.teamTwoName, match.teamTwoLogoUrl)"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <span class="team-name"
+                                    [ngbTooltip]="match.teamTwoName?.length > 20 ? match?.teamTwoName : ''">{{
+                                    match.teamTwoName
+                                    }}</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center mx-3 flex-1">
+                            <!-- EMPTY -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-bg_secondary section-border">
+        <div class="section-padding">
+            <h2 class="heading-primary text-center">
+                Match <span class="text-gold gold-glow">HISTORY</span>
+            </h2>
+            <p class="heading-secondary text-center">
+                A chronological record of our most recent encounters and tournament results.
+            </p>
+
+
+            <div id="match-list" class="match-list-container">
+                <div class="match-list-item" *ngFor="let match of finishedMatches"
+                    [ngClass]="{'win-border': match.matchStatus === 'WIN', 'loss-border': match.matchStatus === 'LOSE', 'tie-border': match.matchStatus === 'DRAW' }">
+                    <div class="d-flex">
+                        <div class="match-info-block flex-1">
+                            <div class="info-details">
+                                <span class="tournament-name text-gold">{{ match.tournamentName }}</span>
+                                <span class="match-type">{{ match.matchPhase }} - {{ match.matchFormat }}</span>
+                                <span class="match-date">{{ match.matchStartDate | date:'MMMM d, y' | uppercase
+                                    }}</span>
+                            </div>
+                        </div>
+
+                        <div class="team-score-block flex-1">
+
+                            <div class="team-info left-team">
+                                <span class="team-name"
+                                    [ngbTooltip]="match.teamOneName?.length > 20 ? match?.teamOneName : ''">{{
+                                    match.teamOneName
+                                    }}</span>
+                                <div class="team-logo">
+                                    <img [src]="getTeamLogoUrl(match.teamOneName, match.teamOneLogoUrl)"
+                                        class="w-full h-full object-cover">
+                                </div>
+                            </div>
+
+                            <div class="mid-display">
+                                <span class="score-box"
+                                    [ngClass]="{'win-score': match.teamOneScore > match.teamTwoScore, 
+                            'loss-score': match.teamOneScore < match.teamTwoScore, 'draw-score': match.teamOneScore === match.teamTwoScore }">
+                                    {{ match.teamOneScore }}
+                                </span>
+                                <span class="score-separator">-</span>
+                                <span class="score-box"
+                                    [ngClass]="{'win-score': match.teamTwoScore > match.teamOneScore, 
+                            'loss-score': match.teamTwoScore < match.teamOneScore, 'draw-score': match.teamTwoScore === match.teamOneScore }">
+                                    {{ match.teamTwoScore }}
+                                </span>
+                            </div>
+
+                            <div class="team-info right-team">
+                                <div class="team-logo">
+                                    <img [src]="getTeamLogoUrl(match.teamTwoName, match.teamTwoLogoUrl)"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <span class="team-name"
+                                    [ngbTooltip]="match.teamTwoName?.length > 20 ? match?.teamTwoName : ''">{{
+                                    match.teamTwoName
+                                    }}</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center mx-3 flex-1">
+                            <div class="action-btns-container">
+                                <a class="action-btns btn btn-light" [href]="match.vodUrl" target="_blank"
+                                    *ngIf="match?.vodUrl">
+                                    <i class="bx bx-slideshow" style="width: 1rem; height: 1rem;"></i>
+                                    <span class="action-btns-text">Watch</span>
+                                </a>
+
+                                <button class="action-btns">
+                                    <i class="bx bx-notepad" style="width: 1rem; height: 1rem;"></i>
+                                    <span class="action-btns-text">Details</span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    } @else {
+    <app-loader class="center-xy" [isVisible]="true" *ngIf="isLoading" [height]="200"></app-loader>
+    }
+</div>

@@ -11,7 +11,7 @@ export interface Match {
   teamTwoName: string;
   teamTwoLogoUrl?: string;
   teamTwoScore: number;
-  teamNameWinner?: string;
+  matchStatus?: string;
   vodUrl?: string;
 
   //Fe use only

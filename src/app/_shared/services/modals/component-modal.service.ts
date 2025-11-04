@@ -26,8 +26,7 @@ export class ComponentModalService {
         keyboard: false,
         backdrop: 'static',
         windowClass: 'modal__content',
-        size: 'lg',
-        centered: true
+        size: 'lg'
       },
       options);
   }
@@ -38,8 +37,7 @@ export class ComponentModalService {
         keyboard: false,
         backdrop: 'static',
         windowClass: 'modal__content',
-        size: 'lg',
-        centered: true
+        size: 'lg'
       },
       options);
   }

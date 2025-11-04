@@ -189,7 +189,7 @@ a {
 
 .origin-card {
     text-align: center;
-    background-color: var(--color-void-dark);
+    background-color: var(--color-gray-900);
     padding: 2rem;
     border-radius: 0.75rem;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
@@ -503,38 +503,6 @@ a {
     .match-card {
         padding: 2.5rem;
     }
-}
-
-/* New Live Banner Style - RIBBON EFFECT */
-.live-banner {
-    /* Position relative to the parent match-card */
-    position: absolute;
-    top: 1.5rem;
-    /* Push down slightly from the absolute top corner */
-    right: -2.5rem;
-    /* Pull it slightly off the edge */
-
-    /* Text & Color */
-    background-color: var(--color-void-accent);
-    color: var(--color-white);
-    font-weight: 900;
-    font-size: 0.8rem;
-    /* Slightly larger */
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-align: center;
-
-    /* Shape and Rotation */
-    padding: 0.5rem 2.5rem;
-    /* Wide padding for ribbon look */
-    width: 10rem;
-    /* Fixed width for consistent diagonal length */
-    transform: rotate(45deg);
-    /* The diagonal angle */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    border: 2px solid var(--color-fatal-gold);
-    /* Highlight border */
-    z-index: 10;
 }
 
 .match-content {

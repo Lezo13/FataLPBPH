@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../_shared/guards';
 import { RoleEnum } from '../_shared/enums';
 import { PlayersComponent } from './players/players.component';
-import { MatchesComponent } from './matches/matches.component';
+import { ManageMatchesComponent } from './manage-matches/manage-matches.component';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
     data: { roles: [RoleEnum.Admin, RoleEnum.Moderator] }
   },
    {
-    path: 'matches', component: MatchesComponent, canActivate: [AuthGuard],
+    path: 'matches', component: ManageMatchesComponent, canActivate: [AuthGuard],
     data: { roles: [RoleEnum.Admin, RoleEnum.Moderator] }
   }
 ];

@@ -2,9 +2,13 @@
 
 import { Injectable } from '@angular/core';
 import { from, Observable, map } from 'rxjs';
-import { Match, User } from '../../models';
-import { CollectionReference, DocumentReference, Firestore, Timestamp, addDoc, collection, collectionData, deleteDoc, doc, docData, getDoc, getDocs, limit, orderBy, query, updateDoc, where } from '@angular/fire/firestore';
-import { DateUtils, ObjectUtils } from '../../utils';
+import { Match } from '../../models';
+import {
+    CollectionReference, DocumentReference,
+    Firestore, addDoc, collection, collectionData, deleteDoc, doc,
+    docData, getDoc, getDocs, limit, orderBy, query, updateDoc, where
+} from '@angular/fire/firestore';
+import { DateUtils } from '../../utils';
 
 @Injectable({
     providedIn: 'root'
@@ -39,23 +43,33 @@ export class MatchHttpService {
 
     getAllMatches(): Observable<Match[]> {
         const matchesCollection = collection(this.firestore, 'Matches');
-        const matchesQuery = query(matchesCollection, orderBy('matchStartDate'));
+        const matchesQuery = query(matchesCollection, orderBy('matchStartDate', 'desc'));
 
-        return collectionData(matchesQuery, { idField: 'matchId' }).pipe(
-            map(matches =>
-                matches.map(match =>
-                    DateUtils.autoConvertFirestoreTimestamps(match as Match)
+        return from(getDocs(matchesQuery)).pipe(
+            map(snapshot =>
+                snapshot.docs.map(doc =>
+                    DateUtils.autoConvertFirestoreTimestamps({
+                        ...doc.data(),
+                        matchId: doc.id
+                    } as Match)
                 )
             )
         );
     }
 
-
     getMatch(matchId: string): Observable<Match> {
         const matchDocRef = doc(this.firestore, `Matches/${matchId}`);
-        return docData(matchDocRef, { idField: 'matchId' }).pipe(
-            map((match) => DateUtils.autoConvertFirestoreTimestamps(match as Match))
-        ) as Observable<Match>;
+
+        return from(getDoc(matchDocRef)).pipe(
+            map(snapshot =>
+                snapshot.exists()
+                    ? DateUtils.autoConvertFirestoreTimestamps({
+                        ...snapshot.data(),
+                        matchId: snapshot.id
+                    } as Match)
+                    : null as any // or throw an error if desired
+            )
+        );
     }
 
     insertMatch(match: Match): Observable<DocumentReference<Match>> {
