@@ -11,7 +11,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { CookieService } from 'ngx-cookie-service';
 import { provideToastr } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
-import { providePrimeNG,} from 'primeng/config';
+import { providePrimeNG, } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 
 export const appConfig: ApplicationConfig = {
@@ -32,6 +32,10 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync(),
     provideToastr(),
+    provideRouter(
+      routes,
+      withRouterConfig({ onSameUrlNavigation: 'reload' })
+    ),
     { provide: NgbDateAdapter, useClass: DateAdapter },
     CookieService
   ],

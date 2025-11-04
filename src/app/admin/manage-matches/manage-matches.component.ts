@@ -3,15 +3,14 @@ import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
 import { ConfirmationOptions, Match, MatchFormModalOptions } from 'src/app/_shared/models';
 import { ComponentModalService, MatchHttpService } from 'src/app/_shared/services';
-import { DateUtils } from 'src/app/_shared/utils';
 
 @Component({
-  selector: 'app-matches',
+  selector: 'app-manage-matches',
   standalone: false,
-  templateUrl: './matches.component.html',
-  styleUrl: './matches.component.scss'
+  templateUrl: './manage-matches.component.html',
+  styleUrl: './manage-matches.component.scss'
 })
-export class MatchesComponent implements OnInit {
+export class ManageMatchesComponent implements OnInit {
   matches: Match[] = [];
 
   isLoading: boolean = true;
@@ -63,9 +62,19 @@ export class MatchesComponent implements OnInit {
     }).catch(() => { });
   }
 
-  convertToLocalDate(dateValue: Date): Date {
-    const localDate: Date = DateUtils.convertToLocalDate(dateValue);
-    return localDate;
+  getStatusSeverity(matchStatus: string): 'info' | 'success' | 'danger' | 'secondary' {
+    switch (matchStatus) {
+      default:
+      case 'UPCOMING':
+        return 'info';
+      case 'WIN':
+        return 'success';
+      case 'LOSE':
+        return 'danger';
+      case 'DRAW':
+        return 'secondary';
+
+    }
   }
 
   private loadMatches(): void {

@@ -9,11 +9,9 @@
 
     <div class="top-nav--middle">
       @if (isOnAdminSide()) {
-      <app-nav-tabs [isAuthenticated]="isAuthenticated" [tabs]="adminTabs"
-        (tabSelected)="selectTab($event)"></app-nav-tabs>
+      <app-nav-tabs [isAuthenticated]="isAuthenticated" [tabs]="adminTabs"></app-nav-tabs>
       } @else {
-      <app-nav-tabs [isAuthenticated]="isAuthenticated" [tabs]="clientTabs"
-        (tabSelected)="selectTab($event)"></app-nav-tabs>
+      <app-nav-tabs [isAuthenticated]="isAuthenticated" [tabs]="clientTabs"></app-nav-tabs>
       }
 
     </div>
@@ -24,12 +22,12 @@
       <div class="action-group">
 
         @if (isOnAdminSide()) {
-        <button type="button" class="btn btn-light" (click)="navigateToHome()"><i class="fa fa-house me-1"></i>
-          Home</button>
+        <a class="btn btn-light" routerLink="/home"><i class="fa fa-house me-1"></i>
+          Home</a>
         } @else {
-        <button type="button" class="btn btn-light" (click)="navigateToAdminPanel()"><i class="fa fa-wrench me-1"
+        <a class="btn btn-light" routerLink="/admin"><i class="fa fa-wrench me-1"
             *ngIf="hasAdminAccess"></i>
-          Admin Panel</button>
+          Admin Panel</a>
         }
 
         <a ngbTooltip="Notifications">
@@ -46,7 +44,7 @@
           [ngStyle]="{'background-image': 'url(' + profileImgUrl + ')'}"></button>
       </div>
       } @else {
-      <button type="button" class="btn btn-outline-gold btn-login" (click)="navigateToLogin()">
+      <button type="button" class="btn btn-outline-gold btn-login" routerLink="/login">
         <i class='fa fa-right-to-bracket me-1'></i> Login
       </button>
       }

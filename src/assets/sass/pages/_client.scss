@@ -82,3 +82,22 @@
 .home-page {
     color: $white;
 }
+
+.live-banner {
+    position: absolute;
+    top: 1.5rem;
+    right: -2.5rem;
+    background-color: var(--color-void-accent);
+    color: var(--color-white);
+    font-weight: 900;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 0.5rem 2.5rem;
+    width: 10rem;
+    transform: rotate(45deg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--color-fatal-gold);
+    z-index: 10;
+}

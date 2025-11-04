@@ -1,5 +1,5 @@
 <div class="admin-content">
-    <div class="admin-content__header">Players</div>
+    <div class="admin-content__header">Matches</div>
 
     <div class="admin-content__body">
         <ng-container *ngIf="!isLoading">
@@ -20,6 +20,8 @@
                     paginatorStyleClass="mt-3">
                     <ng-template pTemplate="header" #header>
                         <tr>
+                            <th pSortableColumn="matchStatus">Status <p-sortIcon field="matchStatus" />
+                            </th>
                             <th pSortableColumn="tournamentName">Tournament Name <p-sortIcon field="tournamentName" />
                             </th>
                             <th pSortableColumn="matchFormat">Format <p-sortIcon field="matchFormat" /></th>
@@ -28,13 +30,15 @@
                             <th pSortableColumn="teamOneScore">Team 1 Score <p-sortIcon field="teamOneScore" /></th>
                             <th pSortableColumn="teamTwoName">Team 2 <p-sortIcon field="teamTwoName" /></th>
                             <th pSortableColumn="teamTwoScore">Team 2 Score <p-sortIcon field="teamTwoScore" /></th>
-                            <th pSortableColumn="teamNameWinner">Winner <p-sortIcon field="teamNameWinner" /></th>
                             <th pSortableColumn="matchStartDate">Match Date <p-sortIcon field="matchStartDate" /></th>
                             <th></th>
                         </tr>
                     </ng-template>
                     <ng-template #body let-match>
                         <tr>
+                            <td><p-tag [value]="match?.matchStatus"
+                                    [severity]="getStatusSeverity(match?.matchStatus)" />
+                            </td>
                             <td class="cell-wrap">{{match?.tournamentName}}</td>
                             <td class="cell-wrap">{{match?.matchFormat}}</td>
                             <td class="cell-wrap">{{match?.matchPhase}}</td>
@@ -42,8 +46,7 @@
                             <td>{{match?.teamOneScore}}</td>
                             <td class="cell-wrap">{{match?.teamTwoName}}</td>
                             <td>{{match?.teamTwoScore}}</td>
-                            <td class="cell-wrap">{{match?.teamNameWinner}}</td>
-                            <td>{{ convertToLocalDate(match.matchStartDate) | date:'yyyy-MM-dd h:mm a' }}</td>
+                            <td>{{ match.matchStartDate | date:'yyyy-MM-dd h:mm a' }}</td>
                             <td class="text-center" exportable="false" alignFrozen="right">
                                 <div class="action-btn" *ngIf="!match?.isLoading">
                                     <a class="text-dark" ngbTooltip="Edit" (click)="editMatch(match)"><i

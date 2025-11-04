@@ -8,9 +8,10 @@ import { SharedModule } from '../_shared';
 import { NavsModule } from '../navs/navs.module';
 import { HomeComponent } from '../home/home.component';
 import { TeamComponent } from '../team/team.component';
+import { MatchesComponent } from '../matches/matches.component';
 
 @NgModule({
-  declarations: [ MainComponent, HomeComponent, TeamComponent],
+  declarations: [ MainComponent, HomeComponent, TeamComponent, MatchesComponent],
   imports: [
     CommonModule,
     NavsModule,

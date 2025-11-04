@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { from, map, Observable } from 'rxjs';
 import { Player } from '../../models';
-import { DocumentReference, Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData, orderBy, query, CollectionReference, updateDoc } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData, orderBy, query, CollectionReference, updateDoc, getDocs, getDoc } from '@angular/fire/firestore';
 import { DateUtils } from '../../utils';
 
 @Injectable({
@@ -16,11 +16,16 @@ export class PlayerHttpService {
 
     getAllPlayers(): Observable<Player[]> {
         const playersCollection = collection(this.firestore, 'Players');
-        const playersQuery = query(playersCollection, orderBy('playerName')); // <-- sort here
-        return collectionData(playersQuery, { idField: 'playerId' }).pipe(
-            map(players =>
-                players.map(player =>
-                    DateUtils.autoConvertFirestoreTimestamps(player as Player)
+        const playersQuery = query(playersCollection, orderBy('playerName'));
+
+        // getDocs returns a Promise<QuerySnapshot>
+        return from(getDocs(playersQuery)).pipe(
+            map(snapshot =>
+                snapshot.docs.map(doc =>
+                    DateUtils.autoConvertFirestoreTimestamps({
+                        playerId: doc.id,
+                        ...doc.data()
+                    } as Player)
                 )
             )
         );
@@ -28,9 +33,17 @@ export class PlayerHttpService {
 
     getPlayer(playerId: string): Observable<Player> {
         const playerDocRef = doc(this.firestore, `Players/${playerId}`);
-        return docData(playerDocRef, { idField: 'playerId' }).pipe(
-            map((match) => DateUtils.autoConvertFirestoreTimestamps(match as Player))
-        ) as Observable<Player>;
+
+        return from(getDoc(playerDocRef)).pipe(
+            map(snapshot =>
+                snapshot.exists()
+                    ? DateUtils.autoConvertFirestoreTimestamps({
+                        ...snapshot.data(),
+                        playerId: snapshot.id
+                    } as Player)
+                    : null as any // or throw an error if desired
+            )
+        );
     }
 
     insertPlayer(player: Player): Observable<DocumentReference<Player>> {

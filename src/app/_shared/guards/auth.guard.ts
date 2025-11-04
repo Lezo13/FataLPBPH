@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
                 const isAuthorized: boolean = ObjectUtils.hasData(user);
 
                 if (!isAuthorized) {
-                    this.router.navigate(['/login']);
+                    this.router.navigate(['/not-found']);
                     return false;
                 }
 

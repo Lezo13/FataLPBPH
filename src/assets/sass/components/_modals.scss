@@ -360,14 +360,8 @@
   overflow: hidden !important;
 
   .modal-dialog {
-    max-height: 80%;
-    height: 100vh;
-  }
-
-  .modal-content {
     height: 100%;
   }
-
 
   &-right {
     .modal-dialog {

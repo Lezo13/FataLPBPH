@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
-import { MatchFormModalOptions, Match, FileExtended } from 'src/app/_shared/models';
+import { MatchFormModalOptions, Match, FileExtended, DropdownItem, PrimeDropdownItem } from 'src/app/_shared/models';
 import { ERROR_RESPONSES } from 'src/app/_shared/records';
 import { MatchHttpService } from 'src/app/_shared/services';
 import { MiscUtils, ObjectUtils } from 'src/app/_shared/utils';
@@ -20,8 +20,7 @@ export class MatchFormComponent implements OnInit {
   match: Match;
   teamOneLogoFile: FileExtended = null;
   teamTwoLogoFile: FileExtended = null;
-  isTeamOneWinner: boolean = false;
-  isTeamTwoWinner: boolean = false;
+  statuses: PrimeDropdownItem[] = [];
 
   isEditing: boolean = false;
   isLoading: boolean = true;
@@ -38,6 +37,7 @@ export class MatchFormComponent implements OnInit {
     this.matchId = this.data.matchId;
     this.isEditing = ObjectUtils.hasData(this.matchId);
     this.initializeData();
+    this.loadLists();
 
     if (this.isEditing)
       this.loadData();
@@ -84,7 +84,7 @@ export class MatchFormComponent implements OnInit {
       teamTwoName: '',
       teamTwoScore: 0,
       teamTwoLogoUrl: '',
-      teamNameWinner: ''
+      matchStatus: 'UPCOMING'
     };
   }
 
@@ -139,5 +139,14 @@ export class MatchFormComponent implements OnInit {
       }).add(() => {
         this.isSaving = false;
       });
+  }
+
+  private loadLists(): void {
+    this.statuses = [
+      { name: 'UPCOMING', value: 'UPCOMING' },
+      { name: 'WIN', value: 'WIN' },
+      { name: 'DRAW', value: 'DRAW' },
+      { name: 'LOSE', value: 'LOSE' }
+    ]
   }
 }
