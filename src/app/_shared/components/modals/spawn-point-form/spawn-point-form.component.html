@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h4 class="modal-title"> {{ data?.title || 'Add Match'}}</h4>
+</div>
+
+<div class="modal-body">
+    <form class="form" #feedForm="ngForm" *ngIf="!isLoading">
+        <fieldset [disabled]="isSaving">
+            <div class="row">
+                <div class="col-12 form-group">
+                    <label for="txtMapName">Map Name <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtMapName" name="txtMapName"
+                        type="text" #txtMapName="ngModel" [(ngModel)]="spawnPoint.mapName" [maxLength]="255"
+                        [ngClass]="{'ng-invalid': txtMapName.invalid && isSubmitted}" required />
+                </div>
+
+                <div class="col-12 form-group">
+                    <label>Logo</label>
+                    <app-image-selector [src]="spawnPoint.mapImageUrl" [(file)]="mapImageFile"
+                        (fileCleared)="clearMapImageFile()" [autoDispose]="true"></app-image-selector>
+                </div>
+
+                <div class="col-6">
+                    <fieldset class="field-group">
+                        <legend>Red Side</legend>
+                        <div class="row p-3">
+                            <div class="col-12 form-group" *ngFor="let url of spawnPoint.redImageUrls; let i = index;">
+                                <label>#{{ i+1 }}</label>
+                                <app-image-selector [src]="url" [(file)]="redImageFiles[i]"
+                                    (fileCleared)="deleteRedImage(i)" [autoDispose]="true"></app-image-selector>
+                            </div>
+                        </div>
+                        <div class="row p-3">
+                            <button type="button" class="btn btn-secondary" (click)="addRedImage()">
+                                <i class="fa fa-plus"></i> ADD
+                            </button>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-6">
+                    <fieldset class="field-group">
+                        <legend>Blue Side</legend>
+                        <div class="row p-3">
+                            <div class="col-12 form-group" *ngFor="let url of spawnPoint.blueImageUrls; let i = index;">
+                                <label>#{{ i+1 }}</label>
+                                <app-image-selector [src]="url" [(file)]="blueImageFiles[i]"
+                                    (fileCleared)="deleteBlueImage(i)" [autoDispose]="true"></app-image-selector>
+                            </div>
+                            <div class="row p-3">
+                                <button type="button" class="btn btn-secondary" (click)="addBlueImage()">
+                                    <i class="fa fa-plus"></i> ADD
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <app-loader [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>
+</div>
+
+<div class="modal-footer">
+    <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving"
+        (onClick)="save()" />
+    <button type="button" class="btn btn-light" (click)="modalInstance.dismiss()" [disabled]="isSaving">Cancel</button>
+</div>

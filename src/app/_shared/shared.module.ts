@@ -58,6 +58,7 @@ import {
   FileUploadComponent,
   ToggleChipComponent,
   MatchFormComponent,
+  SpawnPointFormComponent,
 } from './components';
 import { FilterPipe, HoursDurationPipe, HumanizeDatePipe, PaginatePipe, TruncatePipe } from './pipes';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
@@ -67,7 +68,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 export const modalComponents: any[] = [
   ConfirmationModalComponent,
   MatchFormComponent,
-  PlayerFormComponent
+  PlayerFormComponent,
+  SpawnPointFormComponent
 ];
 
 export const components: any[] = [

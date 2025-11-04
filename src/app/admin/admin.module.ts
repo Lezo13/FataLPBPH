@@ -7,9 +7,10 @@ import { NavsModule } from '../navs/navs.module';
 import { PlayersComponent } from './players/players.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ManageMatchesComponent } from './manage-matches/manage-matches.component';
+import { ManageSpawnPointsComponent } from './manage-spawn-points/manage-spawn-points.component';
 
 @NgModule({
-  declarations: [PlayersComponent, ManageMatchesComponent],
+  declarations: [PlayersComponent, ManageMatchesComponent, ManageSpawnPointsComponent],
   imports: [
     CommonModule,
     NavsModule,

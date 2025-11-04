@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModalService } from './modal.service';
-import { ConfirmationModalComponent, MatchFormComponent, PlayerFormComponent } from '../../components';
-import { ConfirmationOptions, MatchFormModalOptions, PlayerFormModalOptions } from '../../models';
+import { ConfirmationModalComponent, MatchFormComponent, PlayerFormComponent, SpawnPointFormComponent } from '../../components';
+import { ConfirmationOptions, MatchFormModalOptions, PlayerFormModalOptions, SpawnPointFormModalOptions } from '../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,17 @@ export class ComponentModalService {
 
   showPlayerFormModal(options: PlayerFormModalOptions = {}): Promise<void> {
     return this.modalService.open<PlayerFormModalOptions, void>(PlayerFormComponent,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        windowClass: 'modal__content',
+        size: 'lg'
+      },
+      options);
+  }
+
+  showSpawnPointFormModal(options: SpawnPointFormModalOptions = {}): Promise<void> {
+    return this.modalService.open<SpawnPointFormModalOptions, void>(SpawnPointFormComponent,
       {
         keyboard: false,
         backdrop: 'static',

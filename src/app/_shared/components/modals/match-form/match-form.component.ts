@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
-import { MatchFormModalOptions, Match, FileExtended, DropdownItem, PrimeDropdownItem } from 'src/app/_shared/models';
+import { MatchFormModalOptions, Match, FileExtended, PrimeDropdownItem } from 'src/app/_shared/models';
 import { ERROR_RESPONSES } from 'src/app/_shared/records';
 import { MatchHttpService } from 'src/app/_shared/services';
 import { MiscUtils, ObjectUtils } from 'src/app/_shared/utils';

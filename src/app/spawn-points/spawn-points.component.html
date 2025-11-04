@@ -1,0 +1,71 @@
+<div class="spawn-points">
+    @if(!isLoading) {
+    <section class="section-bg_primary section-border">
+        <div class="section-padding">
+            <h2 class="heading-primary text-center">
+                @if (selectedMap) {
+                <a (click)="resetMapSelection()" class="no-underline">
+                    <span class="text-gold gold-glow">
+                        <i class='bx bx-arrow-back text-gold back-btn'></i>
+                        SPAWN POINTS
+                    </span>
+                </a>
+                } @else {
+                <span class="text-gold gold-glow">
+                    SPAWN POINTS
+                </span>
+                }
+            </h2>
+            <p class="heading-secondary text-center">
+                Spawn points are determined by the team side (Blue or Red) and the assigned slot. These starting
+                positions influence early map control and engagement routes.
+            </p>
+
+
+
+            @if (this.isAuthenticated) {
+            <div class="map-container" *ngIf="!selectedMap">
+                <a *ngFor="let map of spawnPoints" (click)="selectMap(map)">
+                    <div class="map-card" [style.background-image]="'url(' + map.mapImageUrl + ')'">
+                        <div class="map-detail">
+                            <span class="map-text">{{ map.mapName }}</span>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="selected-map" *ngIf="selectedMap">
+                <div class="side-container red-side">
+                    <h3 class="heading-primary text-center"><span class="text-red red-glow">RED SIDE</span></h3>
+
+                    <div class="side-card" *ngFor="let url of selectedMap.redImageUrls">
+                        <img [src]="url">
+                    </div>
+                </div>
+
+                <div class="side-container blue-side">
+                    <h3 class="heading-primary text-center"><span class="text-blue white-glow">BLUE SIDE</span></h3>
+
+                    <div class="side-card" *ngFor="let url of selectedMap.blueImageUrls">
+                        <img [src]="url">
+                    </div>
+                </div>
+            </div>
+            } @else {
+            <div class="locked-content">
+                <a class="no-underline" routerLink="/login">
+                    <div class="locked-details">
+                        <i class='bx bxs-lock-alt'></i>
+                        This content is for members only. Please login in to unlock this
+                        content.
+                    </div>
+                </a>
+            </div>
+            }
+        </div>
+    </section>
+    } @else {
+    <app-loader class="center-xy" [isVisible]="true" *ngIf="isLoading" [height]="200"></app-loader>
+    }
+</div>

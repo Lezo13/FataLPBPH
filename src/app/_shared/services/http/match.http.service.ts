@@ -5,8 +5,8 @@ import { from, Observable, map } from 'rxjs';
 import { Match } from '../../models';
 import {
     CollectionReference, DocumentReference,
-    Firestore, addDoc, collection, collectionData, deleteDoc, doc,
-    docData, getDoc, getDocs, limit, orderBy, query, updateDoc, where
+    Firestore, addDoc, collection, deleteDoc, doc,
+    getDoc, getDocs, limit, orderBy, query, updateDoc, where
 } from '@angular/fire/firestore';
 import { DateUtils } from '../../utils';
 

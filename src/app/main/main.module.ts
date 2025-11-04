@@ -9,9 +9,10 @@ import { NavsModule } from '../navs/navs.module';
 import { HomeComponent } from '../home/home.component';
 import { TeamComponent } from '../team/team.component';
 import { MatchesComponent } from '../matches/matches.component';
+import { SpawnPointsComponent } from '../spawn-points/spawn-points.component';
 
 @NgModule({
-  declarations: [ MainComponent, HomeComponent, TeamComponent, MatchesComponent],
+  declarations: [ MainComponent, HomeComponent, TeamComponent, MatchesComponent, SpawnPointsComponent],
   imports: [
     CommonModule,
     NavsModule,

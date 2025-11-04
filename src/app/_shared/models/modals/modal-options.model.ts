@@ -13,3 +13,7 @@ export interface PlayerFormModalOptions extends ModalOptions {
 export interface MatchFormModalOptions extends ModalOptions {
     matchId?: string;
 }
+
+export interface SpawnPointFormModalOptions extends ModalOptions {
+    spawnPointId?: string;
+}

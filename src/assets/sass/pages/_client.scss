@@ -101,3 +101,25 @@
     border: 2px solid var(--color-fatal-gold);
     z-index: 10;
 }
+
+
+.locked-content {
+    display: flex;
+    justify-content: center;
+
+    .locked-details {
+        background: #1c1c1c;
+        padding: 1rem;
+        border-radius: 0.7rem;
+        color: $gold;
+
+        i, a {
+            color: $gold;
+        }
+
+        &:hover {
+             background: #2e2e2e;
+             border: 1px solid $gold;
+        }
+    }
+}
