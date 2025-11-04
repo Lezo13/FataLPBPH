@@ -10,11 +10,19 @@ export const ADMIN_TOPNAV_ITEMS: NavItem[] = [
         logo: '',
         allowedRoles: [RoleEnum.Admin]
     },
-     {
+    {
         order: 1,
         name: 'MATCHES',
         value: 'matches',
         url: 'admin/matches',
+        logo: '',
+        allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator]
+    },
+        {
+        order: 2,
+        name: 'SPAWN POINTS',
+        value: 'spawnPoints',
+        url: 'admin/spawn-points',
         logo: '',
         allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator]
     }
@@ -36,11 +44,18 @@ export const CLIENT_TOPNAV_ITEMS: NavItem[] = [
         url: 'team',
         logo: ''
     },
-      {
+    {
         order: 2,
         name: 'MATCHES',
         value: 'matches',
         url: 'matches',
+        logo: ''
+    },
+       {
+        order: 2,
+        name: 'SPAWN POINTS',
+        value: 'spawnPoints',
+        url: 'spawn-points',
         logo: ''
     }
 ];

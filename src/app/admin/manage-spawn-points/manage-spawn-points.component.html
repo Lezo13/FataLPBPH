@@ -1,0 +1,71 @@
+<div class="admin-content">
+    <div class="admin-content__header">Spawn Points</div>
+
+    <div class="admin-content__body">
+        <ng-container *ngIf="!isLoading">
+            <fieldset [disabled]="isDataLoading">
+                <div class="d-flex justify-content-end mx-3">
+                    <div class="filter-group">
+                        <button class="btn btn-outline-secondary" raised name="btnAdd" (click)="addSpawn()">Add
+                            Spawn Points</button>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="row" *ngIf="!isDataLoading">
+                <p-table [value]="spawnPoints" stripedRows [tableStyle]="{'min-width': '50rem'}"
+                    [paginator]="spawnPoints?.length > 10" [rows]="10" [rowsPerPageOptions]="[10, 20, 30]"
+                    [showCurrentPageReport]="true" [scrollable]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    paginatorStyleClass="mt-3">
+                    <ng-template pTemplate="header" #header>
+                        <tr>
+                            <th pSortableColumn="mapName">Map <p-sortIcon field="mapName" />
+                            </th>
+                            <th class="text-center">Red Side Images</th>
+                            <th class="text-center">Blue Side Image</th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template #body let-spawn>
+                        <tr>
+                            <td class="cell-wrap">{{spawn?.mapName}}</td>
+                            <td class="text-center">
+                                @if(spawn?.redImageUrls?.length > 0) {
+                                <i class="fa fa-check text-success"></i>
+                                } @else {
+                                <i class="fa fa-times text-danger"></i>
+                                }
+                            </td>
+                               <td class="text-center">
+                                @if(spawn?.blueImageUrls?.length > 0) {
+                                <i class="fa fa-check text-success"></i>
+                                } @else {
+                                <i class="fa fa-times text-danger"></i>
+                                }
+                            </td>
+                            <td class="text-center" exportable="false" alignFrozen="right">
+                                <div class="action-btn" *ngIf="!spawn?.isLoading">
+                                    <a class="text-dark" ngbTooltip="Edit" (click)="editSpawn(spawn)"><i
+                                            class='bx bx-edit'></i></a>
+
+                                    <a class="text-dark" ngbTooltip="Delete" (click)="promptDeleteSpawn(spawn)"><i
+                                            class='bx bx-trash-alt'></i></a>
+                                </div>
+
+                                <i class="spinner-border spinner-border-sm text-primary" *ngIf="spawn?.isLoading"></i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template #emptymessage>
+                        <tr>
+                            <td colspan="4" class="text-center">No available spawn points</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </ng-container>
+
+        <app-loader [isVisible]="true" *ngIf="isLoading || isDataLoading" [height]="350"></app-loader>
+    </div>
+</div>
