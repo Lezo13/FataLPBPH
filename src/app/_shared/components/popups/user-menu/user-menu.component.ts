@@ -1,8 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { take } from 'rxjs';
 import { AuthUser, User } from 'src/app/_shared/models';
-import { ActiveService, AuthService } from 'src/app/_shared/services';
+import { ActiveService, AuthService, ComponentModalService } from 'src/app/_shared/services';
 import { ObjectUtils } from 'src/app/_shared/utils';
 
 @UntilDestroy()
@@ -13,12 +13,17 @@ import { ObjectUtils } from 'src/app/_shared/utils';
   standalone: false
 })
 export class UserMenuComponent implements OnInit {
+   @Output() onClosed = new EventEmitter<void>();
+
   user: User = null;
   profileImgUrl: string = 'assets/images/no_user_img.png';
 
   private authService = inject(AuthService);
 
-  constructor(private activeService: ActiveService) { }
+  constructor(
+    private activeService: ActiveService,
+    private modalService: ComponentModalService
+  ) { }
 
   ngOnInit(): void {
     this.initializeData();
@@ -39,5 +44,12 @@ export class UserMenuComponent implements OnInit {
 
   goToProfile(): void {
 
+  }
+
+  invite(): void {
+    this.onClosed.emit();
+    this.modalService.showInvitationFormModal().then(() => {
+
+    });
   }
 }

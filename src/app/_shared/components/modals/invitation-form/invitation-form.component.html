@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h4 class="modal-title text-center w-100">Invitation Code</h4>
+</div>
+
+<div class="modal-body">
+    <div class="code-group" *ngIf="!isLoading">
+        <p-iconfield>
+            <input class="form-control text-center" pInputText id="txtInviteCode" name="txtInviteCode" type="text"
+                [(ngModel)]="inviteCode" readonly />
+
+
+            @if (showSuccessCopy) {
+            <p-inputicon class="pi pi-check text-success" />
+            } @else {
+            <p-inputicon class="bx bx-copy icon-button" title="Copy" (click)="copyToClipboard()" />
+            }
+        </p-iconfield>
+
+        <span class="text-red invite-msg red-glow">
+              Your invitation code will expire on {{ expirationDate | date:'MMMM dd, yyyy h:mm a'}} and can be used only once.
+        </span>
+    </div>
+
+    <app-loader [isVisible]="true" *ngIf="isLoading" [height]="100"></app-loader>
+</div>
+
+<div class="modal-footer justify-content-center">
+    <button type="button" class="btn btn-secondary w-100" (click)="modalInstance.dismiss()">CLOSE</button>
+</div>

@@ -46,7 +46,12 @@ export class PlayerFormComponent implements OnInit {
     this.player.imageUrl = null;
   }
 
-  async save(): Promise<void> {
+  async save(valid: boolean): Promise<void> {
+    this.isSubmitted = true;
+    
+    if (!valid)
+      return;
+
     if (ObjectUtils.hasData(this.imageFile)) {
       const imageBase64: string = await MiscUtils.fileToBase64(this.imageFile) as string;
       this.player.imageUrl = imageBase64;

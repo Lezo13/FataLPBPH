@@ -6,6 +6,8 @@
         <div class="content-menu__right">
             <span class="player-name">{{ user?.ingameName || 'In-Game Name' }}</span>
             <span class="full-name">{{ getUserFullName() || 'Name' }}</span>
+
+            <button type="button" class="btn btn-outline-gold w-100 mt-3" (click)="invite()"><i class="fa fa-plus"></i> Invite</button>
         </div>
     </div>
 

@@ -25,8 +25,7 @@
         <a class="btn btn-light" routerLink="/home"><i class="fa fa-house me-1"></i>
           Home</a>
         } @else {
-        <a class="btn btn-light" routerLink="/admin"><i class="fa fa-wrench me-1"
-            *ngIf="hasAdminAccess"></i>
+        <a class="btn btn-light" routerLink="/admin"><i class="fa fa-wrench me-1" *ngIf="hasAdminAccess"></i>
           Admin Panel</a>
         }
 
@@ -38,15 +37,22 @@
           <i class='bx bxs-envelope disabled'></i>
         </a>
 
-        <ng-template #popContent><app-user-menu></app-user-menu></ng-template>
+        <ng-template #popContent><app-user-menu (onClosed)="popover.close()"></app-user-menu></ng-template>
         <button type="button" class="btn image-btn" placement="bottom-right" #popover="ngbPopover"
           [ngbPopover]="popContent" popoverClass="popover-user-menu" [autoClose]="'outside'"
           [ngStyle]="{'background-image': 'url(' + profileImgUrl + ')'}"></button>
       </div>
       } @else {
-      <button type="button" class="btn btn-outline-gold btn-login" routerLink="/login">
-        <i class='fa fa-right-to-bracket me-1'></i> Login
-      </button>
+      <div class="button-container">
+        <button type="button" class="btn btn-outline-white" routerLink="/register">
+          <i class='fa fa-user me-1'></i> Register
+        </button>
+
+        <button type="button" class="btn btn-outline-gold" routerLink="/login">
+          <i class='fa fa-right-to-bracket me-1'></i> Login
+        </button>
+      </div>
+
       }
     </div>
   </nav>

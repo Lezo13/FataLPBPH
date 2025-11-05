@@ -379,6 +379,20 @@
     }
   }
 
+  &-dark {
+    .modal-content {
+      background-color: #0f1c41;
+
+      .modal-title {
+        color: $gold;
+      }
+
+      label {
+        color: $white;
+      }
+    }
+  }
+
   &-recipients {
     max-width: 100%;
     width: 850px;

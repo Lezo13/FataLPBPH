@@ -44,7 +44,12 @@ export class SpawnPointFormComponent implements OnInit {
       this.isLoading = false;
   }
 
-  async save(): Promise<void> {
+  async save(valid: boolean): Promise<void> {
+    this.isSubmitted = true;
+    
+    if(!valid)
+      return;
+
     if (ObjectUtils.hasData(this.mapImageFile)) {
       const imageBase64: string = await MiscUtils.fileToBase64(this.mapImageFile) as string;
       this.spawnPoint.mapImageUrl = imageBase64;
