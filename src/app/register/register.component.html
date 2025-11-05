@@ -1,0 +1,153 @@
+<img src="assets/images/logos/pointblank_logo.png" alt="FataL Logo" class="pb-logo rotate-12">
+
+<!-- Main Content Container (Centered) -->
+<div class="register-card rounded-xl">
+    <div class="register-card-content">
+        <!-- Title/Logo Area - Reminder: Replace the placeholder URL -->
+        <header class="register-header">
+            <div class="center-group">
+                <a (click)="navigateToHome()">
+                    <img src="assets/images/logos/fatal_logo.png" alt="Point Blank Logo" class="fatal-logo"
+                        [width]="50">
+                </a>
+
+            </div>
+            <div class="center-group">
+                <a (click)="navigateToHome()">
+                    <img src="assets/images/fatal-text.png" [width]="200">
+                </a>
+            </div>
+        </header>
+
+
+        @if (!validInvitationCode) {
+        <form class="form" #inviteForm="ngForm" (ngSubmit)="verifyInvitationCode(inviteForm.form?.valid)">
+            <div class="row pb-4">
+                <div class="col-12">
+                    <label for="txtInviteCode" class="input-label text-center">Invitation Code <span
+                            class="text-danger">*</span></label>
+                    <input name="txtInviteCode" type="text" id="txtInviteCode"
+                        class="input-field text-center ng-invalid ng-dirty" [(ngModel)]="invitationCode"
+                        #txtInviteCode="ngModel" pInputText
+                        [ngClass]="{'ng-invalid': txtInviteCode.invalid && isValidatedCode}" required>
+                </div>
+            </div>
+
+            <small class="d-block text-danger mb-3 text-center" *ngIf="!validInvitationCode && isValidatedCode">{{
+                inviteErrorMsg }}</small>
+
+            <div class="button-container">
+                <button type="submit" class="btn-base btn-register">
+                    <i class="spinner-border spinner-border-sm me-2" *ngIf="isVerifyingCode"></i>N E X T
+                </button>
+            </div>
+        </form>
+        } @else {
+        <form class="form" #playerForm="ngForm" (ngSubmit)="register(playerForm.form?.valid)">
+            <fieldset [disabled]="isRegistering">
+                <div class="row pb-4">
+                    <div class="col-6">
+                        <label for="txtFirstName" class="input-label">First Name <span
+                                class="text-danger">*</span></label>
+                        <input name="txtFirstName" type="text" id="txtFirstName" class="input-field ng-invalid ng-dirty"
+                            [(ngModel)]="user.firstName" #txtFirstName="ngModel" pInputText
+                            [ngClass]="{'ng-invalid': txtFirstName.invalid && isSubmitted}" required>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="txtLastName" class="input-label">Last Name <span
+                                class="text-danger">*</span></label>
+                        <input name="txtLastName" type="text" id="txtLastName" class="input-field ng-invalid ng-dirty"
+                            [(ngModel)]="user.lastName" #txtLastName="ngModel" pInputText
+                            [ngClass]="{'ng-invalid': txtLastName.invalid && isSubmitted}" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="txtIGN" class="input-label">In-Game Name <span class="text-danger">*</span></label>
+                        <input name="txtIGN" type="text" id="txtIGN" class="input-field ng-invalid ng-dirty"
+                            [(ngModel)]="user.ingameName" #txtIGN="ngModel" pInputText
+                            [ngClass]="{'ng-invalid': txtIGN.invalid && isSubmitted}" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="txtEmail" class="input-label">Email <span class="text-danger">*</span></label>
+                        <p-iconfield>
+                            <input type="email" name="txtEmail" id="txtEmail" class="input-field ng-invalid ng-dirty"
+                                [(ngModel)]="user.email" #txtEmail="ngModel" (blur)="validateEmail(txtEmail.valid)"
+                                pInputText [ngClass]="{'ng-invalid': (txtEmail.invalid || emailExists) && isSubmitted}"
+                                email required>
+
+                            <p-inputicon class="spinner-grow spinner-grow-sm text-primary" *ngIf="isValidatingEmail" />
+                        </p-iconfield>
+
+                        @if (txtEmail.invalid && isSubmitted) {
+                        <small class="text-danger" *ngIf="txtEmail.errors?.['email']">
+                            Invalid email format
+                        </small>
+                        }
+
+                        <small class="text-danger" *ngIf="emailExists && !isValidatingEmail">
+                            Email already exists
+                        </small>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="txtUsername" class="input-label">Username <span class="text-danger">*</span></label>
+                        <p-iconfield>
+                            <input name="txtUsername" type="text" id="txtUsername"
+                                class="input-field ng-invalid ng-dirty" [(ngModel)]="user.username"
+                                #txtUsername="ngModel" (blur)="validateUsername(txtUsername.valid)" pInputText
+                                [ngClass]="{'ng-invalid': (txtUsername.invalid || usernameExists) && isSubmitted}"
+                                minlength="4" required>
+
+                            <p-inputicon class="spinner-grow spinner-grow-sm text-primary"
+                                *ngIf="isValidatingUsername" />
+                        </p-iconfield>
+
+                        @if (txtUsername.invalid && isSubmitted) {
+                        <small class="text-danger" *ngIf="txtUsername.errors?.['minlength']">
+                            Username must be at least 4 characters long.
+                        </small>
+                        }
+
+                        <small class="text-danger" *ngIf="usernameExists && !isValidatingUsername">
+                            Username already exists
+                        </small>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="txtPassword" class="input-label">Password <span class="text-danger">*</span></label>
+                        <input name="txtPassword" type="password" id="txtPassword"
+                            class="input-field ng-invalid ng-dirty" required [(ngModel)]="password"
+                            #txtPassword="ngModel" pInputText
+                            [ngClass]="{'ng-invalid': txtPassword.invalid && isSubmitted}" minlength="8" required>
+
+                        @if (txtPassword.invalid && isSubmitted) {
+                        <small class="text-danger" *ngIf="txtPassword.errors?.['minlength']">
+                            Password must be at least 8 characters long.
+                        </small>
+                        }
+                    </div>
+                </div>
+            </fieldset>
+
+            <p-message styleClass="my-3" severity="error" *ngIf="registerFailed">Invalid email or password. Please try
+                again.</p-message>
+
+
+            <div class="button-container">
+                <button type="submit" class="btn-base btn-register">
+                    <i class="spinner-border spinner-border-sm me-2" *ngIf="isRegistering"> </i>R E G I S T E R
+                </button>
+            </div>
+        </form>
+        }
+
+        <span class="d-block text-center text-light mt-3">Already have an account? <a class="text-gold no-underline"
+                routerLink="/login">Login</a></span>
+
+        <p class="footer-text">
+            2025 FataL. All rights reserved.
+        </p>
+    </div>
+</div>

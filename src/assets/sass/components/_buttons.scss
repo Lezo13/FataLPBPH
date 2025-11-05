@@ -147,6 +147,23 @@ a {
       color: $brand-primary;
     }
 
+    &-white {
+      color: $white;
+      border: 1px solid $white !important;
+
+      i {
+        color: $white;
+      }
+
+      &:hover {
+         background-color: $white-opacity-10 !important;
+
+        i {
+          color: $black;
+        }
+      }
+    }
+
     &-gold {
       color: $gold;
       border: 1px solid $gold !important;
@@ -157,6 +174,7 @@ a {
 
       &:hover {
         background-color: $gold-opacity-1 !important;
+        color: $gold;
       }
     }
 

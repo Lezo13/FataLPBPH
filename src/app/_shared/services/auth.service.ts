@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-import { User, UserRole, AuthUser } from '../models';
-import { Auth, signInWithEmailAndPassword, User as FirebaseUser, authState } from '@angular/fire/auth';
-import { Firestore, collection, query, where, getDocs, collectionData } from '@angular/fire/firestore';
+import { User, AuthUser } from '../models';
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { RoleEnum } from '../enums';
 import { DateUtils, ObjectUtils, RoleUtils } from '../utils';
 import { AuthCookieService } from './cookies/auth-cookie.service';
@@ -20,7 +19,6 @@ import { AUTH_TOKEN_EXPIRATION_DAYS } from '../constants';
 export class AuthService {
     constructor(
         private auth: Auth,
-        private firestore: Firestore,
         private userHttpService: UserHttpService,
         private router: Router,
         private authCookieService: AuthCookieService,
@@ -34,9 +32,8 @@ export class AuthService {
         try {
             user = await firstValueFrom(this.userHttpService.getUser(username));
         } catch (ex) {
-               throw new Error("Invalid login");
+            throw new Error("Invalid login");
         }
-
 
         if (ObjectUtils.isEmpty(user))
             throw new Error("Invalid login");
@@ -56,7 +53,7 @@ export class AuthService {
                 this.authCookieService.setAuthToken(accessToken, accessTokenExpiry);
             })
             .catch((error) => {
-                // Optionally handle/log the error before rethrowing
+                //const errorCode = error.code;
                 throw new Error(error.message || 'Login failed');
             });
     }
@@ -66,6 +63,17 @@ export class AuthService {
         this.authCookieService.clearAuthToken();
         this.currentStateCookieService.clearCurrentStateData();
         this.router.navigate(['/login']);
+    }
+
+    register(email: string, password: string): Promise<void> {
+        return createUserWithEmailAndPassword(this.auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+            })
+            .catch((error) => {
+                //const errorCode = error.code;
+                throw new Error(error.message || 'Login failed');
+            });
     }
 
     getAccessToken(): string {

@@ -42,11 +42,6 @@ export class LoginComponent {
     });
   }
 
-  // Register handler
-  onRegister(): void {
-
-  }
-
   navigateToHome(): void {
     this.router.navigate(['/home']);
   }

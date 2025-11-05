@@ -3,7 +3,7 @@
 </div>
 
 <div class="modal-body">
-    <form class="form" #feedForm="ngForm" *ngIf="!isLoading">
+    <form class="form" #spawnForm="ngForm" *ngIf="!isLoading">
         <fieldset [disabled]="isSaving">
             <div class="row">
                 <div class="col-12 form-group">
@@ -62,7 +62,7 @@
 </div>
 
 <div class="modal-footer">
-    <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving"
-        (onClick)="save()" />
+    <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving" [disabled]="isLoading"
+        (onClick)="save(false)" />
     <button type="button" class="btn btn-light" (click)="modalInstance.dismiss()" [disabled]="isSaving">Cancel</button>
 </div>

@@ -45,7 +45,12 @@ export class MatchFormComponent implements OnInit {
       this.isLoading = false;
   }
 
-  async save(): Promise<void> {
+  async save(valid: boolean): Promise<void> {
+    this.isSubmitted = true;
+
+    if (!valid)
+      return;
+    
     if (ObjectUtils.hasData(this.teamOneLogoFile)) {
       const imageBase64: string = await MiscUtils.fileToBase64(this.teamOneLogoFile) as string;
       this.match.teamOneLogoUrl = imageBase64;

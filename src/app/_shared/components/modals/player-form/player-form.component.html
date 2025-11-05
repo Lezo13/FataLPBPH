@@ -3,7 +3,7 @@
 </div>
 
 <div class="modal-body" *ngIf="!isLoading">
-    <form class="form" #feedForm="ngForm">
+    <form class="form" #playerForm="ngForm">
 
         <fieldset [disabled]="isSaving">
             <div class="row">
@@ -38,14 +38,14 @@
                 </div>
             </div>
         </fieldset>
-
-        <div class="action-btn justify-content-end mt-3">
-            <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving"
-                (onClick)="save()" />
-            <button type="button" class="btn btn-light" (click)="modalInstance.dismiss()"
-                [disabled]="isSaving">Cancel</button>
-        </div>
     </form>
+
+     <app-loader [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>
 </div>
 
-<app-loader [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>
+
+<div class="modal-footer">
+    <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving" [disabled]="isLoading"
+        (onClick)="save(false)" />
+    <button type="button" class="btn btn-light" (click)="modalInstance.dismiss()" [disabled]="isSaving">Cancel</button>
+</div>
