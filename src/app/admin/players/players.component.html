@@ -3,16 +3,14 @@
 
     <div class="admin-content__body">
         <ng-container *ngIf="!isLoading">
-            <fieldset [disabled]="isDataLoading">
                 <div class="d-flex justify-content-end mx-3">
                     <div class="filter-group">
                         <button class="btn btn-outline-secondary" raised name="btnAdd" (click)="addPlayer()">Add
                             Player</button>
                     </div>
                 </div>
-            </fieldset>
 
-            <div class="row" *ngIf="!isDataLoading">
+            <div class="row">
                 <p-table [value]="players" stripedRows [tableStyle]="{'min-width': '50rem'}"
                     [paginator]="players?.length > 10" [rows]="10" [rowsPerPageOptions]="[10, 20, 30]"
                     [showCurrentPageReport]="true" [scrollable]="true"
@@ -57,6 +55,6 @@
             </div>
         </ng-container>
 
-        <app-loader class="center-xy" [isVisible]="true" *ngIf="isLoading || isDataLoading" [height]="350"></app-loader>
+        <app-loader class="center-xy" [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>
     </div>
 </div>

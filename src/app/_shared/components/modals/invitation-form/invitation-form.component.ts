@@ -42,7 +42,8 @@ export class InvitationFormComponent implements OnInit {
       inviteCode: this.inviteCode,
       expirationDate: this.expirationDate,
       isUsed: false,
-      createdBy: this.authService.getUser()?.username
+      createdBy: this.authService.getUser()?.username,
+      usedBy: ''
     };
 
     this.invitationCodeHttpService.insertInvite(invite)

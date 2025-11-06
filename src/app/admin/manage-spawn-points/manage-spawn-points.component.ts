@@ -15,7 +15,6 @@ export class ManageSpawnPointsComponent implements OnInit {
   spawnPoints: SpawnPoint[] = [];
 
   isLoading: boolean = true;
-  isDataLoading: boolean = false;
 
   private modalService = inject(ComponentModalService);
   private spawnPointHttpService = inject(SpawnPointHttpService);

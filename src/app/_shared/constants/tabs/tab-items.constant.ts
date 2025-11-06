@@ -25,6 +25,14 @@ export const ADMIN_TOPNAV_ITEMS: NavItem[] = [
         url: 'admin/spawn-points',
         logo: '',
         allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator]
+    },
+          {
+        order: 2,
+        name: 'INVITATIONS',
+        value: 'invitations',
+        url: 'admin/invitations',
+        logo: '',
+        allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator]
     }
 ];
 
