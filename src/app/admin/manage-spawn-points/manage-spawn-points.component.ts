@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
 import { ConfirmationOptions, SpawnPoint, SpawnPointFormModalOptions } from 'src/app/_shared/models';
 import { ComponentModalService, SpawnPointHttpService } from 'src/app/_shared/services';
+import { ObjectUtils } from 'src/app/_shared/utils';
 
 @Component({
   selector: 'app-manage-spawn-points',
@@ -75,6 +76,10 @@ export class ManageSpawnPointsComponent implements OnInit {
         return 'secondary';
 
     }
+  }
+
+  hasImages(urls: string[]): boolean {
+    return ObjectUtils.hasData(urls) && urls.some(url => ObjectUtils.hasData(url));
   }
 
   private loadSpawnPoints(): void {
