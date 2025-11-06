@@ -14,7 +14,6 @@ export class ManageMatchesComponent implements OnInit {
   matches: Match[] = [];
 
   isLoading: boolean = true;
-  isDataLoading: boolean = false;
 
   private modalService = inject(ComponentModalService);
   private matchHttpService = inject(MatchHttpService);

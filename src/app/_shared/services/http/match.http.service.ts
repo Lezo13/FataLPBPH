@@ -8,7 +8,7 @@ import {
     Firestore, addDoc, collection, deleteDoc, doc,
     getDoc, getDocs, limit, orderBy, query, updateDoc, where
 } from '@angular/fire/firestore';
-import { DateUtils } from '../../utils';
+import { DateUtils, ObjectUtils } from '../../utils';
 
 @Injectable({
     providedIn: 'root'
@@ -35,7 +35,8 @@ export class MatchHttpService {
             map(snapshot => {
                 if (snapshot.empty) return null;
                 const doc = snapshot.docs[0];
-           
+                if (ObjectUtils.isEmpty(doc)) return null;
+
                 const data: Match = { matchId: doc.id, ...doc.data() } as Match;
                 return DateUtils.autoConvertFirestoreTimestamps(data);
             })

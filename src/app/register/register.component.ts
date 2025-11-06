@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
 
     const today: Date = new Date();
 
-    this.invitationCodeHttpService.getInvitationCode(this.invitationCode)
+    this.invitationCodeHttpService.getInvite(this.invitationCode)
       .pipe(take(1))
       .subscribe((invite: InvitationCode) => {
         this.validInvitationCode = ObjectUtils.hasData(invite) && today <= invite.expirationDate && !invite.isUsed;
@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
     this.isRegistering = true;
 
     from(this.authService.register(this.user.email, this.password)).pipe(
-      concatMap(() => this.invitationCodeHttpService.setInviteCodeUsed(this.invitationCode)),
+      concatMap(() => this.invitationCodeHttpService.setInviteCodeUsed(this.invitationCode, this.user.username)),
       concatMap(() => this.userHttpService.insertUser(this.user)),
       concatMap(() => from(this.authService.login(this.user.username, this.password))),
       finalize(() => this.isRegistering = false)

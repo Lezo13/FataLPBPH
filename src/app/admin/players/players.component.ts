@@ -14,7 +14,6 @@ export class PlayersComponent implements OnInit {
   players: Player[] = [];
 
   isLoading: boolean = true;
-  isDataLoading: boolean = false;
 
   private modalService = inject(ComponentModalService);
   private playerHttpService = inject(PlayerHttpService);

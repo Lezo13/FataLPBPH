@@ -1,0 +1,61 @@
+<div class="admin-content">
+    <div class="admin-content__header">Invitations</div>
+
+    <div class="admin-content__body">
+        <ng-container *ngIf="!isLoading">
+            <div class="d-flex justify-content-end mx-3" *ngIf="hasInactiveInvites">
+                <div class="filter-group">
+                    <button class="btn btn-danger text-light" raised name="btnDelete" (click)="deleteInactiveInvites()">
+                        Delete {{inactiveInvites?.length}} Inactive Invites
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <p-table [value]="invites" stripedRows [tableStyle]="{'min-width': '50rem'}"
+                    [paginator]="invites?.length > 10" [rows]="10" [rowsPerPageOptions]="[10, 20, 30]"
+                    [showCurrentPageReport]="true" [scrollable]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    paginatorStyleClass="mt-3">
+                    <ng-template pTemplate="header" #header>
+                        <tr>
+                            <th pSortableColumn="inviteCode" class="text-center">Invite Code <p-sortIcon
+                                    field="inviteCode" /></th>
+                            <th pSortableColumn="expirationDate" class="text-center">Expiration Date <p-sortIcon
+                                    field="expirationDate" />
+                            </th>
+                            <th pSortableColumn="isUsed" class="text-center">Used <p-sortIcon field="isUsed" /></th>
+                            <th pSortableColumn="usedBy" class="text-center">Used By <p-sortIcon field="usedBy" /></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template #body let-invite let-i="index">
+                        <tr>
+                            <td class="cell-wrap text-center">{{invite?.inviteCode}}</td>
+                            <td class="text-center">{{ invite.expirationDate | date:'yyyy-MM-dd h:mm a' }}</td>
+                            <td class="text-center">
+                                <i class="fa fa-check text-success" *ngIf="invite?.isUsed"></i>
+                            </td>
+                            <td class="cell-wrap text-center">{{invite?.usedBy}}</td>
+                            <td class="text-center" exportable="false" alignFrozen="right">
+                                <div class="action-btn" *ngIf="!invite?.isLoading">
+                                    <a class="text-dark" ngbTooltip="Delete" (click)="promptDeleteInvite(invite)"><i
+                                            class='bx bx-trash-alt'></i></a>
+                                </div>
+
+                                <i class="spinner-border spinner-border-sm text-primary" *ngIf="invite?.isLoading"></i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template #emptymessage>
+                        <tr>
+                            <td colspan="4" class="text-center">No available invites</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </ng-container>
+
+        <app-loader class="center-xy" [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>
+    </div>
+</div>
