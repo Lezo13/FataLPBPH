@@ -35,29 +35,20 @@ export class InvitationFormComponent implements OnInit {
 
     const today: Date = new Date();
 
-    this.invitationCodeHttpService.getRecentInvite(this.authService.getUser()?.username)
-      .pipe(take(1),
-        switchMap((invitationCode) => {
-          if (ObjectUtils.hasData(invitationCode)) {
-            this.inviteCode = invitationCode.inviteCode;
-            this.expirationDate = invitationCode.expirationDate;
-            return EMPTY;
-          }
+    this.inviteCode = MiscUtils.generateRandomString(8, 8);
+    this.expirationDate = DateUtils.addDays(today, 7);
 
-          this.inviteCode = MiscUtils.generateRandomString(8, 8);
-          this.expirationDate = DateUtils.addDays(today, 7);
+    const invite: InvitationCode = {
+      inviteCode: this.inviteCode,
+      expirationDate: this.expirationDate,
+      isUsed: false,
+      createdBy: this.authService.getUser()?.username
+    };
 
-          const invite: InvitationCode = {
-            inviteCode: this.inviteCode,
-            expirationDate: this.expirationDate,
-            isUsed: false,
-            createdBy: this.authService.getUser()?.username
-          };
-
-          return this.invitationCodeHttpService.insertInvite(invite);
-        })
-      ).subscribe(() => {
-      }).add(() => {
+    this.invitationCodeHttpService.insertInvite(invite)
+      .pipe(take(1))
+      .subscribe(() => { })
+      .add(() => {
         this.isLoading = false;
       });
   }

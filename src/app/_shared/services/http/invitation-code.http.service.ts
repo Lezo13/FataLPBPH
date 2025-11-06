@@ -38,8 +38,9 @@ export class InvitationCodeHttpService {
                     const convData: InvitationCode = DateUtils.autoConvertFirestoreTimestamps(docData);
                     return convData.expirationDate > startOfToday && !convData.isUsed;
                 });
-
+           
                 const doc = validDocs[0];
+                if (!doc) return null;
 
                 const data: InvitationCode = { inviteCode: doc.id, ...doc.data() } as InvitationCode;
                 return DateUtils.autoConvertFirestoreTimestamps(data);
