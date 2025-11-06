@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../_shared/services';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { Auth, browserLocalPersistence, browserSessionPersistence, Persistence, setPersistence } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -19,27 +19,32 @@ export class LoginComponent {
 
   isLoggingIn: boolean = false;
   loginFailed: boolean = false;
+  rememberMe: boolean = false;
 
   constructor() {
 
   }
 
+  private auth = inject(Auth);
   private authService = inject(AuthService);
   private router = inject(Router);
-  private toastr = inject(ToastrService);
 
 
   onLogin(): void {
     this.isLoggingIn = true;
     this.loginFailed = false;
 
-    this.authService.login(this.username, this.password).then(() => {
-      this.navigateToHome();
-    }).catch(() => {
-      this.loginFailed = true;
-    }).finally(() => {
-      this.isLoggingIn = false;
-    });
+    const persistence: Persistence = this.rememberMe ? browserLocalPersistence : browserSessionPersistence;
+
+    setPersistence(this.auth, persistence).then(() => {
+      this.authService.login(this.username, this.password, this.rememberMe).then(() => {
+        this.navigateToHome();
+      }).catch(() => {
+        this.loginFailed = true;
+      }).finally(() => {
+        this.isLoggingIn = false;
+      });
+    })
   }
 
   navigateToHome(): void {

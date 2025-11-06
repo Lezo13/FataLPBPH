@@ -85,7 +85,7 @@ export class RegisterComponent implements OnInit {
     from(this.authService.register(this.user.email, this.password)).pipe(
       concatMap(() => this.invitationCodeHttpService.setInviteCodeUsed(this.invitationCode, this.user.username)),
       concatMap(() => this.userHttpService.insertUser(this.user)),
-      concatMap(() => from(this.authService.login(this.user.username, this.password))),
+      concatMap(() => from(this.authService.login(this.user.username, this.password, false))),
       finalize(() => this.isRegistering = false)
     ).subscribe({
       next: () => this.router.navigate(['/home']),

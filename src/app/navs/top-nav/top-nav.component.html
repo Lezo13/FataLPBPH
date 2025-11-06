@@ -25,7 +25,7 @@
         <a class="btn btn-light" routerLink="/home"><i class="fa fa-house me-1"></i>
           Home</a>
         } @else {
-        <a class="btn btn-light" routerLink="/admin"><i class="fa fa-wrench me-1" *ngIf="hasAdminAccess"></i>
+        <a class="btn btn-light" routerLink="/admin" *ngIf="hasAdminAccess"><i class="fa fa-wrench me-1"></i>
           Admin Panel</a>
         }
 
