@@ -55,7 +55,7 @@ export class PlayersComponent implements OnInit {
       declineText: 'No'
     };
 
-    this.modalService.showConfirmationModal(options).then(result => {
+    this.modalService.showConfirmationModal(options, false).then(result => {
       if (result) {
         this.deletePlayer(player);
       }

@@ -1,0 +1,50 @@
+<div class="email-panel">
+    <h4 class="text-white text-center d-block py-3">CHANGE EMAIL</h4>
+
+    @if (!showResult) {
+    <form class="form" #changeForm="ngForm">
+        <div class="row">
+            <div class="col-12 form-group">
+                <label for="txtCurrentPassword">ENTER YOUR PASSWORD </label>
+                <input class="input-field form-control ng-invalid ng-dirty" pInputText id="txtCurrentPassword"
+                    name="txtCurrentPassword" type="password" #txtCurrentPassword="ngModel"
+                    [(ngModel)]="currentPassword" [ngClass]="{'ng-invalid': txtCurrentPassword.invalid && isSubmitted}"
+                    required />
+
+                <small class="text-danger" *ngIf="!validCurrentPassword">
+                    The current password you entered is incorrect. Please try again.
+                </small>
+            </div>
+
+            <div class="col-12 form-group">
+                <label for="txtNewEmail">NEW EMAIL</label>
+                <input class="input-field form-control ng-invalid ng-dirty" pInputText id="txtNewEmail"
+                    name="txtNewEmail" type="email" #txtNewEmail="ngModel" [(ngModel)]="newEmail"
+                    [ngClass]="{'ng-invalid': txtNewEmail.invalid && isSubmitted}" email required />
+
+                @if (txtNewEmail.invalid && isSubmitted) {
+                <small class="text-danger" *ngIf="txtNewEmail.errors?.['email']">
+                    Invalid email format
+                </small>
+                }
+            </div>
+        </div>
+    </form>
+
+    <div class="d-flex gap-3 justify-content-center pt-4">
+        <p-button label="CHANGE" class="w-100" styleClass="btn btn-secondary w-100" [loading]="isChanging"
+            (onClick)="update(changeForm.form?.valid)" />
+        <button type="button" class="btn btn-light w-100" (click)="cancel()" [disabled]="isChanging">CANCEL</button>
+    </div>
+    } @else {
+    <div class="change-message">
+        <img src="assets/images/system/email-check.png" [width]="50">
+        <span class="d-block mt-3">
+            We’ve sent a confirmation link to your new email. Your update will be completed once you verify it.
+        </span>
+
+        <button type="button" class="btn btn-secondary w-100 mt-3" (click)="cancel()">OK</button>
+    </div>
+    }
+
+</div>

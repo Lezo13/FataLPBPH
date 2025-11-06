@@ -8,6 +8,7 @@ import { RoleEnum } from '../_shared/enums';
 import { AuthGuard } from '../_shared/guards';
 import { MatchesComponent } from '../matches/matches.component';
 import { SpawnPointsComponent } from '../spawn-points/spawn-points.component';
+import { MyProfileComponent } from '../my-profile/my-profile.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'team', component: TeamComponent },
       { path: 'matches', component: MatchesComponent },
-         { path: 'spawn-points', component: SpawnPointsComponent },
+      { path: 'spawn-points', component: SpawnPointsComponent },
+      { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
       {
         path: 'admin',
         loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule),

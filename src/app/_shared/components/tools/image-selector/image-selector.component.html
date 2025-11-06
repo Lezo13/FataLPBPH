@@ -1,12 +1,12 @@
-<div class="image-selector__container card">
+<div class="image-selector__container card" [style.background-color]="backgroundColor">
     <img class="object-contain" [src]="src" width="100%" [ngStyle]="{'height': imageHeight, 'object-fit': 'contain'}" />
     <hr>
     <div class="d-flex flex-column gap-3 my-1">
         <div class="d-flex gap-3">
-            <p-fileupload mode="basic" chooseStyleClass="w-100 btn btn-outline-secondary" chooseIcon="pi pi-upload" [auto]="true"
+            <p-fileupload mode="basic" chooseStyleClass="w-100 btn {{buttonClass}}" chooseIcon="pi pi-upload" [auto]="true"
                 (onSelect)="onFileSelection($event)" [multiple]="false" [showCancelButton]="false"
                 [showUploadButton]="false" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff" chooseLabel="Upload" />
-            <button class="btn btn-outline-secondary w-100" (click)="clearUpload()" [disabled]="!hasUploaded()">Clear</button>
+            <button class="btn w-100" [ngClass]="buttonClass" (click)="clearUpload()" [disabled]="!hasUploaded()">Clear</button>
         </div>
 
         <p-message severity="error" styleClass="h-100" size="small" *ngIf="isUploadError">Total upload size exceeds {{formatSize(maxFileSizeBytes)}}</p-message>

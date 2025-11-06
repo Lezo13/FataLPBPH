@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { User, AuthUser } from '../models';
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updatePassword, verifyBeforeUpdateEmail, reauthenticateWithCredential, EmailAuthProvider } from '@angular/fire/auth';
 import { RoleEnum } from '../enums';
 import { DateUtils, ObjectUtils, RoleUtils } from '../utils';
 import { AuthCookieService } from './cookies/auth-cookie.service';
@@ -66,6 +66,7 @@ export class AuthService {
     }
 
     register(email: string, password: string): Promise<void> {
+
         return createUserWithEmailAndPassword(this.auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -73,6 +74,22 @@ export class AuthService {
             .catch((error) => {
                 //const errorCode = error.code;
                 throw new Error(error.message || 'Login failed');
+            });
+    }
+
+    updatePassword(currentPassword: string, newPassword: string): Promise<void> {
+        const credential = EmailAuthProvider.credential(this.auth.currentUser!.email!, currentPassword);
+        return reauthenticateWithCredential(this.auth.currentUser!, credential)
+            .then(() => {
+                return updatePassword(this.auth.currentUser!, newPassword);
+            });
+    }
+
+    verifyNewEmail(currentPassword: string, newEmail: string): Promise<void> {
+                const credential = EmailAuthProvider.credential(this.auth.currentUser!.email!, currentPassword);
+             return reauthenticateWithCredential(this.auth.currentUser!, credential)
+            .then(() => {
+                return verifyBeforeUpdateEmail(this.auth.currentUser!, newEmail);
             });
     }
 

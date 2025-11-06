@@ -46,6 +46,6 @@
 
 <div class="modal-footer">
     <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving" [disabled]="isLoading"
-        (onClick)="save(false)" />
+        (onClick)="save()" />
     <button type="button" class="btn btn-light" (click)="modalInstance.dismiss()" [disabled]="isSaving">Cancel</button>
 </div>

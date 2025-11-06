@@ -17,7 +17,9 @@
         </p-iconfield>
 
         <span class="text-red invite-msg red-glow">
-              Your invitation code will expire on {{ expirationDate | date:'MMMM dd, yyyy h:mm a'}} and can be used only once.
+              Your invitation code will expire on 
+              <span class="text-danger">{{ expirationDate | date:'MMMM dd, yyyy h:mm a'}} </span>
+              and can be used only once.
         </span>
     </div>
 

@@ -9,13 +9,13 @@ import { ConfirmationOptions, MatchFormModalOptions, ModalOptions, PlayerFormMod
 export class ComponentModalService {
   constructor(private modalService: ModalService) { }
 
-  showConfirmationModal(options: ConfirmationOptions = {}): Promise<boolean> {
+  showConfirmationModal(options: ConfirmationOptions = {}, darkTheme: boolean): Promise<boolean> {
     return this.modalService.open<ConfirmationOptions, boolean>(ConfirmationModalComponent,
       {
         keyboard: false,
         backdrop: 'static',
         size: 'lg',
-        windowClass: 'confirmation-modal__content'
+        windowClass: `confirmation-modal__content ${darkTheme ? 'modal__content-dark' : ''}`
       },
       options);
   }

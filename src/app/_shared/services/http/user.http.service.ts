@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { from, Observable, map } from 'rxjs';
 import { User } from '../../models';
-import { DocumentReference, Firestore, collection, doc, getDoc, getDocs, query, setDoc, where } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { DateUtils } from '../../utils';
 
 @Injectable({
@@ -30,6 +30,27 @@ export class UserHttpService {
         const { username, ...insertData } = DateUtils.convertDatesToFirestoreTimestamps(user);
         const userDocRef = doc(this.firestore, 'Users', username) as DocumentReference<User>;
         return from(setDoc(userDocRef, insertData));
+    }
+
+    updateUser(user: User): Observable<void> {
+        const { username, ...updateData } = DateUtils.convertDatesToFirestoreTimestamps(user);
+        const userDocRef = doc(this.firestore, `Users/${user.username}`);
+        return from(updateDoc(userDocRef, updateData));
+    }
+
+    updateEmail(oldEmail: string, newEmail: string): Observable<void> {
+        const usersCollection = collection(this.firestore, 'Users');
+        const q = query(usersCollection, where('email', '==', oldEmail));
+
+        return from(getDocs(q).then((querySnapshot) => {
+            if (querySnapshot.empty) {
+                return Promise.resolve();
+            }
+
+            const docSnap = querySnapshot.docs[0];
+
+            return updateDoc(docSnap.ref, { email: newEmail }).then(() => { });
+        }));
     }
 
     usernameExists(email: string): Observable<boolean> {

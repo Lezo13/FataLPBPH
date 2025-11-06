@@ -1,0 +1,121 @@
+<div class="my-profile">
+    @if(!isLoading) {
+    <section class="section-bg_tertiary section-border">
+        <div class="section-padding">
+            <h2 class="heading-primary text-center">
+                <span class="text-gold gold-glow">
+                    MY PROFILE
+                </span>
+            </h2>
+
+            <div class="profile-container">
+                <p-tabs [(value)]="tabIndex" *ngIf="showProfilePanel">
+                    <p-tablist>
+                        <p-tab [value]="0">Details</p-tab>
+                        <p-tab [value]="1">Account</p-tab>
+                    </p-tablist>
+                    <p-tabpanels>
+                        <p-tabpanel [value]="0">
+                            <form class="form" #profileForm="ngForm">
+                                <div class="row">
+                                    <div class="col-5 form-group">
+                                        <label>Profile Picture</label>
+                                        <app-image-selector [src]="user.profilePictureUrl" [(file)]="profileImageFile"
+                                     
+                                            (fileCleared)="clearImageFile()" [autoDispose]="true"></app-image-selector>
+                                    </div>
+
+                                    <div class="col-7">
+                                        <div class="row h-100 align-content-center">
+                                            <div class="col-12 form-group">
+                                                <label for="txtIngameName">In-Game Name <span
+                                                        class="text-danger">*</span></label>
+                                                <input class="input-field form-control ng-invalid ng-dirty" pInputText
+                                                    id="txtIngameName" name="txtIngameName" type="text"
+                                                    #txtIngameName="ngModel" [(ngModel)]="user.ingameName"
+                                                    [maxLength]="255"
+                                                    [ngClass]="{'ng-invalid': txtIngameName.invalid && isSubmitted}"
+                                                    required />
+                                            </div>
+
+                                            <div class="col-12 form-group">
+                                                <label for="txtFirstName">First Name <span
+                                                        class="text-danger">*</span></label>
+                                                <input class="input-field form-control ng-invalid ng-dirty" pInputText
+                                                    id="txtFirstName" name="txtFirstName" type="text"
+                                                    #txtFirstName="ngModel" [(ngModel)]="user.firstName"
+                                                    [maxLength]="255"
+                                                    [ngClass]="{'ng-invalid': txtFirstName.invalid && isSubmitted}"
+                                                    required />
+                                            </div>
+
+                                            <div class="col-12 form-group">
+                                                <label for="txtLastName">Last Name <span
+                                                        class="text-danger">*</span></label>
+                                                <input class="input-field form-control ng-invalid ng-dirty" pInputText
+                                                    id="txtLastName" name="txtLastName" type="text"
+                                                    #txtLastName="ngModel" [(ngModel)]="user.lastName" [maxLength]="255"
+                                                    [ngClass]="{'ng-invalid': txtLastName.invalid && isSubmitted}"
+                                                    required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end pt-3">
+                                    <p-button label="Save" styleClass="btn btn-secondary" [loading]="isSaving"
+                                        [disabled]="isLoading" (onClick)="save(profileForm.form?.valid)" />
+                                </div>
+                            </form>
+                        </p-tabpanel>
+                        <p-tabpanel [value]="1">
+                            <div class="account-panel">
+                                <div class="row align-items-center">
+                                    <div class="col-4 text-right">
+                                        <span class="text-gold">Username</span>
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="text-light">{{ user.username }}</span>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-4 text-right">
+                                        <span class="text-gold">Password</span>
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="text-light">********</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-outline-gold" (click)="openPasswordPanel()">
+                                            <i class="fa fa-pencil me-1"></i> Edit</button>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-4 text-right">
+                                        <span class="text-gold">Email</span>
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="text-light">{{ user.email }}</span>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-outline-gold" (click)="openEmailPanel()"><i class="fa fa-pencil me-1"></i>
+                                            Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-tabpanel>
+                    </p-tabpanels>
+                </p-tabs>
+
+                <app-email-change (onClosed)="closeEmailPanel()"
+                    *ngIf="showEmailChangePanel"></app-email-change>
+
+                <app-password-reset (onClosed)="closePasswordPanel()"
+                    *ngIf="showPasswordPanel"></app-password-reset>
+            </div>
+        </div>
+    </section>
+    } @else {
+    <app-loader class="center-xy" [isVisible]="true" *ngIf="isLoading" [height]="200"></app-loader>
+    }
+</div>

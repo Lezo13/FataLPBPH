@@ -29,13 +29,13 @@
           Admin Panel</a>
         }
 
-        <a ngbTooltip="Notifications">
+        <!-- <a ngbTooltip="Notifications">
           <i class='bx bxs-bell disabled'></i>
         </a>
 
         <a ngbTooltip="Messages">
           <i class='bx bxs-envelope disabled'></i>
-        </a>
+        </a> -->
 
         <ng-template #popContent><app-user-menu (onClosed)="popover.close()"></app-user-menu></ng-template>
         <button type="button" class="btn image-btn" placement="bottom-right" #popover="ngbPopover"
