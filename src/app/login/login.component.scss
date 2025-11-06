@@ -242,3 +242,15 @@ $tilt-angle: -5deg;
     color: #9ca3af;
     /* text-gray-400 */
 }
+
+::ng-deep {
+    .p-checkbox-checked .p-checkbox-box {
+        background-color: #000000;
+        border-color: #000000;
+    }
+
+    .p-checkbox-checked:not(.p-disabled):has(.p-checkbox-input:hover) .p-checkbox-box {
+        background-color: #222222;
+        border-color: #222222;
+    }
+}

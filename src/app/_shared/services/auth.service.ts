@@ -26,7 +26,7 @@ export class AuthService {
     ) { }
 
 
-    async login(username: string, password: string): Promise<void> {
+    async login(username: string, password: string, rememberMe: boolean): Promise<void> {
         let user: User = null;
 
         try {
@@ -49,7 +49,7 @@ export class AuthService {
 
                 const dateToday: Date = new Date();
                 const accessToken: string = JwtUtils.encode(authUser);
-                const accessTokenExpiry: Date = DateUtils.addDays(dateToday, AUTH_TOKEN_EXPIRATION_DAYS);
+                const accessTokenExpiry: Date = rememberMe ? DateUtils.addDays(dateToday, AUTH_TOKEN_EXPIRATION_DAYS) : null;
                 this.authCookieService.setAuthToken(accessToken, accessTokenExpiry);
             })
             .catch((error) => {
@@ -86,11 +86,21 @@ export class AuthService {
     }
 
     verifyNewEmail(currentPassword: string, newEmail: string): Promise<void> {
-                const credential = EmailAuthProvider.credential(this.auth.currentUser!.email!, currentPassword);
-             return reauthenticateWithCredential(this.auth.currentUser!, credential)
+        const credential = EmailAuthProvider.credential(this.auth.currentUser!.email!, currentPassword);
+        return reauthenticateWithCredential(this.auth.currentUser!, credential)
             .then(() => {
                 return verifyBeforeUpdateEmail(this.auth.currentUser!, newEmail);
             });
+    }
+
+    isAuthenticated(): boolean {
+        let result: boolean = true;
+        const accessToken: string = this.getAccessToken();
+
+        if (accessToken === null || accessToken === undefined || accessToken === '')
+            result = false;
+
+        return result;
     }
 
     getAccessToken(): string {

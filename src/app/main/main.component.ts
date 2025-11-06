@@ -123,7 +123,11 @@ export class MainComponent implements OnInit {
     authState(this.auth)
       .pipe(take(1))
       .subscribe((user: FirebaseUser) => {
-        this.isAuthenticated = ObjectUtils.hasData(user);
+        const firebaseAuthenticated: boolean = ObjectUtils.hasData(user);
+        this.isAuthenticated = firebaseAuthenticated && this.authService.isAuthenticated();
+
+        if (firebaseAuthenticated && !this.authService.isAuthenticated())
+          this.auth.signOut();
       })
   }
 }

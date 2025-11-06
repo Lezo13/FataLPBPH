@@ -34,6 +34,11 @@
                     required [(ngModel)]="password">
             </div>
 
+            <div class="input-group">
+                <p-checkbox class="me-3" name="cbxRememberMe" inputId="cbxRememberMe" [binary]="true" [(ngModel)]="rememberMe" />
+                <label for="cbxRememberMe" class="text-light">Remember Me</label>
+            </div>
+
             <p-message styleClass="my-3" severity="error" *ngIf="loginFailed">Invalid email or password. Please try
                 again.</p-message>
 
