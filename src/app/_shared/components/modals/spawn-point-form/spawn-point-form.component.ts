@@ -91,18 +91,22 @@ export class SpawnPointFormComponent implements OnInit {
 
   addRedImage(): void {
     this.spawnPoint.redImageUrls.push('');
+    this.redImageFiles.push(null);
   }
 
   addBlueImage(): void {
     this.spawnPoint.blueImageUrls.push('');
+    this.redImageFiles.push(null);
   }
 
   deleteRedImage(index: number): void {
     this.spawnPoint.redImageUrls.splice(index, 1);
+    this.redImageFiles.splice(index, 1);
   }
 
   deleteBlueImage(index: number): void {
     this.spawnPoint.blueImageUrls.splice(index, 1);
+    this.blueImageFiles.splice(index, 1);
   }
 
   private initializeData(): void {

@@ -31,14 +31,14 @@
                         <tr>
                             <td class="cell-wrap">{{spawn?.mapName}}</td>
                             <td class="text-center">
-                                @if(spawn?.redImageUrls?.length > 0) {
+                                @if(hasImages(spawn?.redImageUrls)) {
                                 <i class="fa fa-check text-success"></i>
                                 } @else {
                                 <i class="fa fa-times text-danger"></i>
                                 }
                             </td>
                                <td class="text-center">
-                                @if(spawn?.blueImageUrls?.length > 0) {
+                                @if(hasImages(spawn?.blueImageUrls)) {
                                 <i class="fa fa-check text-success"></i>
                                 } @else {
                                 <i class="fa fa-times text-danger"></i>
