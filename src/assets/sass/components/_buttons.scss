@@ -121,13 +121,11 @@ a {
     background-color: $brand-secondary !important;
     color: $white !important;
   }
-
+  
   &.btn-light {
-    align-items: center;
     background-color: $white !important;
     border: 1px solid $gray-2 !important;
     color: $black-2 !important;
-    display: flex;
 
     * {
       color: $black;
@@ -148,6 +146,7 @@ a {
     }
 
     &-white {
+      background-color: transparent;
       color: $white;
       border: 1px solid $white !important;
 
@@ -156,7 +155,7 @@ a {
       }
 
       &:hover {
-         background-color: $white-opacity-10 !important;
+        background-color: $white-opacity-10 !important;
 
         i {
           color: $black;
@@ -165,6 +164,7 @@ a {
     }
 
     &-gold {
+      background-color: transparent;
       color: $gold;
       border: 1px solid $gold !important;
 
@@ -179,7 +179,7 @@ a {
     }
 
     &-secondary {
-      background-color: unset;
+      background-color: transparent;
       color: $brand-secondary;
       border: 1px solid $brand-secondary !important;
 

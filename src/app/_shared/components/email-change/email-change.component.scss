@@ -1,0 +1,23 @@
+    .email-panel {
+        width: 350px;
+
+        .input-field {
+            font-size: 1rem;
+            letter-spacing: 0.055em;
+        }
+
+        label,
+        span {
+            color: #FFF;
+            letter-spacing: 0.050em;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .change-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+    }

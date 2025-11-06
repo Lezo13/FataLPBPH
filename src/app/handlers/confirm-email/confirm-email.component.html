@@ -1,0 +1,25 @@
+<div class="change-message" *ngIf="!isLoading">
+    @if (isSuccess) {
+    <img src="assets/images/system/check.png" class="mb-3" [width]="50">
+    <h4 class="message-title">
+        Email Confirmed
+    </h4>
+    <p class="message-detail mt-4">
+        Thank you for verifying your email!. You will be redirected back to the website in 5 seconds.
+    </p>
+    } @else {
+    <img src="assets/images/system/x.png" class="mb-3" [width]="50">
+    <h4 class="message-title">
+        Something went wrong
+    </h4>
+    <p class="message-detail mt-4">
+        {{ errorMsg }}
+    </p>
+    <p class="message-detail">
+        You will be redirected back to the home page in 5 seconds.
+    </p>
+    }
+
+</div>
+
+<app-loader class="center-xy" [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>

@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
@@ -15,6 +16,7 @@ import { MiscUtils, ObjectUtils } from 'src/app/_shared/utils';
   styleUrl: './match-form.component.scss'
 })
 export class MatchFormComponent implements OnInit {
+  @ViewChild('matchForm') form!: NgForm;
   @Input() data!: MatchFormModalOptions;
   matchId: string = null;
   match: Match;
@@ -45,12 +47,12 @@ export class MatchFormComponent implements OnInit {
       this.isLoading = false;
   }
 
-  async save(valid: boolean): Promise<void> {
+  async save(): Promise<void> {
     this.isSubmitted = true;
 
-    if (!valid)
+    if (!this.form.form?.valid)
       return;
-    
+
     if (ObjectUtils.hasData(this.teamOneLogoFile)) {
       const imageBase64: string = await MiscUtils.fileToBase64(this.teamOneLogoFile) as string;
       this.match.teamOneLogoUrl = imageBase64;

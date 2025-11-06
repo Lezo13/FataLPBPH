@@ -7,13 +7,13 @@
             <span class="player-name">{{ user?.ingameName || 'In-Game Name' }}</span>
             <span class="full-name">{{ getUserFullName() || 'Name' }}</span>
 
-            <button type="button" class="btn btn-outline-gold w-100 mt-3" (click)="invite()"><i class="fa fa-plus"></i> Invite</button>
+            <button type="button" class="btn btn-outline-gold w-100 mt-3" (click)="invite()" *ngIf="canInvite"><i class="fa fa-plus"></i> Invite</button>
         </div>
     </div>
 
     <div class="user-menu__footer">
         <div class="footer-container">
-            <button type="button" class="btn btn-menu"><i class='bx bxs-user'></i> Profile</button>
+            <button type="button" class="btn btn-menu" (click)="goToProfile()"><i class='bx bxs-user'></i> Profile</button>
             <button type="submit" class="btn btn-menu" (click)="logout()"><i class='bx bx-power-off'></i> Log
                 out</button>
         </div>

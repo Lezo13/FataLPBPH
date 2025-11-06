@@ -60,6 +60,8 @@ import {
   MatchFormComponent,
   SpawnPointFormComponent,
   InvitationFormComponent,
+  PasswordResetComponent,
+  EmailChangeComponent,
 } from './components';
 import { FilterPipe, HoursDurationPipe, HumanizeDatePipe, PaginatePipe, TruncatePipe } from './pipes';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
@@ -84,6 +86,8 @@ export const components: any[] = [
   TabsComponent,
   ToggleChipComponent,
   UserMenuComponent,
+  EmailChangeComponent,
+  PasswordResetComponent,
   modalComponents
 ];
 

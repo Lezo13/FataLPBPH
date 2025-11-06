@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
@@ -15,6 +16,7 @@ import { MiscUtils, ObjectUtils } from 'src/app/_shared/utils';
   styleUrl: './spawn-point-form.component.scss'
 })
 export class SpawnPointFormComponent implements OnInit {
+  @ViewChild('spawnForm') form!: NgForm;
   @Input() data!: SpawnPointFormModalOptions;
   spawnPointId: string = null;
   spawnPoint: SpawnPoint;
@@ -44,10 +46,10 @@ export class SpawnPointFormComponent implements OnInit {
       this.isLoading = false;
   }
 
-  async save(valid: boolean): Promise<void> {
+  async save(): Promise<void> {
     this.isSubmitted = true;
-    
-    if(!valid)
+
+    if (!this.form.form?.valid)
       return;
 
     if (ObjectUtils.hasData(this.mapImageFile)) {

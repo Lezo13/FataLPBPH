@@ -17,6 +17,8 @@ export class ImageSelectorComponent implements OnInit, OnChanges, OnDestroy {
   @Input() src: string;
   @Input() autoDispose: boolean = true;
   @Input() imageHeight: string = '150px';
+  @Input() backgroundColor: string;
+  @Input() buttonClass: string = 'btn-outline-secondary';
   @Input() file: FileExtended;
   @Output() fileChange: EventEmitter<FileExtended> = new EventEmitter<FileExtended>();
   @Output() fileCleared: EventEmitter<void> = new EventEmitter<void>();
