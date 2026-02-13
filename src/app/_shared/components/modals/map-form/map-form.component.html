@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h4 class="modal-title"> {{ data?.title || 'Add Map'}}</h4>
+</div>
+
+<div class="modal-body" *ngIf="!isLoading">
+    <form class="form" #mapForm="ngForm">
+
+        <fieldset [disabled]="isSaving">
+            <div class="row">
+                <div class="col-12 form-group">
+                    <label for="txtMapName">Map Name <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtMapName" name="txtMapName"
+                        type="text" #txtMapName="ngModel" [(ngModel)]="map.mapName" [maxLength]="255"
+                        [ngClass]="{'ng-invalid': txtMapName.invalid && isSubmitted}" required />
+                </div>
+
+                <div class="col-12 form-group">
+                    <label>Image</label>
+                    <app-image-selector [src]="map.mapImageUrl" [(file)]="imageFile" (fileCleared)="clearImageFile()"
+                        [autoDispose]="true"></app-image-selector>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <app-loader [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>
+</div>
+
+
+<div class="modal-footer">
+    <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving"
+        [disabled]="isLoading" (onClick)="save()" />
+    <button type="button" class="btn btn-light" (click)="modalInstance.dismiss()" [disabled]="isSaving">Cancel</button>
+</div>

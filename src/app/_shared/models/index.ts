@@ -7,6 +7,7 @@ export * from './dropdown-item.model';
 export * from './environment.model'; 
 export * from './file-extended.model'; 
 export * from './invitation-code.model'; 
+export * from './map.model';
 export * from './match.model';
 export * from './month.model';
 export * from './nav.model';
