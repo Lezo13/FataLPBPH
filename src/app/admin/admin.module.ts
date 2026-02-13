@@ -9,13 +9,16 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { ManageMatchesComponent } from './manage-matches/manage-matches.component';
 import { ManageSpawnPointsComponent } from './manage-spawn-points/manage-spawn-points.component';
 import { ManageInvitationsComponent } from './manage-invitations/manage-invitations.component';
+import { ManageMapsComponent } from './manage-maps/manage-maps.component';
 
 @NgModule({
   declarations: [
     PlayersComponent,
     ManageMatchesComponent,
     ManageSpawnPointsComponent,
-    ManageInvitationsComponent],
+    ManageInvitationsComponent,
+    ManageMapsComponent
+  ],
   imports: [
     CommonModule,
     NavsModule,

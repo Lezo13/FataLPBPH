@@ -17,3 +17,7 @@ export interface MatchFormModalOptions extends ModalOptions {
 export interface SpawnPointFormModalOptions extends ModalOptions {
     spawnPointId?: string;
 }
+
+export interface MapFormModalOptions extends ModalOptions {
+    mapId?: string;
+}

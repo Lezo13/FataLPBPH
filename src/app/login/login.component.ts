@@ -35,7 +35,7 @@ export class LoginComponent {
     this.loginFailed = false;
 
     const persistence: Persistence = this.rememberMe ? browserLocalPersistence : browserSessionPersistence;
-
+    
     setPersistence(this.auth, persistence).then(() => {
       this.authService.login(this.username, this.password, this.rememberMe).then(() => {
         this.navigateToHome();

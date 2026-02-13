@@ -7,6 +7,7 @@ import { PlayersComponent } from './players/players.component';
 import { ManageMatchesComponent } from './manage-matches/manage-matches.component';
 import { ManageSpawnPointsComponent } from './manage-spawn-points/manage-spawn-points.component';
 import { ManageInvitationsComponent } from './manage-invitations/manage-invitations.component';
+import { ManageMapsComponent } from './manage-maps/manage-maps.component';
 
 const routes: Routes = [
   {
@@ -26,8 +27,12 @@ const routes: Routes = [
     path: 'spawn-points', component: ManageSpawnPointsComponent, canActivate: [AuthGuard],
     data: { roles: [RoleEnum.Admin, RoleEnum.Moderator] }
   },
-    {
+  {
     path: 'invitations', component: ManageInvitationsComponent, canActivate: [AuthGuard],
+    data: { roles: [RoleEnum.Admin, RoleEnum.Moderator] }
+  },
+  {
+    path: 'maps', component: ManageMapsComponent, canActivate: [AuthGuard],
     data: { roles: [RoleEnum.Admin, RoleEnum.Moderator] }
   }
 ];
