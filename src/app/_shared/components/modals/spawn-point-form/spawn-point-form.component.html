@@ -7,16 +7,12 @@
         <fieldset [disabled]="isSaving">
             <div class="row">
                 <div class="col-12 form-group">
-                    <label for="txtMapName">Map Name <span class="text-danger">*</span></label>
-                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtMapName" name="txtMapName"
-                        type="text" #txtMapName="ngModel" [(ngModel)]="spawnPoint.mapName" [maxLength]="255"
-                        [ngClass]="{'ng-invalid': txtMapName.invalid && isSubmitted}" required />
-                </div>
-
-                <div class="col-12 form-group">
-                    <label>Map Image</label>
-                    <app-image-selector [src]="spawnPoint.mapImageUrl" [(file)]="mapImageFile"
-                        (fileCleared)="clearMapImageFile()" [autoDispose]="true"></app-image-selector>
+                    <label for="selMap">Map <span class="text-danger">*</span></label>
+                    <p-select id="selMap" name="selMap" [options]="maps" #selMap="ngModel"
+                        class="ng-invalid ng-dirty w-100" [(ngModel)]="spawnPoint.mapId" placeholder="Select Map"
+                        optionLabel="mapName" optionValue="mapId"
+                        [ngClass]="{'ng-invalid': selMap.invalid && isSubmitted}" required>
+                    </p-select>
                 </div>
 
                 <div class="col-6">
@@ -62,7 +58,7 @@
 </div>
 
 <div class="modal-footer">
-    <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving" [disabled]="isLoading"
-        (onClick)="save()" />
+    <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving"
+        [disabled]="isLoading" (onClick)="save()" />
     <button type="button" class="btn btn-light" (click)="modalInstance.dismiss()" [disabled]="isSaving">Cancel</button>
 </div>

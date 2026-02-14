@@ -1,5 +1,6 @@
 export interface SpawnPoint {
   spawnPointId?: string;
+  mapId: string;
   mapName: string;
   mapImageUrl?: string;
   blueImageUrls: string[];
