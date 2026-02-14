@@ -3,10 +3,10 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { take } from 'rxjs';
-import { SpawnPoint, FileExtended, SpawnPointFormModalOptions } from 'src/app/_shared/models';
+import { forkJoin, Observable, take, tap } from 'rxjs';
+import { Map, SpawnPoint, FileExtended, SpawnPointFormModalOptions } from 'src/app/_shared/models';
 import { ERROR_RESPONSES } from 'src/app/_shared/records';
-import { SpawnPointHttpService } from 'src/app/_shared/services';
+import { MapHttpService, SpawnPointHttpService } from 'src/app/_shared/services';
 import { MiscUtils, ObjectUtils } from 'src/app/_shared/utils';
 
 @Component({
@@ -20,6 +20,7 @@ export class SpawnPointFormComponent implements OnInit {
   @Input() data!: SpawnPointFormModalOptions;
   spawnPointId: string = null;
   spawnPoint: SpawnPoint;
+  maps: Map[] = [];
   mapImageFile: FileExtended = null;
   redImageFiles: FileExtended[] = [];
   blueImageFiles: FileExtended[] = [];
@@ -31,6 +32,7 @@ export class SpawnPointFormComponent implements OnInit {
 
   constructor(
     public modalInstance: NgbActiveModal,
+    private mapHttpService: MapHttpService,
     private spawnPointHttpService: SpawnPointHttpService,
     private toastr: ToastrService
   ) { }
@@ -112,6 +114,7 @@ export class SpawnPointFormComponent implements OnInit {
   private initializeData(): void {
     this.spawnPoint = {
       spawnPointId: null,
+      mapId: null,
       mapName: '',
       mapImageUrl: '',
       redImageUrls: [],
@@ -120,20 +123,25 @@ export class SpawnPointFormComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.isLoading = true;
+    this.isLoading = false;
 
-    this.spawnPointHttpService.getSpawnPoint(this.spawnPointId)
-      .pipe(take(1))
-      .subscribe({
-        next: (spawnPoint) => {
-          this.spawnPoint = spawnPoint;
-        },
-        error: (error: HttpErrorResponse) => {
-          this.toastr.error(ERROR_RESPONSES[error.status]);
-        }
-      }).add(() => {
-        this.isLoading = false;
-      });
+    const subscriptions = [this.createSpawnPointSubscription(), this.createMapsSubscription()];
+    const activeSubscriptions = subscriptions.filter(s => s != null);
+
+    if (ObjectUtils.hasData(activeSubscriptions)) {
+      this.isLoading = true;
+
+      forkJoin(activeSubscriptions).pipe(take(1))
+        .subscribe({
+          next: (response) => {
+          },
+          error: (error: HttpErrorResponse) => {
+            this.toastr.error(ERROR_RESPONSES[error.status]);
+          }
+        }).add(() => {
+          this.isLoading = false;
+        });
+    }
   }
 
   private insertSpawnPoint(): void {
@@ -170,5 +178,31 @@ export class SpawnPointFormComponent implements OnInit {
       }).add(() => {
         this.isSaving = false;
       });
+  }
+
+  private createSpawnPointSubscription(): Observable<SpawnPoint> {
+    if (!this.isEditing || ObjectUtils.isEmpty(this.spawnPointId))
+      return null;
+
+    return this.spawnPointHttpService.getSpawnPoint(this.spawnPointId)
+      .pipe(
+        take(1),
+        tap(data => {
+          this.spawnPoint = data;
+        })
+      );
+  }
+
+  private createMapsSubscription(): Observable<Map[]> {
+    if (!this.isEditing || ObjectUtils.isEmpty(this.spawnPointId))
+      return null;
+
+    return this.mapHttpService.getAllMaps()
+      .pipe(
+        take(1),
+        tap(data => {
+          this.maps = data;
+        })
+      );
   }
 }

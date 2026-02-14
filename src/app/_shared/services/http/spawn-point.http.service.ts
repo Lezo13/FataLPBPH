@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 
 import { Injectable } from '@angular/core';
-import { from, Observable, map } from 'rxjs';
-import { SpawnPoint } from '../../models';
+import { from, Observable, map, forkJoin } from 'rxjs';
+import { Map, SpawnPoint } from '../../models';
 import {
     CollectionReference, DocumentReference,
     Firestore, addDoc, collection, deleteDoc, doc,
@@ -18,22 +18,39 @@ export class SpawnPointHttpService {
         private firestore: Firestore
     ) { }
 
-
     getAllSpawnPoints(): Observable<SpawnPoint[]> {
         const spawnsCollection = collection(this.firestore, 'SpawnPoints');
-        const spawnsQuery = query(spawnsCollection, orderBy('mapName', 'asc'));
+        const mapsCollection = collection(this.firestore, 'Maps');
 
-        return from(getDocs(spawnsQuery)).pipe(
-            map(snapshot =>
-                snapshot.docs.map(doc =>
-                    DateUtils.autoConvertFirestoreTimestamps({
-                        ...doc.data(),
-                        spawnPointId: doc.id
-                    } as SpawnPoint)
-                )
-            )
+        return forkJoin({
+            spawns: from(getDocs(spawnsCollection)),
+            maps: from(getDocs(mapsCollection))
+        }).pipe(
+            map(({ spawns, maps }) => {
+                const mapsLookup: Map[] = maps.docs.map(doc => ({
+                    mapId: doc.id,
+                    ...(doc.data() as Map)
+                }));
+
+                const merged = spawns.docs.map(doc => {
+                    const data = doc.data() as SpawnPoint;
+                    const mapData = mapsLookup.find(ml => ml.mapId == data.mapId);
+
+                    return DateUtils.autoConvertFirestoreTimestamps({
+                        ...data,
+                        spawnPointId: doc.id,
+                        mapName: mapData?.mapName ?? '',
+                        mapImageUrl: mapData?.mapImageUrl ?? ''
+                    } as SpawnPoint);
+                });
+
+                return merged.sort((a, b) =>
+                    a.mapName.localeCompare(b.mapName)
+                );
+            })
         );
     }
+
 
     getSpawnPoint(spawnPointId: string): Observable<SpawnPoint> {
         const spawnDocRef = doc(this.firestore, `SpawnPoints/${spawnPointId}`);
