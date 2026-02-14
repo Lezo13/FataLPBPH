@@ -16,6 +16,7 @@ export * from './response.model';
 export * from './role.model';
 export * from './sort-event.model';
 export * from './spawn-point.model';
+export * from './strategy.model';
 export * from './tab.model';
 export * from './toggle-chip-option.model';
 export * from './toggle-option.model';

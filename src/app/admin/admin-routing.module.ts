@@ -8,6 +8,7 @@ import { ManageMatchesComponent } from './manage-matches/manage-matches.componen
 import { ManageSpawnPointsComponent } from './manage-spawn-points/manage-spawn-points.component';
 import { ManageInvitationsComponent } from './manage-invitations/manage-invitations.component';
 import { ManageMapsComponent } from './manage-maps/manage-maps.component';
+import { ManageStrategiesComponent } from './manage-strategies/manage-strategies.component';
 
 const routes: Routes = [
   {
@@ -28,11 +29,15 @@ const routes: Routes = [
     data: { roles: [RoleEnum.Admin, RoleEnum.Moderator] }
   },
   {
-    path: 'invitations', component: ManageInvitationsComponent, canActivate: [AuthGuard],
+    path: 'strategies', component: ManageStrategiesComponent, canActivate: [AuthGuard],
     data: { roles: [RoleEnum.Admin, RoleEnum.Moderator] }
   },
   {
     path: 'maps', component: ManageMapsComponent, canActivate: [AuthGuard],
+    data: { roles: [RoleEnum.Admin, RoleEnum.Moderator] }
+  },
+  {
+    path: 'invitations', component: ManageInvitationsComponent, canActivate: [AuthGuard],
     data: { roles: [RoleEnum.Admin, RoleEnum.Moderator] }
   }
 ];

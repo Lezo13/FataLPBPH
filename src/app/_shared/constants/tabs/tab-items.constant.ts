@@ -28,6 +28,14 @@ export const ADMIN_TOPNAV_ITEMS: NavItem[] = [
     },
     {
         order: 3,
+        name: 'STRATEGIES',
+        value: 'strategies',
+        url: 'admin/strategies',
+        logo: '',
+        allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator]
+    },
+    {
+        order: 4,
         name: 'MAPS',
         value: 'maps',
         url: 'admin/maps',
@@ -35,7 +43,7 @@ export const ADMIN_TOPNAV_ITEMS: NavItem[] = [
         allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator]
     },
     {
-        order: 4,
+        order: 5,
         name: 'INVITATIONS',
         value: 'invitations',
         url: 'admin/invitations',
@@ -72,6 +80,13 @@ export const CLIENT_TOPNAV_ITEMS: NavItem[] = [
         name: 'SPAWN POINTS',
         value: 'spawnPoints',
         url: 'spawn-points',
+        logo: ''
+    },
+    {
+        order: 3,
+        name: 'STRATEGIES',
+        value: 'strategies',
+        url: 'strategies',
         logo: ''
     }
 ];

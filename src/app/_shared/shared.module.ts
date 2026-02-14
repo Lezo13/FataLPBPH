@@ -63,6 +63,8 @@ import {
   PasswordResetComponent,
   EmailChangeComponent,
   MapFormComponent,
+  ContentWindowComponent,
+  StrategyFormComponent,
 } from './components';
 import { FilterPipe, HoursDurationPipe, HumanizeDatePipe, PaginatePipe, TruncatePipe } from './pipes';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
@@ -71,11 +73,13 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 
 export const modalComponents: any[] = [
   ConfirmationModalComponent,
+  ContentWindowComponent,
   InvitationFormComponent,
   MapFormComponent,
   MatchFormComponent,
   PlayerFormComponent,
-  SpawnPointFormComponent
+  SpawnPointFormComponent,
+  StrategyFormComponent
 ];
 
 export const components: any[] = [

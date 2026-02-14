@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.modal-body {
+  overflow-y: auto;
+  flex: 1 1 auto;
+}

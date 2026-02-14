@@ -10,6 +10,7 @@ import { ManageMatchesComponent } from './manage-matches/manage-matches.componen
 import { ManageSpawnPointsComponent } from './manage-spawn-points/manage-spawn-points.component';
 import { ManageInvitationsComponent } from './manage-invitations/manage-invitations.component';
 import { ManageMapsComponent } from './manage-maps/manage-maps.component';
+import { ManageStrategiesComponent } from './manage-strategies/manage-strategies.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ManageMapsComponent } from './manage-maps/manage-maps.component';
     ManageMatchesComponent,
     ManageSpawnPointsComponent,
     ManageInvitationsComponent,
-    ManageMapsComponent
+    ManageMapsComponent,
+    ManageStrategiesComponent
   ],
   imports: [
     CommonModule,

@@ -32,9 +32,9 @@ export class SpawnPointHttpService {
                     ...(doc.data() as Map)
                 }));
 
-                const merged = spawns.docs.map(doc => {
-                    const data = doc.data() as SpawnPoint;
-                    const mapData = mapsLookup.find(ml => ml.mapId == data.mapId);
+                const merged: SpawnPoint[] = spawns.docs.map(doc => {
+                    const data: SpawnPoint = doc.data() as SpawnPoint;
+                    const mapData: Map = mapsLookup.find(ml => ml.mapId == data.mapId);
 
                     return DateUtils.autoConvertFirestoreTimestamps({
                         ...data,

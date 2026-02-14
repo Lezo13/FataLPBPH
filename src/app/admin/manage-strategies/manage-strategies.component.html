@@ -1,0 +1,60 @@
+<div class="admin-content">
+    <div class="admin-content__header">Strategies</div>
+
+    <div class="admin-content__body">
+        <ng-container *ngIf="!isLoading">
+            <div class="d-flex justify-content-end mx-3">
+                <div class="filter-group">
+                    <button class="btn btn-outline-secondary" raised name="btnAdd" (click)="addStrategy()">Add
+                        Strategy</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <p-table [value]="strategies" stripedRows [tableStyle]="{'min-width': '50rem'}"
+                    [paginator]="strategies?.length > 10" [rows]="10" [rowsPerPageOptions]="[10, 20, 30]"
+                    [showCurrentPageReport]="true" [scrollable]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    paginatorStyleClass="mt-3">
+                    <ng-template pTemplate="header" #header>
+                        <tr>
+                            <th pSortableColumn="mapName">Map <p-sortIcon field="mapName" />
+                            </th>
+                            <th pSortableColumn="title">Title <p-sortIcon field="title" /></th>
+                            <th>Vod</th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template #body let-strategy>
+                        <tr>
+                            <td class="cell-wrap">{{strategy?.mapName}}</td>
+                            <td class="cell-wrap">{{strategy?.title}}</td>
+                            <td class="cell-wrap">
+                                <a [href]="strategy?.vodUrl" target="_blank">{{strategy?.vodUrl}}</a>
+                            </td>
+                            <td class="text-center" exportable="false" alignFrozen="right">
+                                <div class="action-btn" *ngIf="!strategy?.isLoading">
+                                    <a class="text-dark" ngbTooltip="Edit" (click)="editStrategy(strategy)"><i
+                                            class='bx bx-edit'></i></a>
+
+                                    <a class="text-dark" ngbTooltip="Delete" (click)="promptDeleteStrategy(strategy)"><i
+                                            class='bx bx-trash-alt'></i></a>
+                                </div>
+
+                                <i class="spinner-border spinner-border-sm text-primary"
+                                    *ngIf="strategy?.isLoading"></i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template #emptymessage>
+                        <tr>
+                            <td colspan="4" class="text-center">No available strategies</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </ng-container>
+
+        <app-loader class="center-xy" [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>
+    </div>
+</div>

@@ -41,11 +41,7 @@ export class SpawnPointFormComponent implements OnInit {
     this.spawnPointId = this.data.spawnPointId;
     this.isEditing = ObjectUtils.hasData(this.spawnPointId);
     this.initializeData();
-
-    if (this.isEditing)
-      this.loadData();
-    else
-      this.isLoading = false;
+    this.loadData();
   }
 
   async save(): Promise<void> {
@@ -194,9 +190,6 @@ export class SpawnPointFormComponent implements OnInit {
   }
 
   private createMapsSubscription(): Observable<Map[]> {
-    if (!this.isEditing || ObjectUtils.isEmpty(this.spawnPointId))
-      return null;
-
     return this.mapHttpService.getAllMaps()
       .pipe(
         take(1),

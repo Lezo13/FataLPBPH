@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h4 class="modal-title"> {{ data?.title || 'Content'}}</h4>
+    <button type="button" class="close-btn--modal" data-dismiss="modal" aria-label="Close"
+        (click)="modalInstance.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div [innerHTML]="safeContent"></div>
+</div>

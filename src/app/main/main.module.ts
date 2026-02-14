@@ -11,9 +11,13 @@ import { TeamComponent } from '../team/team.component';
 import { MatchesComponent } from '../matches/matches.component';
 import { SpawnPointsComponent } from '../spawn-points/spawn-points.component';
 import { MyProfileComponent } from '../my-profile/my-profile.component';
+import { StrategiesComponent } from '../strategies/strategies.component';
 
 @NgModule({
-  declarations: [ MainComponent, HomeComponent, TeamComponent, MatchesComponent, SpawnPointsComponent, MyProfileComponent],
+  declarations: [ 
+    MainComponent, HomeComponent, TeamComponent, MatchesComponent, 
+    SpawnPointsComponent, MyProfileComponent, StrategiesComponent
+  ],
   imports: [
     CommonModule,
     NavsModule,
