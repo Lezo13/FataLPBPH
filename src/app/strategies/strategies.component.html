@@ -12,20 +12,17 @@
                 </a>
                 } @else {
                 <span class="text-gold gold-glow">
-                    SPAWN POINTS
+                    STRATEGIES
                 </span>
                 }
             </h2>
             <p class="heading-secondary text-center">
-                Spawn points are determined by the team side (Blue or Red) and the assigned slot. These starting
-                positions influence early map control and engagement routes.
+
             </p>
-
-
 
             @if (this.isAuthenticated) {
             <div class="map-container" *ngIf="!selectedMap">
-                <a *ngFor="let map of spawnPoints" (click)="selectMap(map)">
+                <a *ngFor="let map of mapStrategies" (click)="selectMap(map)">
                     <div class="map-card" [style.background-image]="'url(' + map.mapImageUrl + ')'">
                         <div class="map-detail">
                             <span class="map-text">{{ map.mapName }}</span>
@@ -35,21 +32,22 @@
                 </a>
             </div>
 
-            <div class="selected-map" *ngIf="selectedMap">
-                <div class="side-container red-side">
-                    <h3 class="heading-primary text-center"><span class="text-red red-glow">RED SIDE</span></h3>
+            <div class="map-strategies" *ngIf="selectedMap">
+                <div class="strategy-item" *ngFor="let strategy of selectedMap.strategies">
+                    <div class="strategy-header">
+                        <span class="strategy-title">
+                            {{ strategy.title }}
+                        </span>
 
-                    <div class="side-card" *ngFor="let url of selectedMap.redImageUrls">
-                        <img [src]="url">
+                        <a (click)="viewDescription(strategy)">
+                            <i class="bx bx-info-circle ml-1"></i>
+                        </a>
                     </div>
-                </div>
 
-                <div class="side-container blue-side">
-                    <h3 class="heading-primary text-center"><span class="text-blue white-glow">BLUE SIDE</span></h3>
-
-                    <div class="side-card" *ngFor="let url of selectedMap.blueImageUrls">
-                        <img [src]="url">
-                    </div>
+                    <a class="strategy-vod" [style.background-image]="'url(' + strategy.thumbnailUrl + ')'"
+                        [href]="strategy.vodUrl" target="_blank">
+                        <img class="play-img" src="assets/images/icons/youtube.png">
+                    </a>
                 </div>
             </div>
             } @else {

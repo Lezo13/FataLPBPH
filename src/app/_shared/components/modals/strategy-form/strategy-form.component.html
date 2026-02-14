@@ -1,0 +1,55 @@
+<div class="modal-header">
+    <h4 class="modal-title"> {{ data?.title || 'Add Strategy'}}</h4>
+</div>
+
+<div class="modal-body">
+    <form class="form" #strategyForm="ngForm" *ngIf="!isLoading">
+        <fieldset [disabled]="isSaving">
+            <div class="row">
+                <div class="col-12 form-group">
+                    <label for="selMap">Map <span class="text-danger">*</span></label>
+                    <p-select id="selMap" name="selMap" [options]="maps" #selMap="ngModel"
+                        class="ng-invalid ng-dirty w-100" [(ngModel)]="strategy.mapId" placeholder="Select Map"
+                        optionLabel="mapName" optionValue="mapId"
+                        [ngClass]="{'ng-invalid': selMap.invalid && isSubmitted}" required>
+                    </p-select>
+                </div>
+
+                <div class="col-12 form-group">
+                    <label for="txtTitle">Title <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtTitle" name="txtTitle" type="text"
+                        #txtTitle="ngModel" [(ngModel)]="strategy.title" [maxLength]="1000"
+                        [ngClass]="{'ng-invalid': txtTitle.invalid && isSubmitted}" required />
+                </div>
+
+                <div class="col-12 form-group">
+                    <label for="txtDescription">Description</label>
+                    <p-editor id="txtDescription" name="txtDescription" [(ngModel)]="strategy.description"
+                        [style]="{ height: '200px' }" />
+                </div>
+
+                <div class="col-12 form-group">
+                    <label for="txtVodUrl">Vod Url <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtVodUrl" name="txtVodUrl"
+                        type="text" #txtVodUrl="ngModel" [(ngModel)]="strategy.vodUrl"
+                        [ngClass]="{'ng-invalid': txtVodUrl.invalid && isSubmitted}" required />
+                </div>
+
+                <div class="col-12 form-group">
+                    <label for="txtThumbUrl">Thumbnail Url <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtThumbUrl" name="txtThumbUrl"
+                        type="text" #txtThumbUrl="ngModel" [(ngModel)]="strategy.thumbnailUrl"
+                        [ngClass]="{'ng-invalid': txtThumbUrl.invalid && isSubmitted}" required />
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <app-loader [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>
+</div>
+
+<div class="modal-footer">
+    <p-button [label]="isEditing ? 'Save' : 'Add'" styleClass="btn btn-secondary" [loading]="isSaving"
+        [disabled]="isLoading" (onClick)="save()" />
+    <button type="button" class="btn btn-light" (click)="modalInstance.dismiss()" [disabled]="isSaving">Cancel</button>
+</div>

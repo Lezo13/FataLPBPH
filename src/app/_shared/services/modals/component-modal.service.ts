@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModalService } from './modal.service';
-import { ConfirmationModalComponent, InvitationFormComponent, MapFormComponent, MatchFormComponent, PlayerFormComponent, SpawnPointFormComponent } from '../../components';
-import { ConfirmationOptions, MapFormModalOptions, MatchFormModalOptions, ModalOptions, PlayerFormModalOptions, SpawnPointFormModalOptions } from '../../models';
+import { ConfirmationModalComponent, ContentWindowComponent, InvitationFormComponent, MapFormComponent, MatchFormComponent, PlayerFormComponent, SpawnPointFormComponent, StrategyFormComponent } from '../../components';
+import { ConfirmationOptions, ContentWindowModalOptions, MapFormModalOptions, MatchFormModalOptions, ModalOptions, PlayerFormModalOptions, SpawnPointFormModalOptions, StrategyFormModalOptions } from '../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,17 @@ export class ComponentModalService {
       options);
   }
 
+  showContentWindow(options: ContentWindowModalOptions = {}): Promise<void> {
+    return this.modalService.open<ContentWindowModalOptions, void>(ContentWindowComponent,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        size: 'md',
+        windowClass: 'modal__content',
+      },
+      options);
+  }
+
   showInvitationFormModal(options: ModalOptions = {}): Promise<void> {
     return this.modalService.open<ModalOptions, void>(InvitationFormComponent,
       {
@@ -31,7 +42,7 @@ export class ComponentModalService {
       options);
   }
 
-    showMapFormModal(options: MapFormModalOptions = {}): Promise<void> {
+  showMapFormModal(options: MapFormModalOptions = {}): Promise<void> {
     return this.modalService.open<MapFormModalOptions, void>(MapFormComponent,
       {
         keyboard: false,
@@ -66,6 +77,17 @@ export class ComponentModalService {
 
   showSpawnPointFormModal(options: SpawnPointFormModalOptions = {}): Promise<void> {
     return this.modalService.open<SpawnPointFormModalOptions, void>(SpawnPointFormComponent,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        windowClass: 'modal__content',
+        size: 'lg'
+      },
+      options);
+  }
+
+  showStrategyFormModal(options: StrategyFormModalOptions = {}): Promise<void> {
+    return this.modalService.open<StrategyFormModalOptions, void>(StrategyFormComponent,
       {
         keyboard: false,
         backdrop: 'static',

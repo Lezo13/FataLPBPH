@@ -9,6 +9,7 @@ import { AuthGuard } from '../_shared/guards';
 import { MatchesComponent } from '../matches/matches.component';
 import { SpawnPointsComponent } from '../spawn-points/spawn-points.component';
 import { MyProfileComponent } from '../my-profile/my-profile.component';
+import { StrategiesComponent } from '../strategies/strategies.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'team', component: TeamComponent },
       { path: 'matches', component: MatchesComponent },
       { path: 'spawn-points', component: SpawnPointsComponent },
+      { path: 'strategies', component: StrategiesComponent },
       { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
       {
         path: 'admin',
