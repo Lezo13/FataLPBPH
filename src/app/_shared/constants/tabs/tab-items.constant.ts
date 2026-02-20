@@ -4,14 +4,22 @@ import { NavItem } from '../../models';
 export const ADMIN_TOPNAV_ITEMS: NavItem[] = [
     {
         order: 0,
-        name: 'PLAYERS',
-        value: 'players',
-        url: 'admin/players',
+        name: 'USERS',
+        value: 'users',
+        url: 'admin/users',
         logo: '',
         allowedRoles: [RoleEnum.Admin]
     },
     {
         order: 1,
+        name: 'PLAYERS',
+        value: 'players',
+        url: 'admin/players',
+        logo: '',
+        allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator]
+    },
+    {
+        order: 2,
         name: 'MATCHES',
         value: 'matches',
         url: 'admin/matches',
@@ -19,7 +27,7 @@ export const ADMIN_TOPNAV_ITEMS: NavItem[] = [
         allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator]
     },
     {
-        order: 2,
+        order: 3,
         name: 'SPAWN POINTS',
         value: 'spawnPoints',
         url: 'admin/spawn-points',
@@ -27,7 +35,7 @@ export const ADMIN_TOPNAV_ITEMS: NavItem[] = [
         allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator]
     },
     {
-        order: 3,
+        order: 4,
         name: 'STRATEGIES',
         value: 'strategies',
         url: 'admin/strategies',
@@ -35,7 +43,7 @@ export const ADMIN_TOPNAV_ITEMS: NavItem[] = [
         allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator]
     },
     {
-        order: 4,
+        order: 5,
         name: 'MAPS',
         value: 'maps',
         url: 'admin/maps',
@@ -87,6 +95,7 @@ export const CLIENT_TOPNAV_ITEMS: NavItem[] = [
         name: 'STRATEGIES',
         value: 'strategies',
         url: 'strategies',
-        logo: ''
+        logo: '',
+        allowedRoles: [RoleEnum.Admin, RoleEnum.Moderator, RoleEnum.Staff, RoleEnum.Player]
     }
 ];

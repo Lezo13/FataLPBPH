@@ -6,3 +6,4 @@ export * from './match-form/match-form.component';
 export * from './player-form/player-form.component';
 export * from './spawn-point-form/spawn-point-form.component';
 export * from './strategy-form/strategy-form.component';
+export * from './user-form/user-form.component';

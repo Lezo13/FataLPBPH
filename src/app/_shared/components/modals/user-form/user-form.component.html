@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h4 class="modal-title"> {{ data?.title || 'Edit User'}}</h4>
+</div>
+
+<div class="modal-body" *ngIf="!isLoading">
+    <form class="form" #userForm="ngForm">
+
+        <fieldset [disabled]="isSaving">
+            <div class="row">
+                <div class="col-6 form-group">
+                    <label for="txtUsername">Username </label>
+                    <input class="form-control" pInputText id="txtUsername" name="txtUsername" type="text"
+                        [(ngModel)]="user.username" readonly />
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="txtEmail">Email</label>
+                    <input class="form-control" pInputText id="txtEmail" name="txtEmail" type="text"
+                        [(ngModel)]="user.email" readonly />
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="txtIngameName">Ingame Name <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtIngameName" name="txtIngameName"
+                        type="text" #txtIngameName="ngModel" [(ngModel)]="user.ingameName" [maxLength]="255"
+                        [ngClass]="{'ng-invalid': txtIngameName.invalid && isSubmitted}" required />
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="selRole">Roles</label>
+                    <p-multiselect class="w-100" id="selRoles" name="selRoles" [options]="roles"
+                        [(ngModel)]="user.roles" optionLabel="name" optionValue="value" [filter]="true"
+                        filterMatchMode="startsWith" [showClear]="true" placeholder="Select roles">
+                    </p-multiselect>
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="txtFirstName">First Name <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtFirstName" name="txtFirstName"
+                        type="text" #txtFirstName="ngModel" [(ngModel)]="user.firstName" [maxLength]="255"
+                        [ngClass]="{'ng-invalid': txtFirstName.invalid && isSubmitted}" required />
+                </div>
+
+                <div class="col-6 form-group">
+                    <label for="txtLastName">Last Name <span class="text-danger">*</span></label>
+                    <input class="form-control ng-invalid ng-dirty" pInputText id="txtLastName" name="txtLastName"
+                        type="text" #txtLastName="ngModel" [(ngModel)]="user.firstName" [maxLength]="255"
+                        [ngClass]="{'ng-invalid': txtLastName.invalid && isSubmitted}" required />
+                </div>
+
+                <div class="col-12 form-group">
+                    <label>Profile Picture</label>
+                    <app-image-selector [src]="user.profilePictureUrl" [(file)]="imageFile"
+                        (fileCleared)="clearImageFile()" [autoDispose]="true"></app-image-selector>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <app-loader [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>
+</div>
+
+
+<div class="modal-footer">
+    <p-button label="Save" styleClass="btn btn-secondary" [loading]="isSaving" [disabled]="isLoading"
+        (onClick)="save()" />
+    <button type="button" class="btn btn-light" (click)="modalInstance.dismiss()" [disabled]="isSaving">Cancel</button>
+</div>

@@ -14,6 +14,10 @@ export interface PlayerFormModalOptions extends ModalOptions {
     playerId?: string;
 }
 
+export interface UserFormModalOptions extends ModalOptions {
+    username?: string;
+}
+
 export interface MatchFormModalOptions extends ModalOptions {
     matchId?: string;
 }

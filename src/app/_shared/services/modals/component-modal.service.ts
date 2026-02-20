@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModalService } from './modal.service';
-import { ConfirmationModalComponent, ContentWindowComponent, InvitationFormComponent, MapFormComponent, MatchFormComponent, PlayerFormComponent, SpawnPointFormComponent, StrategyFormComponent } from '../../components';
-import { ConfirmationOptions, ContentWindowModalOptions, MapFormModalOptions, MatchFormModalOptions, ModalOptions, PlayerFormModalOptions, SpawnPointFormModalOptions, StrategyFormModalOptions } from '../../models';
+import { ConfirmationModalComponent, ContentWindowComponent, InvitationFormComponent, MapFormComponent, MatchFormComponent, PlayerFormComponent, SpawnPointFormComponent, StrategyFormComponent, UserFormComponent } from '../../components';
+import { ConfirmationOptions, ContentWindowModalOptions, MapFormModalOptions, MatchFormModalOptions, ModalOptions, PlayerFormModalOptions, SpawnPointFormModalOptions, StrategyFormModalOptions, UserFormModalOptions } from '../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +55,17 @@ export class ComponentModalService {
 
   showMatchFormModal(options: MatchFormModalOptions = {}): Promise<void> {
     return this.modalService.open<MatchFormModalOptions, void>(MatchFormComponent,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        windowClass: 'modal__content',
+        size: 'lg'
+      },
+      options);
+  }
+
+  showUserFormModal(options: UserFormModalOptions = {}): Promise<void> {
+    return this.modalService.open<UserFormModalOptions, void>(UserFormComponent,
       {
         keyboard: false,
         backdrop: 'static',
