@@ -11,9 +11,11 @@ import { ManageSpawnPointsComponent } from './manage-spawn-points/manage-spawn-p
 import { ManageInvitationsComponent } from './manage-invitations/manage-invitations.component';
 import { ManageMapsComponent } from './manage-maps/manage-maps.component';
 import { ManageStrategiesComponent } from './manage-strategies/manage-strategies.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
+    ManageUsersComponent,
     PlayersComponent,
     ManageMatchesComponent,
     ManageSpawnPointsComponent,

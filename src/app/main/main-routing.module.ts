@@ -21,7 +21,13 @@ const routes: Routes = [
       { path: 'team', component: TeamComponent },
       { path: 'matches', component: MatchesComponent },
       { path: 'spawn-points', component: SpawnPointsComponent },
-      { path: 'strategies', component: StrategiesComponent },
+      {
+        path: 'strategies', component: StrategiesComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: [RoleEnum.Admin, RoleEnum.Moderator, RoleEnum.Staff, RoleEnum.Player]
+        }
+      },
       { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
       {
         path: 'admin',

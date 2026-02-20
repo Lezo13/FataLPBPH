@@ -9,12 +9,17 @@ import { ManageSpawnPointsComponent } from './manage-spawn-points/manage-spawn-p
 import { ManageInvitationsComponent } from './manage-invitations/manage-invitations.component';
 import { ManageMapsComponent } from './manage-maps/manage-maps.component';
 import { ManageStrategiesComponent } from './manage-strategies/manage-strategies.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'players',
+    redirectTo: 'matches',
     pathMatch: 'full'
+  },
+    {
+    path: 'users', component: ManageUsersComponent, canActivate: [AuthGuard],
+    data: { roles: [RoleEnum.Admin] }
   },
   {
     path: 'players', component: PlayersComponent, canActivate: [AuthGuard],

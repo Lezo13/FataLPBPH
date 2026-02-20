@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ADMIN_TOPNAV_ITEMS, CLIENT_TOPNAV_ITEMS, LOGIN_DEFAULT_LOGO } from 'src/app/_shared/constants';
 import { RoleEnum } from 'src/app/_shared/enums';
 import { Role, NavItem, User } from 'src/app/_shared/models';
-import { ActiveService, AuthService, TabEventsService } from 'src/app/_shared/services';
+import { ActiveService, AuthService } from 'src/app/_shared/services';
 import { ObjectUtils } from 'src/app/_shared/utils';
 
 @Component({
@@ -33,7 +33,6 @@ export class TopNavComponent implements OnInit {
 
   private activeService = inject(ActiveService);
   private authService = inject(AuthService);
-  private tabEventsService = inject(TabEventsService);
   private router = inject(Router);
 
   ngOnInit(): void {

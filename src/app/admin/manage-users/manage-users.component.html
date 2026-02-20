@@ -1,0 +1,50 @@
+<div class="admin-content">
+    <div class="admin-content__header">Users</div>
+
+    <div class="admin-content__body">
+        <ng-container *ngIf="!isLoading">
+            <div class="row">
+                <p-table [value]="users" stripedRows [tableStyle]="{'min-width': '50rem'}"
+                    [paginator]="users?.length > 10" [rows]="10" [rowsPerPageOptions]="[10, 20, 30]"
+                    [showCurrentPageReport]="true" [scrollable]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    paginatorStyleClass="mt-3">
+                    <ng-template pTemplate="header" #header>
+                        <tr>
+                            <th pSortableColumn="username">Username <p-sortIcon field="username" /></th>
+                            <th pSortableColumn="ingameName">In Game Name <p-sortIcon field="ingameName" /></th>
+                            <th pSortableColumn="email">Email <p-sortIcon field="email" /></th>
+                            <th pSortableColumn="firstName">First Name <p-sortIcon field="firstName" /></th>
+                            <th pSortableColumn="lastName">Last Name <p-sortIcon field="lastName" /></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template #body let-user>
+                        <tr>
+                            <td class="cell-wrap">{{user?.username}}</td>
+                            <td class="cell-wrap">{{user?.ingameName}}</td>
+                            <td class="cell-wrap">{{user?.email}}</td>
+                            <td class="cell-wrap">{{user?.firstName}}</td>
+                            <td class="cell-wrap">{{user?.lastName}}</td>
+                            <td class="text-center" exportable="false" alignFrozen="right">
+                                <div class="action-btn" *ngIf="!user?.isLoading">
+                                    <a class="text-dark" ngbTooltip="Edit" (click)="editUser(user)"><i
+                                            class='bx bx-edit'></i></a>
+                                </div>
+
+                                <i class="spinner-border spinner-border-sm text-primary" *ngIf="user?.isLoading"></i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template #emptymessage>
+                        <tr>
+                            <td colspan="4" class="text-center">No available users</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </ng-container>
+
+        <app-loader class="center-xy" [isVisible]="true" *ngIf="isLoading" [height]="350"></app-loader>
+    </div>
+</div>

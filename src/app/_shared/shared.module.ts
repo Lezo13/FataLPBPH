@@ -65,6 +65,7 @@ import {
   MapFormComponent,
   ContentWindowComponent,
   StrategyFormComponent,
+  UserFormComponent,
 } from './components';
 import { FilterPipe, HoursDurationPipe, HumanizeDatePipe, PaginatePipe, TruncatePipe } from './pipes';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
@@ -79,7 +80,8 @@ export const modalComponents: any[] = [
   MatchFormComponent,
   PlayerFormComponent,
   SpawnPointFormComponent,
-  StrategyFormComponent
+  StrategyFormComponent,
+  UserFormComponent
 ];
 
 export const components: any[] = [

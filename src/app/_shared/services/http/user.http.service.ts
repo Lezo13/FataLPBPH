@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { from, Observable, map } from 'rxjs';
 import { User } from '../../models';
-import { DocumentReference, Firestore, collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, collection, doc, getDoc, getDocs, orderBy, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { DateUtils } from '../../utils';
 
 @Injectable({
@@ -14,6 +14,21 @@ export class UserHttpService {
         private firestore: Firestore
     ) { }
 
+    getAllUsers(): Observable<User[]> {
+        const usersCollection = collection(this.firestore, 'Users');
+        const usersQuery = query(usersCollection, orderBy('ingameName'));
+
+        return from(getDocs(usersQuery)).pipe(
+            map(snapshot =>
+                snapshot.docs.map(doc =>
+                    DateUtils.autoConvertFirestoreTimestamps({
+                        username: doc.id,
+                        ...doc.data()
+                    } as User)
+                )
+            )
+        );
+    }
 
     getUser(username: string): Observable<User> {
         const userDocRef = doc(this.firestore, 'Users', username);

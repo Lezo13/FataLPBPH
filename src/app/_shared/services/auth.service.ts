@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { User, AuthUser } from '../models';
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updatePassword, verifyBeforeUpdateEmail, reauthenticateWithCredential, EmailAuthProvider } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updatePassword, verifyBeforeUpdateEmail, reauthenticateWithCredential, EmailAuthProvider, deleteUser } from '@angular/fire/auth';
 import { RoleEnum } from '../enums';
 import { DateUtils, ObjectUtils, RoleUtils } from '../utils';
 import { AuthCookieService } from './cookies/auth-cookie.service';
