@@ -44,7 +44,7 @@
                 <div class="col-6 form-group">
                     <label for="txtLastName">Last Name <span class="text-danger">*</span></label>
                     <input class="form-control ng-invalid ng-dirty" pInputText id="txtLastName" name="txtLastName"
-                        type="text" #txtLastName="ngModel" [(ngModel)]="user.firstName" [maxLength]="255"
+                        type="text" #txtLastName="ngModel" [(ngModel)]="user.lastName" [maxLength]="255"
                         [ngClass]="{'ng-invalid': txtLastName.invalid && isSubmitted}" required />
                 </div>
 
